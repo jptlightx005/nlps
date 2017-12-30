@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -43,7 +43,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Suspects</a></li>
+                                    <li><a href="{{ route('suspects.index') }}">Suspects</a></li>
                                     <li><a href="#">Locations</a></li>
                                     <li><a href="#">Crime Types</a></li>
                                 </ul>

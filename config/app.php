@@ -168,7 +168,8 @@ return [
          * Package Service Providers...
          */
         Cornford\Googlmapper\MapperServiceProvider::class,
-        
+        Collective\Html\HtmlServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -226,7 +227,13 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
+
+        /*
+         *  Custom Package Aliases
+         */
+        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

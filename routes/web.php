@@ -15,3 +15,5 @@ Route::get('/', 'DashboardController@index')->name('dashboard');
 
 Route::get('/map', 'MapViewController@index')->name('map');
 Auth::routes();
+
+Route::resource('/suspects', 'SuspectsController');
