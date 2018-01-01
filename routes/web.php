@@ -17,3 +17,4 @@ Route::get('/map', 'MapViewController@index')->name('map');
 Auth::routes();
 
 Route::resource('/suspects', 'SuspectsController');
+Route::resource('/location', 'LocationController');
