@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Location;
+use Mapper;
 class DashboardController extends Controller
 {
     /**
@@ -23,6 +24,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $this->loadMapDefault();
+        $locations = Location::all();
+
+        foreach($locations as $location){
+            Mapper::marker($location->lat, $location->long, ['title' => $location->location_name,
+                                                            'label' => '12',
+                                                            'eventClick' => 'clickedLocation(this)',
+                                                            'eventRightClick' => 'rightClickedLocation(this)',
+                                                            'scale' => 1000]);
+        }
+
         return view('dashboard');
     }
 }
