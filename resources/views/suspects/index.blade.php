@@ -19,8 +19,19 @@
                                 <th>Name</th>
                                 <th>Alias</th>
                                 <th>Qualifier</th>
+                                <th>Location</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach($suspects as $suspect)
+                                <tr>
+                                    <td>{{$suspect->fullName()}}</td>
+                                    <td>{{$suspect->alias}}</td>
+                                    <td>{{$suspect->qualifier}}</td>
+                                    <td>{{$suspect->crimes()->first()->location()->first()->location_name}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>

@@ -90,35 +90,45 @@
             console.log('called once');
 
             //will add overlay here
-            registerMessageOverlay = $("<div>").css({
-                                        position: "absolute",
-                                        width: "100%",
-                                        height: "100%",
-                                        left: 0,
-                                        top: 0,
-                                        zIndex: 1000000,  // to be on the safe side
-                                        background: "rgba(0,0,0,0)"
-                                    });
+            registerMessageOverlay = $("<div>").attr({
+                                                id: "message-overlay"
+                                            })
+                                            .css({
+                                                position: "absolute",
+                                                width: "100%",
+                                                height: "100%",
+                                                left: 0,
+                                                top: 0,
+                                                zIndex: 1000000,  // to be on the safe side
+                                                background: "rgba(0,0,0,0)",
+                                                pointerEvents: "none"
+                                            });
 
             var message = $("<h2>").text("Select location on the map");
-            message.css({
-               position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                color: 'white'
-            });
+            message.attr({
+                        id: "message-text"
+                    })
+                    .css({
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        color: 'white'
+                    });
             message.appendTo(registerMessageOverlay);
 
 
 
-            var dimOverlay = $("<div>").css({
+            var dimOverlay = $("<div>").attr({
+                                        id: "dim-overlay"
+                                    })
+                                    .css({
                                     position: "absolute",
                                     width: "100%",
                                     height: "100%",
                                     left: 0,
                                     top: 0,
-                                    zIndex: 1000000,  // to be on the safe side
+                                    zIndex: 2,
                                     background: "rgba(0,0,0,0.5)",
                                     pointerEvents: "none"
                                 });

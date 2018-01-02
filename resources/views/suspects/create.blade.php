@@ -57,6 +57,18 @@
                             </label>
                             <button class="btn btn-default hidden">View</button>
                         </div>
+
+                        <div class="form-group">
+                            {{Form::label('crime_type', 'Crime Type')}}
+                            {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'crime_type')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
+                        </div>
+
+                        <div class="form-group">
+                            {{Form::label('location', 'Location')}}
+                            {{Form::select('location', \App\Location::pluck('location_name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
+                        </div>
+
+
                         <div class="form-group">
                             {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
                         </div>
