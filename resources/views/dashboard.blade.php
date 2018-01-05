@@ -43,5 +43,55 @@
     .row.map-row{
         margin-bottom: 25px;
     }
+
+    .info-group .info-label{
+        margin-right: 10px;
+    }
 </style>
+@endsection
+
+@section('page-specific-scripts')
+<script>
+    var theMap;
+
+    function mapDidLoad(map){
+        theMap = map;
+    }
+    function clickedLocation(marker, info){
+        console.log(info);
+        
+       
+
+        var location_name_group = $('<div>').attr({
+                class: "info-group"
+            })
+            .append($('<label>').addClass('info-label').text('Location: '))
+            .append($('<span>').text(info.location_name))
+
+        var crimes_group = $('<div>').attr({
+                class: "info-group"
+            })
+            .append($('<label>').addClass('info-label').text('Crimes: '))
+            .append($('<span>').text(info.crimes.length))
+
+        var location_info = $('<div>').attr({
+            class: "location-info"
+        })
+        .append(location_name_group)
+        .append(crimes_group);
+
+        var infowindow = new google.maps.InfoWindow({
+          content: location_info.prop('outerHTML')
+        });
+
+        infowindow.open(theMap, marker);
+
+        $('<span>').text(info.location_name).after(location_info)
+    }
+
+    function rightClickedLocation(marker){
+        alert(marker);
+        console.log(marker)
+    }
+</script>
 @endsection

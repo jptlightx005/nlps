@@ -30,7 +30,7 @@ class DashboardController extends Controller
         foreach($locations as $location){
             Mapper::marker($location->lat, $location->long, ['title' => $location->location_name,
                                                             'label' => '' . count($location->crimes),
-                                                            'eventClick' => 'clickedLocation(this)',
+                                                            'eventClick' => 'clickedLocation(this, '. $location->toJson() . ')',
                                                             'eventRightClick' => 'rightClickedLocation(this)',
                                                             'scale' => 1000]);
         }
