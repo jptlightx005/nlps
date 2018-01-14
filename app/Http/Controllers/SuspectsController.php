@@ -88,7 +88,9 @@ class SuspectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $suspect = Suspect::find($id);
+
+        return view('suspects.edit', compact('suspect'));
     }
 
     /**
@@ -99,8 +101,21 @@ class SuspectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $suspect = Suspect::find($id);
+
+        $suspect->first_name = $request->input('first_name');
+        $suspect->middle_name = $request->input('middle_name');
+        $suspect->last_name = $request->input('last_name');
+        $suspect->alias = $request->input('alias');
+        $suspect->whole_body = $request->input('whole_body');
+        $suspect->front = $request->input('front_face');
+        $suspect->left_face = $request->input('left_face');
+        $suspect->right_face = $request->input('right_face');
+
+        $suspect->save();
+
+        return redirect(route('suspects.index'))->with('success', "Suspect record successfully updated!");
     }
 
     /**

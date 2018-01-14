@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\NLPS;
+use Route;
 
 class Suspect extends Model
 {
@@ -24,5 +25,7 @@ class Suspect extends Model
     	return NLPS::returnFullName($this->first_name, $this->middle_name, $this->last_name);
     }
 
-
+    public function fullNameEditLink(){
+        return "<a href=\"" . route('suspects.edit', $this->id) . "\">" . $this->fullName() . "</a>";
+    }
 }

@@ -18,3 +18,5 @@ Auth::routes();
 
 Route::resource('/suspects', 'SuspectsController');
 Route::resource('/location', 'LocationController');
+
+Route::get('/loc/{id}', 'DashboardController@locationDetails');

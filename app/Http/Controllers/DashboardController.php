@@ -37,4 +37,25 @@ class DashboardController extends Controller
 
         return view('dashboard');
     }
+
+    public function locationDetails($id){
+        $loc = Location::find($id);
+
+        $locname = $loc->location_name;
+        $freq = $loc->freq();
+
+        $top_crimes = $loc->crimes->toArray();
+
+        $remarks = "";
+
+        if($freq < 1){
+            $remarks = "Too safe";
+        }else if($freq == 1){
+            $remarks = "Normal";
+        }else if($freq > 1){
+            $remarks = "Needs cleaning";
+        }
+
+        return compact('locname', 'freq', 'top_crimes', 'remarks');
+    }
 }
