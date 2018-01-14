@@ -13,82 +13,72 @@
                 <div class="panel-heading">Register Suspect</div>
 
                 <div class="panel-body">
-                    {!! Form::open(['action' => 'SuspectsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['action' => ['SuspectsController@update', $suspect->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                         <div class="form-group">
                             {{Form::label('first_name', 'First Name')}}
-                            {{Form::text('first_name', '', ['class' => 'form-control', 'placeholder' => 'First Name'])}}
+                            {{Form::text('first_name', $suspect->first_name, ['class' => 'form-control', 'placeholder' => 'First Name'])}}
                         </div>
                         <div class="form-group">
                             {{Form::label('middle_name', 'Middle Name')}}
-                            {{Form::text('middle_name', '', ['class' => 'form-control', 'placeholder' => 'Middle Name'])}}
+                            {{Form::text('middle_name', $suspect->middle_name, ['class' => 'form-control', 'placeholder' => 'Middle Name'])}}
                         </div>
                         <div class="form-group">
                             {{Form::label('last_name', 'Last Name')}}
-                            {{Form::text('last_name', '', ['class' => 'form-control', 'placeholder' => 'Last Name'])}}
+                            {{Form::text('last_name', $suspect->last_name, ['class' => 'form-control', 'placeholder' => 'Last Name'])}}
                         </div>
 
                         <div class="form-group">
                             {{Form::label('alias', 'Alias')}}
-                            {{Form::text('alias', '', ['class' => 'form-control', 'placeholder' => 'Alias'])}}
+                            {{Form::text('alias', $suspect->alias, ['class' => 'form-control', 'placeholder' => 'Alias'])}}
                         </div>
 
                         {{Form::label('', 'Mugshot')}}
                         <div class="form-group">
                             <div class="input-group">
                                <span class="input-group-btn">
-                                 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                 <a data-input="whole-thumbnail" data-preview="whole-holder" class="btn btn-primary lfm">
                                    <i class="fa fa-picture-o"></i> Whole Body
                                  </a>
                                </span>
-                               <input id="thumbnail" class="form-control" type="text" name="filepath">
+                               <input id="whole-thumbnail" class="form-control preview-thumbnail" type="text" name="whole_body" value="{{$suspect->whole_body}}">
                              </div>
-                             <img id="holder" style="margin-top:15px;max-height:100px;">
+                             <img id="whole-holder" onerror="imgError(this)" src="{{$suspect->whole_body}}" style="margin-top:15px;max-height:100px;">
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                <span class="input-group-btn">
-                                 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                 <a data-input="front-thumbnail" data-preview="front-holder" class="btn btn-primary lfm">
                                    <i class="fa fa-picture-o"></i> Front Face
                                  </a>
                                </span>
-                               <input id="thumbnail" class="form-control" type="text" name="filepath">
+                               <input id="front-thumbnail" class="form-control preview-thumbnail" type="text" name="front_face" value="{{$suspect->front}}">
                              </div>
-                             <img id="holder" style="margin-top:15px;max-height:100px;">
+                             <img id="front-holder" onerror="imgError(this)" src="{{$suspect->front}}" style="margin-top:15px;max-height:100px;">
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                <span class="input-group-btn">
-                                 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                 <a data-input="left-thumbnail" data-preview="left-holder" class="btn btn-primary lfm">
                                    <i class="fa fa-picture-o"></i> Left Face
                                  </a>
                                </span>
-                               <input id="thumbnail" class="form-control" type="text" name="filepath">
+                               <input id="left-thumbnail" class="form-control preview-thumbnail" type="text" name="left_face" value="{{$suspect->left_face}}">
                              </div>
-                             <img id="holder" style="margin-top:15px;max-height:100px;">
+                             <img id="left-holder" onerror="imgError(this)" src="{{$suspect->left_face}}" style="margin-top:15px;max-height:100px;">
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                <span class="input-group-btn">
-                                 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                 <a data-input="right-thumbnail" data-preview="right-holder" class="btn btn-primary lfm">
                                    <i class="fa fa-picture-o"></i> Right Face
                                  </a>
                                </span>
-                               <input id="thumbnail" class="form-control" type="text" name="filepath">
+                               <input id="right-thumbnail" class="form-control preview-thumbnail" type="text" name="right_face" value="{{$suspect->right_face}}">
                              </div>
-                             <img id="holder" style="margin-top:15px;max-height:100px;">
+                             <img id="right-holder" onerror="imgError(this)" src="{{$suspect->right_face}}" style="margin-top:15px;max-height:100px;">
                         </div>
 
-                        <div class="form-group">
-                            {{Form::label('crime_type', 'Crime Type')}}
-                            {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'crime_type')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
-                        </div>
-
-                        <div class="form-group">
-                            {{Form::label('location', 'Location')}}
-                            {{Form::select('location', \App\Location::pluck('location_name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
-                        </div>
-
-
+                        {{Form::hidden('_method','PUT')}}
                         <div class="form-group">
                             {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
                         </div>
@@ -100,10 +90,24 @@
 </div>
 @endsection
 
+@section('page-specific-pre-defined-scripts')
+<script>
+    function imgError(image){
+        image.onerror = "";
+        image.src = "/img/noimage.jpg";
+        return true;
+    };
+ </script>
+@endsection
 @section('page-specific-scripts')
     <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
     <script>
         var config = {prefix: '/res'}
-        $('#lfm').filemanager('image', config);
+        $('.lfm').filemanager('image', config);
+
+        // $('.preview-thumbnail').load(function(){
+        //     console.log('this.src');
+        // })
+        // 
     </script>
 @endsection

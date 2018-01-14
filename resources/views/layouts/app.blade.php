@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('page-specific-styles')
+
+    @yield('page-specific-pre-defined-scripts')
 </head>
 <body>
     <div id="app">
@@ -24,8 +26,12 @@
         </div>
     </div>
 
+    @yield('modals')
+    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/waiting.js') }}"></script>
     @yield('page-specific-scripts')
 </body>
 </html>

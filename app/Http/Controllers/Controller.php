@@ -24,4 +24,10 @@ class Controller extends BaseController
     	print_r($a);
     	echo '</pre>';
     }
+
+    public function pathToStorage($src, $urlpath = ""){
+        //$src = '/res/photos/1/522921_224294827688154_588136453_n.jpg'
+        $str = storage_path(str_replace($urlpath, "", $src));
+        return $str;
+    }
 }

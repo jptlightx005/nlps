@@ -19,14 +19,14 @@ class CreateSuspectsTable extends Migration
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
-            $table->string('qualifier');
+            $table->string('qualifier')->default('');
             $table->string('alias');
 
             //Mugshot image names
-            $table->string('whole_body');
-            $table->string('front');
-            $table->string('left_face');
-            $table->string('right_face');
+            $table->string('whole_body')->default('');
+            $table->string('front')->default('');
+            $table->string('left_face')->default('');
+            $table->string('right_face')->default('');
             $table->timestamps();
         });
     }

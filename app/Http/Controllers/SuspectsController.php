@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Suspects;
-
+use App\Suspect;
+use App\CrimeCommitted;
 class SuspectsController extends Controller
 {
     /**
@@ -15,7 +15,9 @@ class SuspectsController extends Controller
      */
     public function index()
     {
-        return view('suspects.index');
+        $suspects = Suspect::all();
+
+        return view('suspects.index', compact('suspects'));
     }
 
     /**
@@ -36,7 +38,35 @@ class SuspectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+            'alias' => 'required',
+            'crime_type' => 'required',
+            'location' => 'required'
+        ]);
+
+        $suspect = Suspect::create([
+            'user_id' => auth()->user()->id,
+            'first_name' => $request->input('first_name'),
+            'middle_name' => $request->input('middle_name'),
+            'last_name' => $request->input('last_name'),
+            'qualifier' => "",
+            'alias' => $request->input('alias'),
+        ]);
+        $suspect->save();
+
+        $crime = CrimeCommitted::create([
+            'suspect_id' => $suspect->id,
+            'user_id' => auth()->user()->id,
+            'crime_type' => $request->input('crime_type'),
+            'location_id' => $request->input('location')
+        ]);
+
+        $crime->save();
+
+        return redirect('/suspects')->with('success', 'Suspect Recorded');
     }
 
     /**
@@ -58,7 +88,9 @@ class SuspectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $suspect = Suspect::find($id);
+
+        return view('suspects.edit', compact('suspect'));
     }
 
     /**
@@ -69,8 +101,21 @@ class SuspectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $suspect = Suspect::find($id);
+
+        $suspect->first_name = $request->input('first_name');
+        $suspect->middle_name = $request->input('middle_name');
+        $suspect->last_name = $request->input('last_name');
+        $suspect->alias = $request->input('alias');
+        $suspect->whole_body = $request->input('whole_body');
+        $suspect->front = $request->input('front_face');
+        $suspect->left_face = $request->input('left_face');
+        $suspect->right_face = $request->input('right_face');
+
+        $suspect->save();
+
+        return redirect(route('suspects.index'))->with('success', "Suspect record successfully updated!");
     }
 
     /**
