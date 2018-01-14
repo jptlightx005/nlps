@@ -191,6 +191,7 @@
                 });
                 $('#top_crimes').append( items.join('') );
                 $("#remarks").text(data.remarks);
+                $('#more_details').attr("href", "location/" + data.id)
             },
             error: function(data){
                 console.log('Error Occured: ');

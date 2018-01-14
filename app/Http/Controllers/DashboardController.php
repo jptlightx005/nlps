@@ -56,6 +56,6 @@ class DashboardController extends Controller
             $remarks = "Needs cleaning";
         }
 
-        return compact('locname', 'freq', 'top_crimes', 'remarks');
+        return compact('id', 'locname', 'freq', 'top_crimes', 'remarks');
     }
 }
