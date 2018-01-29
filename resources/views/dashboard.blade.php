@@ -5,7 +5,8 @@
     <div class="row map-row">
         <div class="col-md-12">
             <div class="map-container">
-                {!! Mapper::render() !!}
+                {{-- {!! Mapper::render() !!} --}}
+                <map-component></map-component>
             </div>
         </div>
     </div>
@@ -13,7 +14,6 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
-                <a href="#" class="view-details">Test Meh</a>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -24,6 +24,8 @@
             </div>
         </div>
     </div>
+
+    <example-component></example-component>
 </div>
 @endsection
 

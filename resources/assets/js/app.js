@@ -9,6 +9,16 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import 'vue-googlemaps/dist/vue-googlemaps.css'
+import VueGoogleMaps from 'vue-googlemaps'
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    apiKey: 'AIzaSyD_XljDoRneX7A7Xgsqe17mq46pOgSp_lo',
+    libraries: ['places'],
+  },
+})
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -16,7 +26,11 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('map-component', require('./components/MapComponent.vue'));
 
-// const app = new Vue({
-//     el: '#app'
-// });
+const app = new Vue({
+    el: '#app',
+    created(){
+    	
+    }
+});
