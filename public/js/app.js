@@ -46402,7 +46402,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var info = this.locations.filter(function (item) {
                 return item.id == id;
             }).pop();
-            this.currentmarker = marker;
+            // console.log(this);
+            // console.log(this.$children[0].$_map);
+            var map = this.$children[0].$_map;
+            console.log(map);
+            // var map = ;
             //Location:
             var location_name_group = $('<div>').attr({
                 class: "info-group"
@@ -46429,7 +46433,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 content: location_info.prop('outerHTML')
             });
 
-            // infowindow.open(this.map, marker);
+            infowindow.open(map, marker);
 
             $('<span>').text(info.location_name).after(location_info);
 
@@ -46445,7 +46449,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             mapOptions: {},
             markers: [],
             locations: [],
-            currentmarker: null,
             map: null
         };
     },
@@ -46464,7 +46467,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var label = {
                     color: 'black',
                     fontFamily: 'Material Icons',
-                    // fontSize: '20px',
                     text: value.crimes.length.toString()
                 };
                 list.push({ _id: value.id, position: position, label: label, title: value.location_name });
