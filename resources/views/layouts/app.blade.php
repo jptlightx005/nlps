@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('page-specific-styles')
 
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API_KEY')}}"></script>
     @yield('page-specific-pre-defined-scripts')
 </head>
 <body>
@@ -29,7 +30,7 @@
     @yield('modals')
     
     <!-- Scripts -->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API_KEY')}}"></script>
+    
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
