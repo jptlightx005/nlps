@@ -11403,3 +11403,43 @@ button.close {
   clip: auto;
 }
 
+#dashboard-wrapper .map-container {
+  width: 95%;
+  height: 85vh;
+  margin: 0 auto;
+  border: 5px #FFF solid;
+  -webkit-box-shadow: 0px 0px 5px #000;
+          box-shadow: 0px 0px 5px #000;
+}
+
+#dashboard-wrapper .row.map-row {
+  margin-bottom: 25px;
+}
+
+#dashboard-wrapper .info-group .info-label {
+  margin-right: 10px;
+}
+
+#location-index .map-container {
+  width: 100%;
+  height: 500px;
+  min-width: 1000px;
+  margin: 0 auto;
+  border: 5px #FFF solid;
+  -webkit-box-shadow: 0px 0px 5px #000;
+          box-shadow: 0px 0px 5px #000;
+  position: relative;
+}
+
+#location-index .row.map-row {
+  margin-bottom: 25px;
+}
+
+#location-index .row.location-buttons {
+  margin-bottom: 10px;
+}
+
+#location-index .row .button-right .btn {
+  float: right;
+}
+

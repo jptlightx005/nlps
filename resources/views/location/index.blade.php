@@ -1,60 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row location-buttons">
-        <div class="col-md-6 button-left">
-            <button class="btn btn-primary" id="registerlocation">
-                <span class="glyphicon glyphicon-plus-sign"></span> Register a Location
-            </button>
-        </div>
-        <div class="col-md-6 button-right">
-            {!! Form::open(['action' => 'LocationController@store', 'method' => 'POST']) !!}
-                <input type="hidden" name="location_name" id="location_name" />
-                <input type="hidden" name="latitude" id="latitude" />
-                <input type="hidden" name="longitude" id="longitude" />
-                <button type="submit" class="btn btn-warning" id="savelocation">
-                    <span class="fa fa-save"></span> Save Location
+<div class="wrapper" id="location-index">
+    <div class="container">
+        <div class="row location-buttons">
+            <div class="col-md-6 button-left">
+                <button class="btn btn-primary" id="registerlocation">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Register a Location
                 </button>
-            {!! Form::close() !!}
+            </div>
+            <div class="col-md-6 button-right">
+                {!! Form::open(['action' => 'LocationController@store', 'method' => 'POST']) !!}
+                    <input type="hidden" name="location_name" id="location_name" />
+                    <input type="hidden" name="latitude" id="latitude" />
+                    <input type="hidden" name="longitude" id="longitude" />
+                    <button type="submit" class="btn btn-warning" id="savelocation">
+                        <span class="fa fa-save"></span> Save Location
+                    </button>
+                {!! Form::close() !!}
+            </div>
         </div>
-    </div>
-    <div class="row map-row">
-        <div class="col-md-12">
-            <div class="map-container">
-                {!! Mapper::render() !!}
+        <div class="row map-row">
+            <div class="col-md-12">
+                <div class="map-container">
+                    {!! Mapper::render() !!}
+                </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
-
-@section('page-specific-styles')
-<style type="text/css" rel="stylesheet">
-    .map-container{
-        width: 100%; 
-        height: 750px;
-        min-width: 1000px;
-        
-        
-        margin:0 auto;
-        border:5px #FFF solid;
-        box-shadow: 0px 0px 5px #000;
-
-        position: relative;
-    }
-
-    .row.map-row{
-        margin-bottom: 25px;
-    }
-    .row.location-buttons{
-        margin-bottom: 10px;
-    }
-
-    .row .button-right .btn{
-        float: right;
-    }
-</style>
 @endsection
 
 @section('page-specific-scripts')

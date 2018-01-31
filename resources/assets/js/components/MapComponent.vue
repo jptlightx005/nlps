@@ -137,10 +137,7 @@ export default {
 	        $.ajax({
 	            url: '/locations/' + id,
 	            success: function(data){
-	                waitingDialog.hide();
-	                $("#myModal").modal();
-
-	                $("#loc_name").text(data.locname);
+	            	$("#loc_name").text(data.locname);
 	                $("#freq").text(data.freq);
 	                $("#top_crimes").empty();
 	                var items = [];
@@ -152,6 +149,10 @@ export default {
 	                $('#top_crimes').append( items.join('') );
 	                $("#remarks").text(data.remarks);
 	                $('#more_details').attr("href", "location/" + data.id)
+
+	                waitingDialog.hide(function(){
+	                	$("#myModal").modal();
+	                });	                
 	            },
 	            error: function(data){
 	                console.log('Error Occured: ');

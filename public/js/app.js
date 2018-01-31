@@ -1077,9 +1077,8 @@ module.exports = __webpack_require__(50);
 
 /***/ }),
 /* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -1088,29 +1087,9 @@ module.exports = __webpack_require__(50);
  */
 
 __webpack_require__(12);
+__webpack_require__(65);
 
 window.Vue = __webpack_require__(36);
-
-// import 'vue-googlemaps/dist/vue-googlemaps.css'
-// import VueGoogleMaps from 'vue-googlemaps'
-
-// Vue.use(VueGoogleMaps, {
-//   load: {
-//     apiKey: 'AIzaSyD_XljDoRneX7A7Xgsqe17mq46pOgSp_lo',
-//     libraries: ['places'],
-//   },
-// })
-
-// import * as VueGoogleMaps from 'vue2-google-maps'
-// Vue.use(VueGoogleMaps, {
-//   load: {
-//     key: 'AIzaSyBvWE_sIwKbWkiuJQOf8gSk9qzpO96fhfY',
-//     libraries: 'places', // This is required if you use the Autocomplete plugin
-//     // OR: libraries: 'places,drawing'
-//     // OR: libraries: 'places,drawing,visualization'
-//     // (as you require)
-//   }
-// })
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -43696,9 +43675,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			$.ajax({
 				url: '/locations/' + id,
 				success: function success(data) {
-					waitingDialog.hide();
-					$("#myModal").modal();
-
 					$("#loc_name").text(data.locname);
 					$("#freq").text(data.freq);
 					$("#top_crimes").empty();
@@ -43711,6 +43687,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					$('#top_crimes').append(items.join(''));
 					$("#remarks").text(data.remarks);
 					$('#more_details').attr("href", "location/" + data.id);
+
+					waitingDialog.hide(function () {
+						$("#myModal").modal();
+					});
 				},
 				error: function error(data) {
 					console.log('Error Occured: ');
@@ -43746,6 +43726,95 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */
+/***/ (function(module, exports) {
+
+window.waitingDialog = window.waitingDialog || function ($) {
+	'use strict';
+
+	// Creating modal dialog's DOM
+
+	var $dialog = $('<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15%; overflow-y:visible;">' + '<div class="modal-dialog modal-m">' + '<div class="modal-content">' + '<div class="modal-header"><h3 style="margin:0;"></h3></div>' + '<div class="modal-body">' + '<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>' + '</div>' + '</div></div></div>');
+
+	// // Creating modal dialog's DOM
+	// var $dialog = $(
+	// 	'<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15%; overflow-y:visible;">' +
+	// 	'<div class="modal-dialog modal-m">' +
+	// 	'<div class="modal-content">' +
+	// 		'<div class="modal-header"><h3 style="margin:0;"></h3></div>' +
+	// 		'<div class="modal-body">' +
+	// 			'<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>' +
+	// 		'</div>' +
+	// 	'</div></div></div>');
+
+	return {
+		/**
+   * Opens our dialog
+   * @param message Custom message
+   * @param options Custom options:
+   * 				  options.dialogSize - bootstrap postfix for dialog size, e.g. "sm", "m";
+   * 				  options.progressType - bootstrap postfix for progress bar type, e.g. "success", "warning".
+   */
+		show: function show(message, options) {
+			// Assigning defaults
+			if (typeof options === 'undefined') {
+				options = {};
+			}
+			if (typeof message === 'undefined') {
+				message = 'Loading';
+			}
+			var settings = $.extend({
+				dialogSize: 'm',
+				progressType: '',
+				onHide: null // This callback runs after the dialog was hidden
+			}, options);
+
+			// Configuring dialog
+			$dialog.find('.modal-dialog').attr('class', 'modal-dialog').addClass('modal-' + settings.dialogSize);
+			$dialog.find('.progress-bar').attr('class', 'progress-bar');
+			if (settings.progressType) {
+				$dialog.find('.progress-bar').addClass('progress-bar-' + settings.progressType);
+			}
+			$dialog.find('h3').text(message);
+			// Adding callbacks
+			if (typeof settings.onHide === 'function') {
+				$dialog.off('hidden.bs.modal').on('hidden.bs.modal', function (e) {
+					settings.onHide.call($dialog);
+				});
+			}
+			// Opening dialog
+			$dialog.modal();
+		},
+		/**
+   * Closes dialog
+   */
+		hide: function hide(callback) {
+			$dialog.modal('hide');
+
+			if (callback) {
+				$dialog.on('hidden.bs.modal', function () {
+					callback();
+				});
+			}
+		}
+	};
+}(jQuery);
 
 /***/ })
 /******/ ]);
