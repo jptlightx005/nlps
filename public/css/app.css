@@ -11442,6 +11442,10 @@ button.close {
   float: right;
 }
 
+#location-index .gm-style-iw + div {
+  display: none;
+}
+
 body {
   padding-top: 90px;
 }
