@@ -14,15 +14,6 @@ class LocationController extends Controller
      */
     public function index()
     {
-       $this->loadMapDefault();
-        $locations = Location::all();
-
-        foreach($locations as $location){
-            Mapper::marker($location->lat, $location->long, ['title' => $location->location_name,
-                                                            'eventClick' => 'clickedLocation(this)',
-                                                            'eventRightClick' => 'rightClickedLocation(this)',
-                                                            'scale' => 1000]);
-        }
         return view('location.index');
     }
 
@@ -57,6 +48,11 @@ class LocationController extends Controller
         ]);
 
         $location->save();
+
+        if($request->ajax()){
+            return array('success' => 'Location Registered',
+                         'data' => $location);
+        }
 
         return redirect('/location')->with('success', 'Location Registered');
     }

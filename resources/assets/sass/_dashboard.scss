@@ -1,0 +1,18 @@
+#dashboard-wrapper{
+    .map-container{
+        width: 95%; 
+        height: 85vh;
+        
+        margin:0 auto;
+        border:5px #FFF solid;
+        box-shadow: 0px 0px 5px #000;
+    }
+
+    .row.map-row{
+        margin-bottom: 25px;
+    }
+
+    .info-group .info-label{
+        margin-right: 10px;
+    }
+}

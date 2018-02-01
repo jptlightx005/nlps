@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('./waitingFor');
 
 window.Vue = require('vue');
 
@@ -16,7 +17,10 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('map-component', require('./components/MapComponent.vue'));
+Vue.component('register-map-component', require('./components/RegisterMapComponent.vue'));
 
-// const app = new Vue({
-//     el: '#app'
-// });
+const app = new Vue({
+    el: '#app'
+});
+
