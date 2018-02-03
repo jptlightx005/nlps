@@ -19,8 +19,10 @@ Auth::routes();
 Route::resource('/suspects', 'SuspectsController');
 Route::resource('/location', 'LocationController');
 
-Route::get('/locations/{id}', 'DashboardController@locationDetails');
+Route::get('/locations/details/{id}', 'DashboardController@locationDetails');
 
 Route::get('/locations', function(){
 	return \App\Location::with('crimes')->get();
 })->middleware('auth');
+
+Route::get('/locations/dashboard', 'DashboardController@locations')->middleware('auth');

@@ -9,17 +9,14 @@
 <div class="wrapper" id="dashboard-wrapper">
     <div class="row map-row">
         <div class="col-md-12">
-            <div class="map-container">
-                {{-- {!! Mapper::render() !!} --}}
-                <map-component></map-component>
-            </div>
+            <map-component></map-component>
         </div>
     </div>
 </div>
 @endsection
 
 @section('modals')
-<!-- Modal -->
+{{-- <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -31,12 +28,8 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <label>Location Name:</label>
-                <span id="loc_name">New York</span>
-            </div>
-            <div class="form-group">
-                <label>Crime Frequency:</label>
-                <span id="freq">1/month</span>
+                <label>Brgy. Name:</label>
+                <span id="loc_name">Lucena</span>
             </div>
             <div class="form-group">
                 <label>Top Crimes committed</label>
@@ -57,5 +50,5 @@
     </div>
 
   </div>
-</div>
+</div> --}}
 @endsection
