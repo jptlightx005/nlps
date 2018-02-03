@@ -94,7 +94,7 @@
 <script>
     function imgError(image){
         image.onerror = "";
-        image.src = "/img/noimage.jpg";
+        image.src = "/res/photos/shares/noimage.jpg";
         return true;
     };
  </script>

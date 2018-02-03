@@ -43747,7 +43747,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n.google-map[data-v-f8e2ef90] {\n  width: 100%;\n  height: 100%;\n  margin: 0 auto;\n  background: gray;\n}\n#locationModal li.no-result[data-v-f8e2ef90]{\n\tlist-style: none;\n}\n.pre-scrollable[data-v-f8e2ef90]{\n\theight: 250px;\n}\n", ""]);
+exports.push([module.i, "\n.google-map[data-v-f8e2ef90] {\n  width: 100%;\n  height: 100%;\n  margin: 0 auto;\n  background: gray;\n}\n#locationModal li.no-result[data-v-f8e2ef90]{\n\tlist-style: none;\n}\n.pre-scrollable[data-v-f8e2ef90]{\n\theight: 250px;\n\tpadding: 0 15px;\n}\n#suspects-list[data-v-f8e2ef90] {\n    list-style: none;\n    padding: 0;\n}\n#suspects-list li[data-v-f8e2ef90] {\n    margin: 10px 0;\n    position: relative;\n}\n#suspects-list li .suspect-image[data-v-f8e2ef90] {\n    width: 75px;\n    height: 75px;\n    -o-object-fit: cover;\n       object-fit: cover;\n    border-radius: 50%;\n}\n#suspects-list div.info-group[data-v-f8e2ef90]{\n\tdisplay: inline-block;\n    position: absolute;\n    top: 10%;\n    margin-left: 20px;\n}\n#suspects-list li .suspect-info[data-v-f8e2ef90] {\n    display:block;\n}\n\n", ""]);
 
 // exports
 
@@ -43791,6 +43791,16 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43944,6 +43954,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			$('#more_details').attr("href", "location/" + data.id);
 			$('#locationModal').modal();
+		},
+		imgError: function imgError(image) {
+			console.log(image);
+			image.onerror = "";
+			image.src = "/res/photos/shares/noimage.jpg";
+			return true;
 		}
 	}
 });
@@ -43982,51 +43998,88 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-md-6 crimes-section pre-scrollable" },
-                    [
-                      _c("label", [_vm._v("Crimes committed")]),
-                      _vm._v(" "),
-                      _c(
-                        "ol",
-                        { attrs: { id: "crimes-list" } },
-                        _vm._l(_vm.selected.crimes, function(crime) {
-                          return _c("li", [_vm._v(_vm._s(crime.crime_type))])
-                        })
-                      ),
-                      _vm._v(" "),
-                      _vm.selected.crimes.length > 5
-                        ? _c(
-                            "a",
-                            { staticClass: "see-more", attrs: { href: "" } },
-                            [_vm._v("See More")]
-                          )
-                        : _vm._e()
-                    ]
-                  ),
+                  _c("div", { staticClass: "col-md-6 crimes-section" }, [
+                    _c("label", [_vm._v("Crimes committed")]),
+                    _vm._v(" "),
+                    _c(
+                      "ol",
+                      {
+                        staticClass: "pre-scrollable",
+                        attrs: { id: "crimes-list" }
+                      },
+                      _vm._l(_vm.selected.crimes, function(crime) {
+                        return _c("li", [_vm._v(_vm._s(crime.crime_type))])
+                      })
+                    ),
+                    _vm._v(" "),
+                    _vm.selected.crimes.length > 5
+                      ? _c(
+                          "a",
+                          { staticClass: "see-more", attrs: { href: "" } },
+                          [_vm._v("See More")]
+                        )
+                      : _vm._e()
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-md-6 suspects-section pre-scrollable" },
-                    [
-                      _c("label", [_vm._v("Suspects")]),
-                      _vm._v(" "),
-                      _c(
-                        "ol",
-                        { attrs: { id: "suspects-list" } },
-                        _vm._l(_vm.selected.suspects, function(suspect) {
-                          return _c("li", [_vm._v(_vm._s(suspect.full_name))])
-                        })
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        { staticClass: "see-more hidden", attrs: { href: "" } },
-                        [_vm._v("See More")]
-                      )
-                    ]
-                  )
+                  _c("div", { staticClass: "col-md-6 suspects-section" }, [
+                    _c("label", [_vm._v("Suspects")]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "pre-scrollable",
+                        attrs: { id: "suspects-list" }
+                      },
+                      _vm._l(_vm.selected.suspects, function(suspect) {
+                        return _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "/suspects/" + suspect.id + "/edit"
+                              }
+                            },
+                            [
+                              _c("img", {
+                                staticClass: "suspect-image",
+                                attrs: {
+                                  src:
+                                    suspect.front == ""
+                                      ? "/res/photos/shares/noimage.jpg"
+                                      : suspect.front
+                                },
+                                on: { error: _vm.imgError }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "info-group" }, [
+                                _c("span", {
+                                  staticClass: "suspect-info",
+                                  attrs: { name: "suspect-name" },
+                                  domProps: {
+                                    textContent: _vm._s(suspect.full_name)
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "suspect-info",
+                                  attrs: { name: "suspect-alias" },
+                                  domProps: {
+                                    textContent: _vm._s(suspect.alias)
+                                  }
+                                })
+                              ])
+                            ]
+                          )
+                        ])
+                      })
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "see-more hidden", attrs: { href: "" } },
+                      [_vm._v("See More")]
+                    )
+                  ])
                 ])
               ])
             ]),

@@ -18,18 +18,28 @@
 			            </div>
 			            <div class="form-group">
 			            	<div class="row">
-			            		<div class="col-md-6 crimes-section pre-scrollable">
+			            		<div class="col-md-6 crimes-section">
 				            		<label>Crimes committed</label>
-					                <ol id="crimes-list">
+					                <ol id="crimes-list" class="pre-scrollable">
 					                	<li v-for="crime in selected.crimes">{{crime.crime_type}}</li>
 					                </ol>
 					                <a href="" class="see-more" v-if="selected.crimes.length > 5">See More</a>
 				            	</div>
-				            	<div class="col-md-6 suspects-section pre-scrollable">
+				            	<div class="col-md-6 suspects-section">
 				            		<label>Suspects</label>
-					                <ol id="suspects-list">
-					                	<li v-for="suspect in selected.suspects">{{suspect.full_name}}</li>
-					                </ol>
+					                <ul id="suspects-list" class="pre-scrollable">
+					                	<li v-for="suspect in selected.suspects">
+					                		<a :href="'/suspects/' + suspect.id + '/edit'">
+						                		<img class="suspect-image" 
+						                			:src="suspect.front == '' ? '/res/photos/shares/noimage.jpg' : suspect.front"
+						                			@error="imgError" />
+						                		<div class="info-group">
+							                		<span class="suspect-info" name="suspect-name" v-text="suspect.full_name"></span>
+							                		<span class="suspect-info" name="suspect-alias" v-text="suspect.alias"></span>
+							                	</div>
+					                		</a>
+					                	</li>
+					                </ul>
 					                <a href="" class="see-more hidden">See More</a>
 				            	</div>
 			            	</div>
@@ -177,6 +187,12 @@ export default {
 
             $('#more_details').attr("href", "location/" + data.id)
             $('#locationModal').modal();                
+	    },
+	    imgError(image){
+	    	console.log(image);
+	        image.onerror = "";
+	        image.src = "/res/photos/shares/noimage.jpg";
+	        return true;
 	    }
 	}
 };
@@ -194,5 +210,34 @@ export default {
 }
 .pre-scrollable{
 	height: 250px;
+	padding: 0 15px;
 }
+
+#suspects-list {
+    list-style: none;
+    padding: 0;
+}
+
+#suspects-list li {
+    margin: 10px 0;
+    position: relative;
+}
+
+#suspects-list li .suspect-image {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#suspects-list div.info-group{
+	display: inline-block;
+    position: absolute;
+    top: 10%;
+    margin-left: 20px;
+}
+#suspects-list li .suspect-info {
+    display:block;
+}
+
 </style>

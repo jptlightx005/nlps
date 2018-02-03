@@ -36,46 +36,46 @@
                         <div class="form-group">
                             <div class="input-group">
                                <span class="input-group-btn">
-                                 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                 <a data-input="whole-thumbnail" data-preview="whole-holder" class="btn btn-primary lfm">
                                    <i class="fa fa-picture-o"></i> Whole Body
                                  </a>
                                </span>
-                               <input id="thumbnail" class="form-control" type="text" name="filepath">
+                               <input id="whole-thumbnail" class="form-control preview-thumbnail" type="text" name="whole_body">
                              </div>
-                             <img id="holder" style="margin-top:15px;max-height:100px;">
+                             <img id="whole-holder" style="margin-top:15px;max-height:100px;">
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                <span class="input-group-btn">
-                                 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                 <a data-input="front-thumbnail" data-preview="front-holder" class="btn btn-primary lfm">
                                    <i class="fa fa-picture-o"></i> Front Face
                                  </a>
                                </span>
-                               <input id="thumbnail" class="form-control" type="text" name="filepath">
+                               <input id="front-thumbnail" class="form-control preview-thumbnail" type="text" name="front_face">
                              </div>
-                             <img id="holder" style="margin-top:15px;max-height:100px;">
+                             <img id="front-holder" style="margin-top:15px;max-height:100px;">
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                <span class="input-group-btn">
-                                 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                 <a data-input="left-thumbnail" data-preview="left-holder" class="btn btn-primary lfm">
                                    <i class="fa fa-picture-o"></i> Left Face
                                  </a>
                                </span>
-                               <input id="thumbnail" class="form-control" type="text" name="filepath">
+                               <input id="left-thumbnail" class="form-control preview-thumbnail" type="text" name="left_face">
                              </div>
-                             <img id="holder" style="margin-top:15px;max-height:100px;">
+                             <img id="left-holder" style="margin-top:15px;max-height:100px;">
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                <span class="input-group-btn">
-                                 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                 <a data-input="right-thumbnail" data-preview="right-holder" class="btn btn-primary lfm">
                                    <i class="fa fa-picture-o"></i> Right Face
                                  </a>
                                </span>
-                               <input id="thumbnail" class="form-control" type="text" name="filepath">
+                               <input id="right-thumbnail" class="form-control preview-thumbnail" type="text" name="right_face">
                              </div>
-                             <img id="holder" style="margin-top:15px;max-height:100px;">
+                             <img id="right-holder" style="margin-top:15px;max-height:100px;">
                         </div>
 
                         <div class="form-group">
