@@ -169,7 +169,8 @@ return [
          */
         Cornford\Googlmapper\MapperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-
+        Orangehill\Iseed\IseedServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */

@@ -28,6 +28,26 @@ class DashboardController extends Controller
     }
 
     /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function convicts()
+    {
+        return view('galleries.suspects');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function suspects()
+    {
+        return view('galleries.suspects');
+    }
+
+    /**
      * Loads locations.
      *
      * @return \Illuminate\Http\Response

@@ -9,7 +9,7 @@
 <div class="wrapper" id="dashboard-wrapper">
     <div class="row map-row">
         <div class="col-md-12">
-            <map-component></map-component>
+            
         </div>
     </div>
 </div>
