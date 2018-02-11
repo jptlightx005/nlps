@@ -6,27 +6,32 @@
         {{ session('status') }}
     </div>
 @endif
-<div class="cards-container" id="dashboard-wrapper">
-    @foreach($suspects as $suspect)
-	    <div class="card">
-	    	<a href="/suspects/{{$suspect->id}}/edit">
-		    	<div class="card-image">
-		    		<img src="{{\Helper::returnEmptyAvatarIfNull($suspect->front)}}"/>
-		    	</div>
-		    	<div class="card-content">
-		    		<div class="name">{{$suspect->full_name}}</div>
-		    		<div class="offense">
-		    			<span>Offenses</span>
-		    			<ul>
-		    				@foreach($suspect->crimes as $crime)
-		    					{{$crime->crime_type}}
-		    				@endforeach
-		    			</ul>
-		    		</div>
-		    	</div>
-	    	</a>
-	    </div>
-    @endforeach
+<div class="container">
+	<div class="cards-container" id="dashboard-wrapper">
+	    @foreach($suspects as $suspect)
+		    <div class="card">
+		    	<a href="/suspects/{{$suspect->id}}/edit">
+			    	<div class="card-image">
+			    		<img src="{{\Helper::returnEmptyAvatarIfNull($suspect->front)}}"/>
+			    	</div>
+			    	<div class="card-content">
+			    		<div class="name">{{$suspect->full_name}}</div>
+			    		<div class="offense">
+			    			<span>Offenses</span>
+			    			<ul>
+			    				@foreach($suspect->crimes as $crime)
+			    					{{$crime->crime_type}}
+			    				@endforeach
+			    			</ul>
+			    		</div>
+			    	</div>
+		    	</a>
+		    </div>
+	    @endforeach
+	</div>
+	<div class="row">
+		{{$suspects->links()}}
+	</div>
 </div>
 @endsection
 

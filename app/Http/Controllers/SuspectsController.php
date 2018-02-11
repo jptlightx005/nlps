@@ -16,7 +16,7 @@ class SuspectsController extends Controller
      */
     public function index()
     {
-        $suspects = Suspect::all();
+        $suspects = Suspect::paginate(10);
 
         return view('suspects.index', compact('suspects'));
     }

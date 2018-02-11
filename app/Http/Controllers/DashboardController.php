@@ -38,7 +38,7 @@ class DashboardController extends Controller
         $suspects = Suspect::where('convicted', '=', '1')
                     ->with('crimes')
                     ->orderBy('created_at', 'DESC')
-                    ->get();
+                    ->paginate(10);
         return view('galleries.suspects', compact('suspects'));
     }
 
@@ -52,7 +52,7 @@ class DashboardController extends Controller
         $suspects = Suspect::where('convicted', '=', '0')
                     ->with('crimes')
                     ->orderBy('created_at', 'DESC')
-                    ->get();
+                    ->paginate(10);
         return view('galleries.suspects', compact('suspects'));
     }
 
