@@ -44045,7 +44045,7 @@ var render = function() {
                                 attrs: {
                                   src:
                                     suspect.front == ""
-                                      ? "/res/photos/shares/noimage.jpg"
+                                      ? "/res/photos/shares/empty-avatar.png"
                                       : suspect.front
                                 },
                                 on: { error: _vm.imgError }

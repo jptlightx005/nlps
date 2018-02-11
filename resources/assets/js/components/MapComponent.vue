@@ -31,7 +31,7 @@
 					                	<li v-for="suspect in selected.suspects">
 					                		<a :href="'/suspects/' + suspect.id + '/edit'">
 						                		<img class="suspect-image" 
-						                			:src="suspect.front == '' ? '/res/photos/shares/noimage.jpg' : suspect.front"
+						                			:src="suspect.front == '' ? '/res/photos/shares/empty-avatar.png' : suspect.front"
 						                			@error="imgError" />
 						                		<div class="info-group">
 							                		<span class="suspect-info" name="suspect-name" v-text="suspect.full_name"></span>

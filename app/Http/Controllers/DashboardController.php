@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Location;
-use Mapper;
+use App\Suspect;
+
 class DashboardController extends Controller
 {
     /**
@@ -34,7 +35,11 @@ class DashboardController extends Controller
      */
     public function convicts()
     {
-        return view('galleries.suspects');
+        $suspects = Suspect::where('convicted', '=', '1')
+                    ->with('crimes')
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
+        return view('galleries.suspects', compact('suspects'));
     }
 
     /**
@@ -44,7 +49,11 @@ class DashboardController extends Controller
      */
     public function suspects()
     {
-        return view('galleries.suspects');
+        $suspects = Suspect::where('convicted', '=', '0')
+                    ->with('crimes')
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
+        return view('galleries.suspects', compact('suspects'));
     }
 
     /**

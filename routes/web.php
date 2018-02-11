@@ -18,8 +18,9 @@ Auth::routes();
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::resource('/suspects', 'SuspectsController');
-Route::resource('/location', 'LocationController');
+Route::put('/suspects/{id}/convict', 'SuspectsController@setAsConvict');
 
+Route::resource('/location', 'LocationController');
 Route::get('/convicts-gallery', 'DashboardController@convicts');
 Route::get('/suspects-gallery', 'DashboardController@suspects');
 

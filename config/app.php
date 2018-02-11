@@ -230,6 +230,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         /*
+         * Private Package Alias
+         */
+        'Helper' => App\HZR\Helper::class,
+        /*
          *  Custom Package Aliases
          */
         'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,

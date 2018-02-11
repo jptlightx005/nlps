@@ -5,6 +5,12 @@
     <div class="row" style="margin-bottom: 10px">
         <div class="col-md-8 col-md-offset-2">
             <a href="{{route('suspects.index')}}" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</a>
+            {!! Form::open(['action' => ['SuspectsController@setAsConvict', $suspect->id], 'method' => 'POST', 'style' => "display: inline-block;"]) !!}
+                {{ csrf_field() }}
+                {{Form::hidden('_method','PUT')}}
+                {{Form::hidden('convicted', (int)!$suspect->convicted)}}
+                <button class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-tower"></span> {{$suspect->convicted ? "Unset" : "Set"}} As Convicted</button>
+            {!! Form::close() !!}
         </div>
     </div>
     <div class="row">
