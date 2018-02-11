@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Suspect;
 use App\CrimeCommitted;
+use App\HZR\Helper;
 class SuspectsController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class SuspectsController extends Controller
      */
     public function index()
     {
-        $suspects = Suspect::all();
+        $suspects = Suspect::paginate(10);
 
         return view('suspects.index', compact('suspects'));
     }
@@ -55,6 +56,11 @@ class SuspectsController extends Controller
             'qualifier' => "",
             'alias' => $request->input('alias'),
         ]);
+        $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
+        $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
+        $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
+        $suspect->right_face = Helper::returnEmptyAvatarIfNull($request->input('right_face'));
+
         $suspect->save();
 
         $crime = CrimeCommitted::create([
@@ -77,7 +83,7 @@ class SuspectsController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect(route('suspects.edit', $id));
     }
 
     /**
@@ -108,10 +114,10 @@ class SuspectsController extends Controller
         $suspect->middle_name = $request->input('middle_name');
         $suspect->last_name = $request->input('last_name');
         $suspect->alias = $request->input('alias');
-        $suspect->whole_body = $request->input('whole_body');
-        $suspect->front = $request->input('front_face');
-        $suspect->left_face = $request->input('left_face');
-        $suspect->right_face = $request->input('right_face');
+        $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
+        $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
+        $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
+        $suspect->right_face = Helper::returnEmptyAvatarIfNull($request->input('right_face'));
 
         $suspect->save();
 
@@ -127,5 +133,19 @@ class SuspectsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     *
+     */
+    public function setAsConvict(Request $request, $id)
+    {
+        $suspect = Suspect::find($id);
+
+        $suspect->convicted = $request->input('convicted');
+
+        $suspect->save();
+
+        return redirect(route('suspects.index'))->with('success', "Suspect record successfully updated!");
     }
 }

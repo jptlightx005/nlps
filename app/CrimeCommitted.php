@@ -18,4 +18,9 @@ class CrimeCommitted extends Model
     public function location(){
     	return $this->belongsTo('\App\Location');
     }
+
+    public function suspects(){
+        return $this->hasMany('\App\Suspect', 'id', 'suspect_id');
+
+    }
 }

@@ -1,5 +1,59 @@
 <template>
-  <div class="google-map" :id="mapName"></div>
+	<div class="google-map map-container">
+		<div class="google-map" :id="mapName"></div>
+		<!-- Modal -->
+		<div id="locationModal" class="modal fade" role="dialog">
+		  	<div class="modal-dialog">
+
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			        <div class="modal-header">
+			            <button type="button" class="close" data-dismiss="modal">&times;</button>
+			            <h4 class="modal-title">Details</h4>
+			        </div>
+			        <div class="modal-body">
+			            <div class="form-group">
+			                <label>Brgy. Name:</label>
+			                <span id="loc_name" v-text="selected.location_name"></span>
+			            </div>
+			            <div class="form-group">
+			            	<div class="row">
+			            		<div class="col-md-6 crimes-section">
+				            		<label>Crimes committed</label>
+					                <ol id="crimes-list" class="pre-scrollable">
+					                	<li v-for="crime in selected.crimes">{{crime.crime_type}}</li>
+					                </ol>
+					                <a href="" class="see-more" v-if="selected.crimes.length > 5">See More</a>
+				            	</div>
+				            	<div class="col-md-6 suspects-section">
+				            		<label>Suspects</label>
+					                <ul id="suspects-list" class="pre-scrollable">
+					                	<li v-for="suspect in selected.suspects">
+					                		<a :href="'/suspects/' + suspect.id + '/edit'">
+						                		<img class="suspect-image" 
+						                			:src="suspect.front == '' ? '/res/photos/shares/empty-avatar.png' : suspect.front"
+						                			@error="imgError" />
+						                		<div class="info-group">
+							                		<span class="suspect-info" name="suspect-name" v-text="suspect.full_name"></span>
+							                		<span class="suspect-info" name="suspect-alias" v-text="suspect.alias"></span>
+							                	</div>
+					                		</a>
+					                	</li>
+					                </ul>
+					                <a href="" class="see-more hidden">See More</a>
+				            	</div>
+			            	</div>
+			            </div>
+			        </div>
+			        <div class="modal-footer">
+			            <a href="link/to/details" id="more_details" class="btn btn-primary">Details</a>
+			            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			    </div>
+
+		  	</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -13,6 +67,9 @@ export default {
 			locations: [],
 			map: null,
 			infowindow: null,
+			selected: {crimes: [],
+						suspects: [], 
+						location_name: ""},
 		}
 	},
 	mounted() {
@@ -25,7 +82,7 @@ export default {
 	},
 	created(){
 		var $this = this;
-		axios.get('/locations').then(response => {
+		axios.get('/locations/dashboard').then(response => {
 			$this.locations = response.data;
 
 			response.data.map(function(value, key) {
@@ -53,10 +110,10 @@ export default {
 			  	$this.markers.push(marker);
 			});
 		});
+		this.modal = {is_open: false};
 	},
 	methods: {
 		selectMarker(marker, id, info){
-			console.log(info);
         	var location_name_group = $('<div>').attr({
 						                class: "info-group"
 						            })
@@ -120,45 +177,22 @@ export default {
 
         	google.maps.event.addListener(this.infowindow, 'domready', function() {
 		      	$('a#' + info.id).on('click', function(e){
-		            $this.didClickDetails(e, info.id);
+		            $this.didClickDetails(e, info);
 		       	});
 			});
 		},
 
-		didClickDetails(e, id){
-	        console.log(e);
-	        console.log('id is now: ' + id)
+		didClickDetails(e, data){
+			this.selected = data;
 
-	        //ajax will run here
-	        //but let's try triggering modal through here first
-	        
-	        ////yay it worked
-	        waitingDialog.show();
-	        $.ajax({
-	            url: '/locations/' + id,
-	            success: function(data){
-	            	$("#loc_name").text(data.locname);
-	                $("#freq").text(data.freq);
-	                $("#top_crimes").empty();
-	                var items = [];
-	                $.each(data.top_crimes, function(index, crime){
-	                    console.log(crime);
-	                    // $("li").text(crime.crime_type).appendTo($("#top_crimes"));
-	                    items.push('<li>' + crime.crime_type + '</li>');
-	                });
-	                $('#top_crimes').append( items.join('') );
-	                $("#remarks").text(data.remarks);
-	                $('#more_details').attr("href", "location/" + data.id)
-
-	                waitingDialog.hide(function(){
-	                	$("#myModal").modal();
-	                });	                
-	            },
-	            error: function(data){
-	                console.log('Error Occured: ');
-	                console.log(data);
-	            }
-	        });
+            $('#more_details').attr("href", "location/" + data.id)
+            $('#locationModal').modal();                
+	    },
+	    imgError(image){
+	    	console.log(image);
+	        image.onerror = "";
+	        image.src = "/res/photos/shares/noimage.jpg";
+	        return true;
 	    }
 	}
 };
@@ -171,4 +205,39 @@ export default {
   margin: 0 auto;
   background: gray;
 }
+#locationModal li.no-result{
+	list-style: none;
+}
+.pre-scrollable{
+	height: 250px;
+	padding: 0 15px;
+}
+
+#suspects-list {
+    list-style: none;
+    padding: 0;
+}
+
+#suspects-list li {
+    margin: 10px 0;
+    position: relative;
+}
+
+#suspects-list li .suspect-image {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#suspects-list div.info-group{
+	display: inline-block;
+    position: absolute;
+    top: 10%;
+    margin-left: 20px;
+}
+#suspects-list li .suspect-info {
+    display:block;
+}
+
 </style>

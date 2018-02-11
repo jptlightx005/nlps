@@ -169,7 +169,8 @@ return [
          */
         Cornford\Googlmapper\MapperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-
+        Orangehill\Iseed\IseedServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */
@@ -228,6 +229,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*
+         * Private Package Alias
+         */
+        'Helper' => App\HZR\Helper::class,
         /*
          *  Custom Package Aliases
          */

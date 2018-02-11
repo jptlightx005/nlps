@@ -33,6 +33,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{$suspects->links()}}
                 </div>
             </div>
         </div>

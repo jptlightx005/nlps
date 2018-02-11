@@ -8,6 +8,13 @@ use Route;
 
 class Suspect extends Model
 {
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['full_name'];
+
     protected $fillable = [
         'user_id', 
         'first_name', 
@@ -27,5 +34,15 @@ class Suspect extends Model
 
     public function fullNameEditLink(){
         return "<a href=\"" . route('suspects.edit', $this->id) . "\">" . $this->fullName() . "</a>";
+    }
+
+    /**
+     * Get full name of the user
+     *
+     * @return bool
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->fullName();
     }
 }
