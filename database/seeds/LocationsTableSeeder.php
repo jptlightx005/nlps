@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Location;
 class LocationsTableSeeder extends Seeder
 {
 
@@ -12,66 +12,131 @@ class LocationsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        $brgy = new Location();
+        $brgy->location_name = 'Poblacion';
+        $brgy->lat = 676;
+        $brgy->long = 343;
+        $brgy->save();
 
-        \DB::table('locations')->delete();
-        
-        \DB::table('locations')->insert(array (
-            0 => 
-            array (
-                'id' => 1,
-                'location_name' => 'Barasan',
-                'long' => '122.5527906',
-                'lat' => '10.8562350',
-                'created_at' => '2018-02-02 06:01:47',
-                'updated_at' => '2018-02-02 06:01:47',
-            ),
-            1 => 
-            array (
-                'id' => 2,
-                'location_name' => 'Ban-ag',
-                'long' => '122.5443792',
-                'lat' => '10.8501657',
-                'created_at' => '2018-02-02 06:01:55',
-                'updated_at' => '2018-02-02 06:01:55',
-            ),
-            2 => 
-            array (
-                'id' => 3,
-                'location_name' => 'Dalid',
-                'long' => '122.5505590',
-                'lat' => '10.8454451',
-                'created_at' => '2018-02-02 06:02:01',
-                'updated_at' => '2018-02-02 06:02:01',
-            ),
-            3 => 
-            array (
-                'id' => 4,
-                'location_name' => 'Bantay',
-                'long' => '122.5358820',
-                'lat' => '10.8712390',
-                'created_at' => '2018-02-02 06:02:06',
-                'updated_at' => '2018-02-02 06:02:06',
-            ),
-            4 => 
-            array (
-                'id' => 5,
-                'location_name' => 'Pungsod',
-                'long' => '122.5475550',
-                'lat' => '10.8591010',
-                'created_at' => '2018-02-02 06:02:13',
-                'updated_at' => '2018-02-02 06:02:13',
-            ),
-            5 => 
-            array (
-                'id' => 6,
-                'location_name' => 'Buayahon',
-                'long' => '122.5393152',
-                'lat' => '10.8593539',
-                'created_at' => '2018-02-02 06:02:20',
-                'updated_at' => '2018-02-02 06:02:20',
-            ),
-        ));
+        $brgy = new Location();
+        $brgy->location_name = 'Dawis';
+        $brgy->lat = 713;
+        $brgy->long = 299;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Baclayan';
+        $brgy->lat = 645;
+        $brgy->long = 375;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Badiang';
+        $brgy->lat = 660;
+        $brgy->long = 242;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Balabag';
+        $brgy->lat = 706;
+        $brgy->long = 447;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Bilidan';
+        $brgy->lat = 555;
+        $brgy->long = 524;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Bita-og Gaja';
+        $brgy->lat = 553;
+        $brgy->long = 556;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Bololacao';
+        $brgy->lat = 619;
+        $brgy->long = 278;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Burot';
+        $brgy->lat = 385;
+        $brgy->long = 440;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Cabilauan';
+        $brgy->lat = 457;
+        $brgy->long = 480;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Cabugao';
+        $brgy->lat = 364;
+        $brgy->long = 335;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Cagban';
+        $brgy->lat = 295;
+        $brgy->long = 362;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Calumbuyan';
+        $brgy->lat = 739;
+        $brgy->long = 458;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Damires';
+        $brgy->lat = 660;
+        $brgy->long = 575;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'General Delgado';
+        $brgy->lat = 294;
+        $brgy->long = 287;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Guinobatan';
+        $brgy->lat = 527;
+        $brgy->long = 274;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Janipa-an Oeste';
+        $brgy->lat = 459;
+        $brgy->long = 241;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Jelicuon Este';
+        $brgy->lat = 677;
+        $brgy->long = 621;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Jelicuon Oeste';
+        $brgy->lat = 339;
+        $brgy->long = 247;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Pasil';
+        $brgy->lat = 703;
+        $brgy->long = 620;
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Wari-wari';
+        $brgy->lat = 494;
+        $brgy->long = 385;
+        $brgy->save();
         
         
     }

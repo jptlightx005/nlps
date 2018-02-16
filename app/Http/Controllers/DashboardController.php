@@ -63,11 +63,12 @@ class DashboardController extends Controller
      */
     public function locations()
     {
-        return \App\Location::has('crimes')
-                            ->has('suspects')
-                            ->with('crimes')
-                            ->with('suspects')
-                            ->get();
+        return \App\Location::all();
+        // return \App\Location::has('crimes')
+        //                     ->has('suspects')
+        //                     ->with('crimes')
+        //                     ->with('suspects')
+        //                     ->get();
     }
 
     public function locationDetails($id){

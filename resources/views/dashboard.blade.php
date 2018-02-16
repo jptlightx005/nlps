@@ -9,8 +9,14 @@
 <div class="wrapper" id="dashboard-wrapper">
     <div class="row map-row">
         <div class="col-md-12">
-            <map-component></map-component>
+            <dashboard-map-component></dashboard-map-component>
         </div>
     </div>
 </div>
+@endsection
+
+@section('page-specific-scripts')
+<script type="text/javascript">
+	
+</script>
 @endsection
