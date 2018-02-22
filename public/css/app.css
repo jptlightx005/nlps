@@ -11404,6 +11404,7 @@ button.close {
 }
 
 #dashboard-wrapper .map-container {
+  max-width: 85%;
   width: 95%;
   height: 85vh;
   margin: 0 auto;

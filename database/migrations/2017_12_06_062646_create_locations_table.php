@@ -16,8 +16,9 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('location_name');
-            $table->decimal('long', 10, 7);
-            $table->decimal('lat', 10, 7);
+            $table->decimal('long', 10, 7)->default(0);
+            $table->decimal('lat', 10, 7)->default(0);
+            $table->string('area_id')->default("brgy-");
             $table->timestamps();
         });
     }

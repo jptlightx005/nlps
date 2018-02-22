@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 
 var bind = __webpack_require__(7);
-var isBuffer = __webpack_require__(24);
+var isBuffer = __webpack_require__(22);
 
 /*global toString:true*/
 
@@ -502,7 +502,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(48)
+var listToStyles = __webpack_require__(46)
 
 /*
 type StyleObject = {
@@ -827,7 +827,7 @@ module.exports = function normalizeComponent (
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(26);
+var normalizeHeaderName = __webpack_require__(24);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -11506,12 +11506,12 @@ process.umask = function() { return 0; };
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(27);
-var buildURL = __webpack_require__(29);
-var parseHeaders = __webpack_require__(30);
-var isURLSameOrigin = __webpack_require__(31);
+var settle = __webpack_require__(25);
+var buildURL = __webpack_require__(27);
+var parseHeaders = __webpack_require__(28);
+var isURLSameOrigin = __webpack_require__(29);
 var createError = __webpack_require__(10);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(32);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(30);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -11608,7 +11608,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(33);
+      var cookies = __webpack_require__(31);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -11692,7 +11692,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(28);
+var enhanceError = __webpack_require__(26);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -11752,114 +11752,12 @@ module.exports = Cancel;
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(50)
-}
-var normalizeComponent = __webpack_require__(4)
-/* script */
-var __vue_script__ = __webpack_require__(52)
-/* template */
-var __vue_template__ = __webpack_require__(57)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-f8e2ef90"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/MapComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f8e2ef90", Component.options)
-  } else {
-    hotAPI.reload("data-v-f8e2ef90", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(53)
-}
-var normalizeComponent = __webpack_require__(4)
-/* script */
-var __vue_script__ = __webpack_require__(55)
-/* template */
-var __vue_template__ = __webpack_require__(56)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-3363e09f"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/PinComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3363e09f", Component.options)
-  } else {
-    hotAPI.reload("data-v-3363e09f", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(16);
+__webpack_require__(14);
 module.exports = __webpack_require__(64);
 
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -11869,10 +11767,10 @@ module.exports = __webpack_require__(64);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(17);
-__webpack_require__(41);
+__webpack_require__(15);
+__webpack_require__(39);
 
-window.Vue = __webpack_require__(42);
+window.Vue = __webpack_require__(40);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -11882,8 +11780,8 @@ window.Vue = __webpack_require__(42);
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 // Vue.component('map-component', require('./components/MapComponent.vue'));
-Vue.component('dashboard-map-component', __webpack_require__(45));
-Vue.component('locations-map-component', __webpack_require__(59));
+Vue.component('dashboard-map-component', __webpack_require__(43));
+Vue.component('locations-map-component', __webpack_require__(49));
 // Vue.component('register-map-component', require('./components/RegisterMapComponent.vue'));
 
 var app = new Vue({
@@ -11891,11 +11789,11 @@ var app = new Vue({
 });
 
 /***/ }),
-/* 17 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(18);
+window._ = __webpack_require__(16);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -11905,8 +11803,8 @@ window._ = __webpack_require__(18);
 
 try {
   window.$ = window.jQuery = __webpack_require__(6);
-  __webpack_require__(20);
-  __webpack_require__(21);
+  __webpack_require__(18);
+  __webpack_require__(19);
 } catch (e) {}
 
 /**
@@ -11915,7 +11813,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(22);
+window.axios = __webpack_require__(20);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -11949,7 +11847,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 18 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -29038,10 +28936,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(19)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(17)(module)))
 
 /***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -29069,7 +28967,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 20 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -29222,7 +29120,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 
 /***/ }),
-/* 21 */
+/* 19 */
 /***/ (function(module, exports) {
 
 /*!
@@ -31605,13 +31503,13 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 22 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(23);
+module.exports = __webpack_require__(21);
 
 /***/ }),
-/* 23 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31619,7 +31517,7 @@ module.exports = __webpack_require__(23);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(7);
-var Axios = __webpack_require__(25);
+var Axios = __webpack_require__(23);
 var defaults = __webpack_require__(5);
 
 /**
@@ -31654,14 +31552,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(12);
-axios.CancelToken = __webpack_require__(39);
+axios.CancelToken = __webpack_require__(37);
 axios.isCancel = __webpack_require__(11);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(40);
+axios.spread = __webpack_require__(38);
 
 module.exports = axios;
 
@@ -31670,7 +31568,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 24 */
+/* 22 */
 /***/ (function(module, exports) {
 
 /*!
@@ -31697,7 +31595,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 25 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31705,8 +31603,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(5);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(34);
-var dispatchRequest = __webpack_require__(35);
+var InterceptorManager = __webpack_require__(32);
+var dispatchRequest = __webpack_require__(33);
 
 /**
  * Create a new instance of Axios
@@ -31783,7 +31681,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 26 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31802,7 +31700,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 27 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31835,7 +31733,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 28 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31863,7 +31761,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 29 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31938,7 +31836,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 30 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31998,7 +31896,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 31 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32073,7 +31971,7 @@ module.exports = (
 
 
 /***/ }),
-/* 32 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32116,7 +32014,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 33 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32176,7 +32074,7 @@ module.exports = (
 
 
 /***/ }),
-/* 34 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32235,18 +32133,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 35 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(36);
+var transformData = __webpack_require__(34);
 var isCancel = __webpack_require__(11);
 var defaults = __webpack_require__(5);
-var isAbsoluteURL = __webpack_require__(37);
-var combineURLs = __webpack_require__(38);
+var isAbsoluteURL = __webpack_require__(35);
+var combineURLs = __webpack_require__(36);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -32328,7 +32226,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 36 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32355,7 +32253,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 37 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32376,7 +32274,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 38 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32397,7 +32295,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 39 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32461,7 +32359,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 40 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32495,7 +32393,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 41 */
+/* 39 */
 /***/ (function(module, exports) {
 
 window.waitingDialog = window.waitingDialog || function ($) {
@@ -32570,7 +32468,7 @@ window.waitingDialog = window.waitingDialog || function ($) {
 }(jQuery);
 
 /***/ }),
-/* 42 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43384,10 +43282,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(43).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(41).setImmediate))
 
 /***/ }),
-/* 43 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -43440,7 +43338,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(44);
+__webpack_require__(42);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -43454,7 +43352,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 44 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -43647,19 +43545,19 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(8)))
 
 /***/ }),
-/* 45 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(46)
+  __webpack_require__(44)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(47)
 /* template */
-var __vue_template__ = __webpack_require__(58)
+var __vue_template__ = __webpack_require__(48)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43698,13 +43596,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 46 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(47);
+var content = __webpack_require__(45);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -43724,7 +43622,7 @@ if(false) {
 }
 
 /***/ }),
-/* 47 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -43732,13 +43630,13 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.map-container[data-v-f99238e4]{\n\t\toverflow:scroll;\n}\nimg#lucena-map[data-v-f99238e4]{\n\t\theight: 100%;\n}\ndiv.new-lucena-map[data-v-f99238e4]{\n\t\tposition: relative;\n\t\ttop: 0;\n\t\tleft: 0;\n}\nimg#lucena-map[data-v-f99238e4]{\n\t\t-o-object-fit: cover;\n\t\t   object-fit: cover;\n}\ndiv.map-brgys[data-v-f99238e4]{\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tpointer-events: none;\n}\ndiv.map-pins[data-v-f99238e4]{\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n}\ndiv.map-brgy[data-v-f99238e4]{\n\t    position: absolute;\n\t    cursor: pointer;\n}\ndiv.map-brgy img[data-v-f99238e4]{\n\t\t-webkit-filter: drop-shadow(1px 1px 0 black) \n                    drop-shadow(-1px -1px 0 white);\n    \tfilter:drop-shadow(1px 1px 0 black) \n           drop-shadow(-1px -1px 0 white);\n        opacity: 0.25;\n}\ndiv.map-brgy label[data-v-f99238e4]{\n\t\tposition: absolute;\n\t\tpointer-events: none;\n\t\ttext-shadow: 1px 1px 4px white;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 48 */
+/* 46 */
 /***/ (function(module, exports) {
 
 /**
@@ -43771,134 +43669,11 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 49 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapComponent_vue__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__MapComponent_vue__);
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'dashboard-map',
-	props: ['name'],
-	data: function data() {
-		return {
-			map: null
-		};
-	},
-	mounted: function mounted() {
-		this.map = this.$children[0];
-		// console.log(this.map);
-		this.map.addEventListener('click', this.didClickMapArea);
-	},
-
-	components: {
-		'map-component': __WEBPACK_IMPORTED_MODULE_0__MapComponent_vue___default.a
-	},
-	created: function created() {
-		var $this = this;
-		axios.get('/locations/dashboard').then(function (response) {
-			$this.locations = response.data;
-			console.log(response.data);
-			response.data.map(function (value, key) {
-				var x = value.lat;
-				var y = value.long;
-				// console.log("x: " + x + ", y: " + y);
-				//will add pins on click
-				var pin = $this.map.addPin(x, y);
-				// var position = {
-				// 	lat: parseFloat(value.lat),
-				// 	lng: parseFloat(value.long)
-				// };
-
-				// var label = {
-				// 	color: 'black',
-				// 	fontFamily: 'Material Icons',
-				// 	text: value.crimes.length.toString(),
-				// }
-
-				// var marker = new google.maps.Marker({
-				// 	id: value.id,
-				//     position: position,
-				//     map: $this.map,
-				//     title: value.location_name,
-				//     label: label,
-				//  	});
-				// marker.addListener('click', function(){
-				// 	$this.selectMarker(marker, value.id, value);
-				// });
-				//  	$this.markers.push(marker);
-			});
-		});
-	},
-
-	methods: {
-		didClickMapArea: function didClickMapArea(e) {
-			var x = e.pageX - $('.new-lucena-map').offset().left;
-			var y = e.pageY - $('.new-lucena-map').offset().top;
-			console.log("x: " + x + ", y: " + y);
-			//will add pins on click
-			var pin = this.map.addPin(x, y);
-			console.log(pin);
-		}
-	}
-});
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(51);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("551d0537", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f8e2ef90\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f8e2ef90\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.map-container[data-v-f8e2ef90]{\n\toverflow:scroll;\n}\nimg#lucena-map[data-v-f8e2ef90]{\n\theight: 100%;\n}\ndiv.new-lucena-map[data-v-f8e2ef90]{\n\tposition: relative;\n\ttop: 0;\n\tleft: 0;\n\twidth:1070px;\n\theight:693px;\n}\nimg#lucena-map[data-v-f8e2ef90]{\n\t-o-object-fit: cover;\n\t   object-fit: cover;\n}\ndiv.map-pins[data-v-f8e2ef90]{\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 52 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PinComponent__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PinComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PinComponent__);
 //
 //
 //
@@ -43923,15 +43698,219 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'google-map',
 	props: ['name'],
-	components: {
-		'pin-component': __WEBPACK_IMPORTED_MODULE_0__PinComponent___default.a
-	},
 	data: function data() {
 		return {
 			mapName: this.name + "-map",
@@ -43949,6 +43928,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	mounted: function mounted() {
 		this.map = document.getElementsByClassName('new-lucena-map')[0];
 		this.map.querySelector("img").draggable = false;
+
+		// $('.brgy-area').on('click', function(e){
+		// 	console.log(e.target.id);
+		// });
 	},
 	created: function created() {},
 
@@ -43960,13 +43943,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.pins.push({ x: lat, y: lng });
 			return { x: lat, y: lng };
 		},
-		didHoverPin: function didHoverPin(e) {
-			console.log('Pin hovered');
-			console.log(e);
-		},
-		removePin: function removePin(pin) {
-			this.pins = this.pins.filter(function (obj) {
-				return obj.x !== pin.x && obj.y == obj.y;
+		didClickArea: function didClickArea(e) {
+			console.log(e.target.id);
+			axios.get('/locations/brgy/' + e.target.id).then(function (response) {
+				$this.locations = response.data;
+				$('#locationModal').modal();
 			});
 		},
 		clearPin: function clearPin() {
@@ -43976,112 +43957,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(54);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("507e2f32", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3363e09f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PinComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3363e09f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PinComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nimg.map-pin[data-v-3363e09f]{\n\t-o-object-fit: cover;\n\t   object-fit: cover;\n    position: absolute;\n    width:35px;\n    cursor: pointer;\n    -webkit-filter: drop-shadow(0px 0px 2px #000);\n    filter: drop-shadow(0px 0px 2px #000);\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 55 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'map-pin',
-	props: ['lat', 'lng', 'map'],
-	data: function data() {
-		return {
-			pin_height: 54,
-			pin_width: 35
-		};
-	},
-	mounted: function mounted() {},
-	created: function created() {},
-
-	methods: {
-		addEventListener: function addEventListener(action, method) {
-			this.pin.addEventListener(action, method);
-		},
-		setMap: function setMap(map) {
-			map.addPin(this.lat, this.lng);
-			this.map = map;
-		}
-	}
-});
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("img", {
-    staticClass: "map-pin",
-    style:
-      "top:" +
-      (_vm.lng - _vm.pin_height) +
-      "px;left:" +
-      (_vm.lat - _vm.pin_width / 2) +
-      "px;",
-    attrs: { src: "/res/photos/shares/map-pin.png" }
-  })
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3363e09f", module.exports)
-  }
-}
-
-/***/ }),
-/* 57 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44092,28 +43968,401 @@ var render = function() {
     _c("div", { staticClass: "new-lucena-map" }, [
       _c("img", {
         attrs: {
-          src: "/res/photos/shares/new-lucena-map.png",
+          src: "/res/photos/shares/new-lucena-map.jpg",
           id: "lucena-map",
-          usemap: "#lucenamap"
+          usemap: "#image-map"
         }
       }),
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "map-pins" },
-        _vm._l(_vm.pins, function(pin, index) {
-          return _c("pin-component", {
-            key: pin.id,
-            ref: "pins",
-            refInFor: true,
-            attrs: { map: _vm.map, index: index, lat: pin.x, lng: pin.y },
-            on: { mouseover: _vm.didHoverPin }
-          })
+      _c("map", { attrs: { name: "image-map" } }, [
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-poblacion",
+            alt: "Poblacion",
+            title: "Poblacion",
+            coords:
+              "499,383,738,320,744,328,763,324,772,330,780,340,784,335,792,337,799,345,807,380,818,387,815,404,818,416,829,412,837,420,847,416,854,426,862,429,865,437,861,451,851,474,842,485,836,504,829,510,788,512,788,519,741,520,730,433",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-dawis",
+            alt: "Dawis",
+            title: "Dawis",
+            coords:
+              "735,320,852,167,859,172,880,163,890,169,921,176,865,266,848,420,844,412,834,418,827,411,815,414,817,385,806,380,798,343,791,335,779,332,760,322,745,326",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-badiang",
+            alt: "Badiang",
+            title: "Badiang",
+            coords:
+              "735,319,852,166,827,178,802,166,781,124,762,116,716,112,650,82,609,79,595,86,585,142,634,177,672,213,722,233,704,244,706,295,727,303",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-balabag",
+            alt: "Balabag",
+            title: "Balabag",
+            coords:
+              "738,522,785,519,787,511,825,510,809,526,800,556,801,565,815,567,827,609,762,593",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-bilidan",
+            alt: "Bilidan",
+            title: "Bilidan",
+            coords:
+              "459,675,564,574,578,583,580,572,593,555,624,570,618,580,635,589,639,608,630,634,641,638,634,655,622,676,634,696,650,693,651,702,676,712,683,721,677,731,684,739,709,770,701,787",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-bitaog-gaja",
+            alt: "Bita-og Gaja",
+            title: "Bita-og Gaja",
+            coords: "461,676,422,708,534,854,679,846,700,788",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-bololacao",
+            alt: "Bololacao",
+            title: "Bololacao",
+            coords:
+              "497,382,635,178,670,213,723,233,705,244,705,295,729,302,734,319",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-burot",
+            alt: "Burot",
+            title: "Burot",
+            coords:
+              "163,522,266,451,275,456,317,461,355,487,372,490,394,500,267,560",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-cabilauan",
+            alt: "Cabilauan",
+            title: "Cabilauan",
+            coords:
+              "266,560,396,500,482,527,497,542,512,536,520,544,507,551,517,557,529,547,539,556,538,569,550,573,559,569,564,572,422,710",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-cabugao",
+            alt: "Cabugao",
+            title: "Cabugao",
+            coords: "142,363,351,262,267,452,217,434,195,418,183,406,174,377",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-cagban",
+            alt: "Cagban",
+            title: "Cagban",
+            coords:
+              "10,414,23,395,39,347,60,318,174,376,181,406,213,433,265,451,161,520,124,503,90,482",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-calumbuyan",
+            alt: "Calumbuyan",
+            title: "Calumbuyan",
+            coords:
+              "833,504,892,563,876,617,826,607,815,568,798,564,804,547,810,525",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-damires",
+            alt: "Damires",
+            title: "Damires",
+            coords:
+              "737,521,763,593,798,601,794,610,785,606,787,618,773,618,769,627,776,634,776,647,787,659,789,682,798,694,801,719,818,755,831,774,826,791,814,791,813,799,802,793,797,761,789,765,759,763,743,772,727,774,723,755,709,772,679,732,685,719,677,713,651,702,650,692,634,692,621,674,642,635,631,632,639,606,634,585,618,581,625,569",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-general-delgado",
+            alt: "General Delgado",
+            title: "General Delgado",
+            coords:
+              "144,359,153,339,177,325,171,310,146,284,135,283,117,291,86,258,60,317",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-guinobatan",
+            alt: "Guinobatan",
+            title: "Guinobatan",
+            coords:
+              "499,381,634,179,583,142,554,142,559,160,572,155,560,170,555,193,525,180,495,180,496,158,479,134,471,138,463,164,455,189,433,285",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-janipaan-oeste",
+            alt: "Janipa-an Oeste",
+            title: "Janipa-an Oeste",
+            coords:
+              "432,283,462,169,411,174,400,161,383,154,362,161,362,148,376,141,387,117,341,91,304,110,286,90,258,79,270,60,242,21,199,85,347,263",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-jelicuon-este",
+            alt: "Jelicuon Este",
+            title: "Jelicuon Este",
+            coords:
+              "700,788,822,826,835,825,825,814,834,798,825,791,814,789,813,800,802,792,796,762,787,766,756,762,742,772,727,773,723,755,710,770",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-jelicuon-oeste",
+            alt: "Jelicuon Oeste",
+            title: "Jelicuon Oeste",
+            coords:
+              "145,362,346,263,200,86,87,257,117,291,136,282,146,282,174,312,178,324,153,340",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-pasil",
+            alt: "Pasil",
+            title: "Pasil",
+            coords:
+              "701,788,679,844,793,875,796,860,810,866,817,854,831,855,838,838,822,831,819,826",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-wariwari",
+            alt: "Wari-wari",
+            title: "Wari-wari",
+            coords:
+              "351,265,266,451,275,456,319,462,358,486,390,497,483,527,499,540,511,535,521,544,509,552,517,557,530,546,539,556,539,568,550,573,558,568,579,582,580,574,541,483,499,385,430,284",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-baclayan",
+            alt: "Baclayan",
+            title: "Baclayan",
+            coords: "499,382,581,570,592,554,624,570,741,519,729,431",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
         })
-      )
-    ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: { id: "locationModal", role: "dialog" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Brgy. Name:")]),
+                _vm._v(" "),
+                _c("span", {
+                  attrs: { id: "loc_name" },
+                  domProps: { textContent: _vm._s(_vm.selected.location_name) }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6 crimes-section" }, [
+                    _c("label", [_vm._v("Crimes committed")]),
+                    _vm._v(" "),
+                    _c(
+                      "ol",
+                      {
+                        staticClass: "pre-scrollable",
+                        attrs: { id: "crimes-list" }
+                      },
+                      _vm._l(_vm.selected.crimes, function(crime) {
+                        return _c("li", [_vm._v(_vm._s(crime.crime_type))])
+                      })
+                    ),
+                    _vm._v(" "),
+                    _vm.selected.crimes.length > 5
+                      ? _c(
+                          "a",
+                          { staticClass: "see-more", attrs: { href: "" } },
+                          [_vm._v("See More")]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6 suspects-section" }, [
+                    _c("label", [_vm._v("Suspects")]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "pre-scrollable",
+                        attrs: { id: "suspects-list" }
+                      },
+                      _vm._l(_vm.selected.suspects, function(suspect) {
+                        return _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "/suspects/" + suspect.id + "/edit"
+                              }
+                            },
+                            [
+                              _c("img", {
+                                staticClass: "suspect-image",
+                                attrs: {
+                                  src:
+                                    suspect.front == ""
+                                      ? "/res/photos/shares/empty-avatar.png"
+                                      : suspect.front
+                                },
+                                on: { error: _vm.imgError }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "info-group" }, [
+                                _c("span", {
+                                  staticClass: "suspect-info",
+                                  attrs: { name: "suspect-name" },
+                                  domProps: {
+                                    textContent: _vm._s(suspect.full_name)
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "suspect-info",
+                                  attrs: { name: "suspect-alias" },
+                                  domProps: {
+                                    textContent: _vm._s(suspect.alias)
+                                  }
+                                })
+                              ])
+                            ]
+                          )
+                        ])
+                      })
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "see-more hidden", attrs: { href: "" } },
+                      [_vm._v("See More")]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -44121,56 +44370,387 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("map", { attrs: { name: "lucenamap" } }, [
-      _c("area", {
-        attrs: {
-          shape: "rect",
-          coords: "0,0,82,126",
-          href: "sun.htm",
-          alt: "Sun"
-        }
-      }),
+    return _c("div", { staticClass: "map-brgys" }, [
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "162px", left: "731px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/dawis.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "34%", left: "38%" } }, [
+            _vm._v("\n\t\t\t\t\t    Dawis\n\t\t\t\t")
+          ])
+        ]
+      ),
       _vm._v(" "),
-      _c("area", {
-        attrs: {
-          shape: "circle",
-          coords: "90,58,3",
-          href: "mercur.htm",
-          alt: "Mercury"
-        }
-      }),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "319px", left: "496px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/poblacion.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "29%", left: "50%" } }, [
+            _vm._v("\n\t\t\t\t\t    Poblacion\n\t\t\t\t")
+          ])
+        ]
+      ),
       _vm._v(" "),
-      _c("area", {
-        attrs: {
-          shape: "circle",
-          coords: "124,58,8",
-          href: "venus.htm",
-          alt: "Venus"
-        }
-      })
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "376px", left: "493px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/baclayan.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "39%", left: "40%" } }, [
+            _vm._v("\n\t\t\t\t\t    Baclayan\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "75px", left: "580px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/badiang.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "34%", left: "42%" } }, [
+            _vm._v("\n\t\t\t\t\t    Badiang\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "149px", left: "429px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/bololacao.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "52%", left: "50%" } }, [
+            _vm._v("\n\t\t\t\t\t    Bololacao\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "496px", left: "263px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/cabilauan.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "34%", left: "37%" } }, [
+            _vm._v("\n\t\t\t\t\t    Cabilauan\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "448px", left: "160px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/burot.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "29%", left: "50%" } }, [
+            _vm._v("\n\t\t\t\t\t    Burot\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "map-brgy", staticStyle: { top: "315px", left: "8px" } },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/cagban.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "42%", left: "31%" } }, [
+            _vm._v("\n\t\t\t\t\t    Cagban\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "507px", left: "801px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/calumbuyan.png" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticStyle: { top: "38%", left: "15%", "font-size": "8pt" } },
+            [_vm._v("\n\t\t\t\t\t    Calumbuyan\n\t\t\t\t")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "517px", left: "617px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/damires.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "44%", left: "29%" } }, [
+            _vm._v("\n\t\t\t\t\t    Damires\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "500px", left: "739px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/balabag.png" } }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticStyle: { top: "30%", left: "15%", "font-size": "9pt" } },
+            [_vm._v("\n\t\t\t\t\t    Balabag\n\t\t\t\t")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "652px", left: "354px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/bita-og+gaja.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "42%", left: "42%" } }, [
+            _vm._v("\n\t\t\t\t\t    Bita-og Gaja\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "555px", left: "456px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/bilidan.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "38%", left: "35%" } }, [
+            _vm._v("\n\t\t\t\t\t    Bilidan\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "132px", left: "430px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/guinobatan.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "42%", left: "18%" } }, [
+            _vm._v("\n\t\t\t\t\t    Guinobatan\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "20px", left: "197px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/janipa-an+oeste.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "62%", left: "46%" } }, [
+            _vm._v("\n\t\t\t\t\t    Janipa-an Oeste\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "755px", left: "699px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/jelicuon+este.png" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticStyle: { top: "29%", left: "11%", "font-size": "10pt" } },
+            [_vm._v("\n\t\t\t\t\t    Jelicuon Este\n\t\t\t\t")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "map-brgy", staticStyle: { top: "83px", left: "85px" } },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/jelicuon+oeste.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "42%", left: "28%" } }, [
+            _vm._v("\n\t\t\t\t\t    Jelicuon Oeste\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "789px", left: "676px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/pasil.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "40%", left: "36%" } }, [
+            _vm._v("\n\t\t\t\t\t    Pasil\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "260px", left: "263px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/wari-wari.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "37%", left: "33%" } }, [
+            _vm._v("\n\t\t\t\t\t    Wari-wari\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "260px", left: "141px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/cabugao.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "49%", left: "31%" } }, [
+            _vm._v("\n\t\t\t\t\t    Cabugao\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "254px", left: "60px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/general+delgado.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "36%", left: "29%" } }, [
+            _vm._v("\n\t\t\t\t\t    General Delgado\n\t\t\t\t")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      ),
+      _vm._v(" "),
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Details")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "link/to/details", id: "more_details" }
+        },
+        [_vm._v("Details")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-default",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
     ])
   }
 ]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f8e2ef90", module.exports)
-  }
-}
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("map-component")
-}
-var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -44181,17 +44761,17 @@ if (false) {
 }
 
 /***/ }),
-/* 59 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(60)
+  __webpack_require__(50)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(62)
+var __vue_script__ = __webpack_require__(52)
 /* template */
 var __vue_template__ = __webpack_require__(63)
 /* template functional */
@@ -44232,13 +44812,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 60 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(61);
+var content = __webpack_require__(51);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -44258,7 +44838,7 @@ if(false) {
 }
 
 /***/ }),
-/* 61 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -44272,14 +44852,14 @@ exports.push([module.i, "\n.map-wrapper[data-v-78017c58]{\n\toverflow: scroll;\n
 
 
 /***/ }),
-/* 62 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapComponent__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapComponent__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__MapComponent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PinComponent__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PinComponent__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PinComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PinComponent__);
 //
 //
@@ -44434,6 +45014,1122 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		toggleAlert: function toggleAlert() {}
 	}
 });
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(54)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(56)
+/* template */
+var __vue_template__ = __webpack_require__(57)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-f8e2ef90"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/MapComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f8e2ef90", Component.options)
+  } else {
+    hotAPI.reload("data-v-f8e2ef90", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(55);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("551d0537", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f8e2ef90\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f8e2ef90\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.map-container[data-v-f8e2ef90]{\n\t\toverflow:scroll;\n}\nimg#lucena-map[data-v-f8e2ef90]{\n\t\theight: 100%;\n}\ndiv.new-lucena-map[data-v-f8e2ef90]{\n\t\tposition: relative;\n\t\ttop: 0;\n\t\tleft: 0;\n}\nimg#lucena-map[data-v-f8e2ef90]{\n\t\t-o-object-fit: cover;\n\t\t   object-fit: cover;\n}\ndiv.map-brgys[data-v-f8e2ef90]{\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tpointer-events: none;\n}\ndiv.map-pins[data-v-f8e2ef90]{\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n}\ndiv.map-brgy[data-v-f8e2ef90]{\n\t    position: absolute;\n\t    cursor: pointer;\n}\ndiv.map-brgy img[data-v-f8e2ef90]{\n\t\t-webkit-filter: drop-shadow(1px 1px 0 black) \n                    drop-shadow(-1px -1px 0 white);\n    \tfilter:drop-shadow(1px 1px 0 black) \n           drop-shadow(-1px -1px 0 white);\n        opacity: 0.25;\n}\ndiv.map-brgy label[data-v-f8e2ef90]{\n\t\tposition: absolute;\n\t\tpointer-events: none;\n\t\ttext-shadow: 1px 1px 4px white;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'google-map',
+	props: ['name'],
+	data: function data() {
+		return {
+			mapName: this.name + "-map",
+			pins: [],
+			pin_height: 54,
+			pin_width: 35,
+			locations: [],
+			map: null,
+			infowindow: null,
+			selected: { crimes: [],
+				suspects: [],
+				location_name: "" }
+		};
+	},
+	mounted: function mounted() {
+		this.map = document.getElementsByClassName('new-lucena-map')[0];
+		this.map.querySelector("img").draggable = false;
+
+		// $('.brgy-area').on('click', function(e){
+		// 	console.log(e.target.id);
+		// });
+	},
+	created: function created() {},
+
+	methods: {
+		addEventListener: function addEventListener(action, method) {
+			this.map.addEventListener(action, method);
+		},
+		addPin: function addPin(lat, lng) {
+			this.pins.push({ x: lat, y: lng });
+			return { x: lat, y: lng };
+		},
+		didClickArea: function didClickArea(e) {
+			console.log(e.target.id);
+		},
+		didHoverPin: function didHoverPin(e) {
+			console.log('Pin hovered');
+			console.log(e);
+		},
+		removePin: function removePin(pin) {
+			this.pins = this.pins.filter(function (obj) {
+				return obj.x !== pin.x && obj.y == obj.y;
+			});
+		},
+		clearPin: function clearPin() {
+			this.pins = [];
+		}
+	}
+});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "map-container" }, [
+    _c("div", { staticClass: "new-lucena-map" }, [
+      _c("img", {
+        attrs: {
+          src: "/res/photos/shares/new-lucena-map.jpg",
+          id: "lucena-map",
+          usemap: "#image-map"
+        }
+      }),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("map", { attrs: { name: "image-map" } }, [
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-poblacion",
+            alt: "Poblacion",
+            title: "Poblacion",
+            coords:
+              "499,383,738,320,744,328,763,324,772,330,780,340,784,335,792,337,799,345,807,380,818,387,815,404,818,416,829,412,837,420,847,416,854,426,862,429,865,437,861,451,851,474,842,485,836,504,829,510,788,512,788,519,741,520,730,433",
+            shape: "poly"
+          },
+          on: { click: _vm.didClickArea }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-dawis",
+            alt: "Dawis",
+            title: "Dawis",
+            coords:
+              "735,320,852,167,859,172,880,163,890,169,921,176,865,266,848,420,844,412,834,418,827,411,815,414,817,385,806,380,798,343,791,335,779,332,760,322,745,326",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-badiang",
+            alt: "Badiang",
+            title: "Badiang",
+            coords:
+              "735,319,852,166,827,178,802,166,781,124,762,116,716,112,650,82,609,79,595,86,585,142,634,177,672,213,722,233,704,244,706,295,727,303",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-balabag",
+            alt: "Balabag",
+            title: "Balabag",
+            coords:
+              "738,522,785,519,787,511,825,510,809,526,800,556,801,565,815,567,827,609,762,593",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-bilidan",
+            alt: "Bilidan",
+            title: "Bilidan",
+            coords:
+              "459,675,564,574,578,583,580,572,593,555,624,570,618,580,635,589,639,608,630,634,641,638,634,655,622,676,634,696,650,693,651,702,676,712,683,721,677,731,684,739,709,770,701,787",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-bitaog-gaja",
+            alt: "Bita-og Gaja",
+            title: "Bita-og Gaja",
+            coords: "461,676,422,708,534,854,679,846,700,788",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-bololacao",
+            alt: "Bololacao",
+            title: "Bololacao",
+            coords:
+              "497,382,635,178,670,213,723,233,705,244,705,295,729,302,734,319",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-burot",
+            alt: "Burot",
+            title: "Burot",
+            coords:
+              "163,522,266,451,275,456,317,461,355,487,372,490,394,500,267,560",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-cabilauan",
+            alt: "Cabilauan",
+            title: "Cabilauan",
+            coords:
+              "266,560,396,500,482,527,497,542,512,536,520,544,507,551,517,557,529,547,539,556,538,569,550,573,559,569,564,572,422,710",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-cabugao",
+            alt: "Cabugao",
+            title: "Cabugao",
+            coords: "142,363,351,262,267,452,217,434,195,418,183,406,174,377",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-cagban",
+            alt: "Cagban",
+            title: "Cagban",
+            coords:
+              "10,414,23,395,39,347,60,318,174,376,181,406,213,433,265,451,161,520,124,503,90,482",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-calumbuyan",
+            alt: "Calumbuyan",
+            title: "Calumbuyan",
+            coords:
+              "833,504,892,563,876,617,826,607,815,568,798,564,804,547,810,525",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-damires",
+            alt: "Damires",
+            title: "Damires",
+            coords:
+              "737,521,763,593,798,601,794,610,785,606,787,618,773,618,769,627,776,634,776,647,787,659,789,682,798,694,801,719,818,755,831,774,826,791,814,791,813,799,802,793,797,761,789,765,759,763,743,772,727,774,723,755,709,772,679,732,685,719,677,713,651,702,650,692,634,692,621,674,642,635,631,632,639,606,634,585,618,581,625,569",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-general-delgado",
+            alt: "General Delgado",
+            title: "General Delgado",
+            coords:
+              "144,359,153,339,177,325,171,310,146,284,135,283,117,291,86,258,60,317",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-guinobatan",
+            alt: "Guinobatan",
+            title: "Guinobatan",
+            coords:
+              "499,381,634,179,583,142,554,142,559,160,572,155,560,170,555,193,525,180,495,180,496,158,479,134,471,138,463,164,455,189,433,285",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-janipaan-oeste",
+            alt: "Janipa-an Oeste",
+            title: "Janipa-an Oeste",
+            coords:
+              "432,283,462,169,411,174,400,161,383,154,362,161,362,148,376,141,387,117,341,91,304,110,286,90,258,79,270,60,242,21,199,85,347,263",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-jelicuon-este",
+            alt: "Jelicuon Este",
+            title: "Jelicuon Este",
+            coords:
+              "700,788,822,826,835,825,825,814,834,798,825,791,814,789,813,800,802,792,796,762,787,766,756,762,742,772,727,773,723,755,710,770",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-jelicuon-oeste",
+            alt: "Jelicuon Oeste",
+            title: "Jelicuon Oeste",
+            coords:
+              "145,362,346,263,200,86,87,257,117,291,136,282,146,282,174,312,178,324,153,340",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-pasil",
+            alt: "Pasil",
+            title: "Pasil",
+            coords:
+              "701,788,679,844,793,875,796,860,810,866,817,854,831,855,838,838,822,831,819,826",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-wariwari",
+            alt: "Wari-wari",
+            title: "Wari-wari",
+            coords:
+              "351,265,266,451,275,456,319,462,358,486,390,497,483,527,499,540,511,535,521,544,509,552,517,557,530,546,539,556,539,568,550,573,558,568,579,582,580,574,541,483,499,385,430,284",
+            shape: "poly"
+          }
+        }),
+        _vm._v(" "),
+        _c("area", {
+          staticClass: "brgy-area",
+          attrs: {
+            id: "brgy-baclayan",
+            alt: "Baclayan",
+            title: "Baclayan",
+            coords: "499,382,581,570,592,554,624,570,741,519,729,431",
+            shape: "poly"
+          }
+        })
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-brgys" }, [
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "162px", left: "731px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/dawis.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "34%", left: "38%" } }, [
+            _vm._v("\n\t\t\t\t\t    Dawis\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "319px", left: "496px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/poblacion.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "29%", left: "50%" } }, [
+            _vm._v("\n\t\t\t\t\t    Poblacion\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "376px", left: "493px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/baclayan.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "39%", left: "40%" } }, [
+            _vm._v("\n\t\t\t\t\t    Baclayan\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "75px", left: "580px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/badiang.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "34%", left: "42%" } }, [
+            _vm._v("\n\t\t\t\t\t    Badiang\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "149px", left: "429px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/bololacao.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "52%", left: "50%" } }, [
+            _vm._v("\n\t\t\t\t\t    Bololacao\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "496px", left: "263px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/cabilauan.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "34%", left: "37%" } }, [
+            _vm._v("\n\t\t\t\t\t    Cabilauan\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "448px", left: "160px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/burot.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "29%", left: "50%" } }, [
+            _vm._v("\n\t\t\t\t\t    Burot\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "map-brgy", staticStyle: { top: "315px", left: "8px" } },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/cagban.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "42%", left: "31%" } }, [
+            _vm._v("\n\t\t\t\t\t    Cagban\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "507px", left: "801px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/calumbuyan.png" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticStyle: { top: "38%", left: "15%", "font-size": "8pt" } },
+            [_vm._v("\n\t\t\t\t\t    Calumbuyan\n\t\t\t\t")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "517px", left: "617px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/damires.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "44%", left: "29%" } }, [
+            _vm._v("\n\t\t\t\t\t    Damires\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "500px", left: "739px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/balabag.png" } }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticStyle: { top: "30%", left: "15%", "font-size": "9pt" } },
+            [_vm._v("\n\t\t\t\t\t    Balabag\n\t\t\t\t")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "652px", left: "354px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/bita-og+gaja.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "42%", left: "42%" } }, [
+            _vm._v("\n\t\t\t\t\t    Bita-og Gaja\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "555px", left: "456px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/bilidan.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "38%", left: "35%" } }, [
+            _vm._v("\n\t\t\t\t\t    Bilidan\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "132px", left: "430px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/guinobatan.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "42%", left: "18%" } }, [
+            _vm._v("\n\t\t\t\t\t    Guinobatan\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "20px", left: "197px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/janipa-an+oeste.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "62%", left: "46%" } }, [
+            _vm._v("\n\t\t\t\t\t    Janipa-an Oeste\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "755px", left: "699px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/jelicuon+este.png" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticStyle: { top: "29%", left: "11%", "font-size": "10pt" } },
+            [_vm._v("\n\t\t\t\t\t    Jelicuon Este\n\t\t\t\t")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "map-brgy", staticStyle: { top: "83px", left: "85px" } },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/jelicuon+oeste.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "42%", left: "28%" } }, [
+            _vm._v("\n\t\t\t\t\t    Jelicuon Oeste\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "789px", left: "676px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/pasil.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "40%", left: "36%" } }, [
+            _vm._v("\n\t\t\t\t\t    Pasil\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "260px", left: "263px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/wari-wari.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "37%", left: "33%" } }, [
+            _vm._v("\n\t\t\t\t\t    Wari-wari\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "260px", left: "141px" }
+        },
+        [
+          _c("img", { attrs: { src: "/res/photos/shares/brgy/cabugao.png" } }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "49%", left: "31%" } }, [
+            _vm._v("\n\t\t\t\t\t    Cabugao\n\t\t\t\t")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "map-brgy",
+          staticStyle: { top: "254px", left: "60px" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/res/photos/shares/brgy/general+delgado.png" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticStyle: { top: "36%", left: "29%" } }, [
+            _vm._v("\n\t\t\t\t\t    General Delgado\n\t\t\t\t")
+          ])
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f8e2ef90", module.exports)
+  }
+}
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(59)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(61)
+/* template */
+var __vue_template__ = __webpack_require__(62)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-3363e09f"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/PinComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3363e09f", Component.options)
+  } else {
+    hotAPI.reload("data-v-3363e09f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(60);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("507e2f32", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3363e09f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PinComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3363e09f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PinComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nimg.map-pin[data-v-3363e09f]{\n\t-o-object-fit: cover;\n\t   object-fit: cover;\n    position: absolute;\n    width:35px;\n    cursor: pointer;\n    -webkit-filter: drop-shadow(0px 0px 2px #000);\n    filter: drop-shadow(0px 0px 2px #000);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'map-pin',
+	props: ['lat', 'lng', 'map'],
+	data: function data() {
+		return {
+			pin_height: 54,
+			pin_width: 35
+		};
+	},
+	mounted: function mounted() {},
+	created: function created() {},
+
+	methods: {
+		addEventListener: function addEventListener(action, method) {
+			this.pin.addEventListener(action, method);
+		},
+		setMap: function setMap(map) {
+			map.addPin(this.lat, this.lng);
+			this.map = map;
+		}
+	}
+});
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("img", {
+    staticClass: "map-pin",
+    style:
+      "top:" +
+      (_vm.lng - _vm.pin_height) +
+      "px;left:" +
+      (_vm.lat - _vm.pin_width / 2) +
+      "px;",
+    attrs: { src: "/res/photos/shares/map-pin.png" }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3363e09f", module.exports)
+  }
+}
 
 /***/ }),
 /* 63 */
