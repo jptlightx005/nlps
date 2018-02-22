@@ -43945,6 +43945,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		didClickArea: function didClickArea(e) {
 			console.log(e.target.id);
+			var $this = this;
 			axios.get('/locations/brgy/' + e.target.id).then(function (response) {
 				$this.locations = response.data;
 				$('#locationModal').modal();
@@ -43968,7 +43969,7 @@ var render = function() {
     _c("div", { staticClass: "new-lucena-map" }, [
       _c("img", {
         attrs: {
-          src: "/res/photos/shares/new-lucena-map.jpg",
+          src: "/res/photos/map-assets/new-lucena-map.jpg",
           id: "lucena-map",
           usemap: "#image-map"
         }
@@ -44319,7 +44320,7 @@ var render = function() {
                                 attrs: {
                                   src:
                                     suspect.front == ""
-                                      ? "/res/photos/shares/empty-avatar.png"
+                                      ? "/res/photos/map-assets/empty-avatar.png"
                                       : suspect.front
                                 },
                                 on: { error: _vm.imgError }
@@ -44378,7 +44379,9 @@ var staticRenderFns = [
           staticStyle: { top: "162px", left: "731px" }
         },
         [
-          _c("img", { attrs: { src: "/res/photos/shares/brgy/dawis.png" } }),
+          _c("img", {
+            attrs: { src: "/res/photos/map-assets/brgy/dawis.png" }
+          }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "34%", left: "38%" } }, [
             _vm._v("\n\t\t\t\t\t    Dawis\n\t\t\t\t")
@@ -44394,7 +44397,7 @@ var staticRenderFns = [
         },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/poblacion.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/poblacion.png" }
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "29%", left: "50%" } }, [
@@ -44410,7 +44413,9 @@ var staticRenderFns = [
           staticStyle: { top: "376px", left: "493px" }
         },
         [
-          _c("img", { attrs: { src: "/res/photos/shares/brgy/baclayan.png" } }),
+          _c("img", {
+            attrs: { src: "/res/photos/map-assets/brgy/baclayan.png" }
+          }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "39%", left: "40%" } }, [
             _vm._v("\n\t\t\t\t\t    Baclayan\n\t\t\t\t")
@@ -44425,7 +44430,9 @@ var staticRenderFns = [
           staticStyle: { top: "75px", left: "580px" }
         },
         [
-          _c("img", { attrs: { src: "/res/photos/shares/brgy/badiang.png" } }),
+          _c("img", {
+            attrs: { src: "/res/photos/map-assets/brgy/badiang.png" }
+          }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "34%", left: "42%" } }, [
             _vm._v("\n\t\t\t\t\t    Badiang\n\t\t\t\t")
@@ -44441,7 +44448,7 @@ var staticRenderFns = [
         },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/bololacao.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/bololacao.png" }
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "52%", left: "50%" } }, [
@@ -44458,7 +44465,7 @@ var staticRenderFns = [
         },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/cabilauan.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/cabilauan.png" }
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "34%", left: "37%" } }, [
@@ -44474,7 +44481,9 @@ var staticRenderFns = [
           staticStyle: { top: "448px", left: "160px" }
         },
         [
-          _c("img", { attrs: { src: "/res/photos/shares/brgy/burot.png" } }),
+          _c("img", {
+            attrs: { src: "/res/photos/map-assets/brgy/burot.png" }
+          }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "29%", left: "50%" } }, [
             _vm._v("\n\t\t\t\t\t    Burot\n\t\t\t\t")
@@ -44486,7 +44495,9 @@ var staticRenderFns = [
         "div",
         { staticClass: "map-brgy", staticStyle: { top: "315px", left: "8px" } },
         [
-          _c("img", { attrs: { src: "/res/photos/shares/brgy/cagban.png" } }),
+          _c("img", {
+            attrs: { src: "/res/photos/map-assets/brgy/cagban.png" }
+          }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "42%", left: "31%" } }, [
             _vm._v("\n\t\t\t\t\t    Cagban\n\t\t\t\t")
@@ -44502,7 +44513,7 @@ var staticRenderFns = [
         },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/calumbuyan.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/calumbuyan.png" }
           }),
           _vm._v(" "),
           _c(
@@ -44520,7 +44531,9 @@ var staticRenderFns = [
           staticStyle: { top: "517px", left: "617px" }
         },
         [
-          _c("img", { attrs: { src: "/res/photos/shares/brgy/damires.png" } }),
+          _c("img", {
+            attrs: { src: "/res/photos/map-assets/brgy/damires.png" }
+          }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "44%", left: "29%" } }, [
             _vm._v("\n\t\t\t\t\t    Damires\n\t\t\t\t")
@@ -44535,7 +44548,9 @@ var staticRenderFns = [
           staticStyle: { top: "500px", left: "739px" }
         },
         [
-          _c("img", { attrs: { src: "/res/photos/shares/brgy/balabag.png" } }),
+          _c("img", {
+            attrs: { src: "/res/photos/map-assets/brgy/balabag.png" }
+          }),
           _vm._v(" "),
           _c(
             "label",
@@ -44553,7 +44568,7 @@ var staticRenderFns = [
         },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/bita-og+gaja.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/bita-og+gaja.png" }
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "42%", left: "42%" } }, [
@@ -44569,7 +44584,9 @@ var staticRenderFns = [
           staticStyle: { top: "555px", left: "456px" }
         },
         [
-          _c("img", { attrs: { src: "/res/photos/shares/brgy/bilidan.png" } }),
+          _c("img", {
+            attrs: { src: "/res/photos/map-assets/brgy/bilidan.png" }
+          }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "38%", left: "35%" } }, [
             _vm._v("\n\t\t\t\t\t    Bilidan\n\t\t\t\t")
@@ -44585,7 +44602,7 @@ var staticRenderFns = [
         },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/guinobatan.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/guinobatan.png" }
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "42%", left: "18%" } }, [
@@ -44602,7 +44619,7 @@ var staticRenderFns = [
         },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/janipa-an+oeste.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/janipa-an+oeste.png" }
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "62%", left: "46%" } }, [
@@ -44619,7 +44636,7 @@ var staticRenderFns = [
         },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/jelicuon+este.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/jelicuon+este.png" }
           }),
           _vm._v(" "),
           _c(
@@ -44635,7 +44652,7 @@ var staticRenderFns = [
         { staticClass: "map-brgy", staticStyle: { top: "83px", left: "85px" } },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/jelicuon+oeste.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/jelicuon+oeste.png" }
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "42%", left: "28%" } }, [
@@ -44651,7 +44668,9 @@ var staticRenderFns = [
           staticStyle: { top: "789px", left: "676px" }
         },
         [
-          _c("img", { attrs: { src: "/res/photos/shares/brgy/pasil.png" } }),
+          _c("img", {
+            attrs: { src: "/res/photos/map-assets/brgy/pasil.png" }
+          }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "40%", left: "36%" } }, [
             _vm._v("\n\t\t\t\t\t    Pasil\n\t\t\t\t")
@@ -44667,7 +44686,7 @@ var staticRenderFns = [
         },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/wari-wari.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/wari-wari.png" }
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "37%", left: "33%" } }, [
@@ -44683,7 +44702,9 @@ var staticRenderFns = [
           staticStyle: { top: "260px", left: "141px" }
         },
         [
-          _c("img", { attrs: { src: "/res/photos/shares/brgy/cabugao.png" } }),
+          _c("img", {
+            attrs: { src: "/res/photos/map-assets/brgy/cabugao.png" }
+          }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "49%", left: "31%" } }, [
             _vm._v("\n\t\t\t\t\t    Cabugao\n\t\t\t\t")
@@ -44699,7 +44720,7 @@ var staticRenderFns = [
         },
         [
           _c("img", {
-            attrs: { src: "/res/photos/shares/brgy/general+delgado.png" }
+            attrs: { src: "/res/photos/map-assets/brgy/general+delgado.png" }
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "36%", left: "29%" } }, [

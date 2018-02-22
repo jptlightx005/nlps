@@ -1,151 +1,151 @@
 <template>
 	<div class="map-container">
 		<div class="new-lucena-map">
-			<img src="/res/photos/shares/new-lucena-map.jpg" id="lucena-map" usemap="#image-map"/>
+			<img src="/res/photos/map-assets/new-lucena-map.jpg" id="lucena-map" usemap="#image-map"/>
 			<div class="map-brgys">
 				<div class="map-brgy"
 					style="top:162px; left:731px;">
-					<img src="/res/photos/shares/brgy/dawis.png"/>
+					<img src="/res/photos/map-assets/brgy/dawis.png"/>
 					<label style="top: 34%; left: 38%;">
 						    Dawis
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:319px; left:496px;">
-					<img src="/res/photos/shares/brgy/poblacion.png"/>
+					<img src="/res/photos/map-assets/brgy/poblacion.png"/>
 					<label style="top: 29%; left: 50%;">
 						    Poblacion
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:376px; left:493px;">
-					<img src="/res/photos/shares/brgy/baclayan.png"/>
+					<img src="/res/photos/map-assets/brgy/baclayan.png"/>
 					<label style="top: 39%; left: 40%;">
 						    Baclayan
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:75px; left:580px;">
-					<img src="/res/photos/shares/brgy/badiang.png"/>
+					<img src="/res/photos/map-assets/brgy/badiang.png"/>
 					<label style="top: 34%; left: 42%;">
 						    Badiang
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:149px; left:429px;">
-					<img src="/res/photos/shares/brgy/bololacao.png"/>
+					<img src="/res/photos/map-assets/brgy/bololacao.png"/>
 					<label style="top: 52%; left: 50%;">
 						    Bololacao
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:496px; left:263px;">
-					<img src="/res/photos/shares/brgy/cabilauan.png"/>
+					<img src="/res/photos/map-assets/brgy/cabilauan.png"/>
 					<label style="top: 34%; left: 37%;">
 						    Cabilauan
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:448px; left:160px;">
-					<img src="/res/photos/shares/brgy/burot.png"/>
+					<img src="/res/photos/map-assets/brgy/burot.png"/>
 					<label style="top: 29%; left: 50%;">
 						    Burot
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:315px; left:8px;">
-					<img src="/res/photos/shares/brgy/cagban.png"/>
+					<img src="/res/photos/map-assets/brgy/cagban.png"/>
 					<label style="top: 42%; left: 31%;">
 						    Cagban
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:507px; left:801px;">
-					<img src="/res/photos/shares/brgy/calumbuyan.png"/>
+					<img src="/res/photos/map-assets/brgy/calumbuyan.png"/>
 					<label style="top: 38%;left: 15%;font-size: 8pt;">
 						    Calumbuyan
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:517px; left:617px">
-					<img src="/res/photos/shares/brgy/damires.png"/>
+					<img src="/res/photos/map-assets/brgy/damires.png"/>
 					<label style="top: 44%; left: 29%;">
 						    Damires
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:500px; left:739px;">
-					<img src="/res/photos/shares/brgy/balabag.png"/>
+					<img src="/res/photos/map-assets/brgy/balabag.png"/>
 					<label style="top: 30%; left: 15%; font-size:9pt">
 						    Balabag
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:652px; left:354px;">
-					<img src="/res/photos/shares/brgy/bita-og+gaja.png"/>
+					<img src="/res/photos/map-assets/brgy/bita-og+gaja.png"/>
 					<label style="top: 42%; left: 42%;">
 						    Bita-og Gaja
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:555px; left:456px;">
-					<img src="/res/photos/shares/brgy/bilidan.png"/>
+					<img src="/res/photos/map-assets/brgy/bilidan.png"/>
 					<label style="top: 38%; left: 35%;">
 						    Bilidan
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:132px; left:430px;">
-					<img src="/res/photos/shares/brgy/guinobatan.png"/>
+					<img src="/res/photos/map-assets/brgy/guinobatan.png"/>
 					<label style="top: 42%; left: 18%;">
 						    Guinobatan
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:20px; left:197px;">
-					<img src="/res/photos/shares/brgy/janipa-an+oeste.png"/>
+					<img src="/res/photos/map-assets/brgy/janipa-an+oeste.png"/>
 					<label style="top: 62%; left: 46%;">
 						    Janipa-an Oeste
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:755px; left:699px;">
-					<img src="/res/photos/shares/brgy/jelicuon+este.png"/>
+					<img src="/res/photos/map-assets/brgy/jelicuon+este.png"/>
 					<label style="top: 29%; left: 11%; font-size: 10pt">
 						    Jelicuon Este
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:83px; left:85px;">
-					<img src="/res/photos/shares/brgy/jelicuon+oeste.png"/>
+					<img src="/res/photos/map-assets/brgy/jelicuon+oeste.png"/>
 					<label style="top: 42%; left: 28%;">
 						    Jelicuon Oeste
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:789px; left:676px;">
-					<img src="/res/photos/shares/brgy/pasil.png"/>
+					<img src="/res/photos/map-assets/brgy/pasil.png"/>
 					<label style="top: 40%; left: 36%;">
 						    Pasil
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:260px; left:263px;">
-					<img src="/res/photos/shares/brgy/wari-wari.png"/>
+					<img src="/res/photos/map-assets/brgy/wari-wari.png"/>
 					<label style="top: 37%; left: 33%;">
 						    Wari-wari
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:260px; left:141px;">
-					<img src="/res/photos/shares/brgy/cabugao.png"/>
+					<img src="/res/photos/map-assets/brgy/cabugao.png"/>
 					<label style="top: 49%; left: 31%;">
 						    Cabugao
 					</label>
 				</div>
 				<div class="map-brgy"
 					style="top:254px; left:60px;">
-					<img src="/res/photos/shares/brgy/general+delgado.png"/>
+					<img src="/res/photos/map-assets/brgy/general+delgado.png"/>
 					<label style="top: 36%; left: 29%;">
 						    General Delgado
 					</label>
@@ -206,7 +206,7 @@
 					                	<li v-for="suspect in selected.suspects">
 					                		<a :href="'/suspects/' + suspect.id + '/edit'">
 						                		<img class="suspect-image" 
-						                			:src="suspect.front == '' ? '/res/photos/shares/empty-avatar.png' : suspect.front"
+						                			:src="suspect.front == '' ? '/res/photos/map-assets/empty-avatar.png' : suspect.front"
 						                			@error="imgError" />
 						                		<div class="info-group">
 							                		<span class="suspect-info" name="suspect-name" v-text="suspect.full_name"></span>
@@ -270,6 +270,7 @@ export default {
 		},
 		didClickArea(e){
 			console.log(e.target.id);
+			var $this = this;
 			axios.get('/locations/brgy/' + e.target.id).then(response => {
 				$this.locations = response.data;
 				$('#locationModal').modal(); 
