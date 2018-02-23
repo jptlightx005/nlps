@@ -9,6 +9,8 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
+    require('jquery-ui-bundle');
+    require('jquery-timepicker/jquery.timepicker.js');
     require('form-serializer');
     require('bootstrap-sass');
 } catch (e) {}

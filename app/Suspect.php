@@ -25,7 +25,7 @@ class Suspect extends Model
     ];
 
     public function crimes(){
-    	return $this->hasMany('App\CrimeCommitted');
+    	return $this->belongsToMany('App\CrimeCommitted');
     }
 
     public function fullName(){
@@ -44,5 +44,12 @@ class Suspect extends Model
     public function getFullNameAttribute()
     {
         return $this->fullName();
+    }
+    public function crimesCommittedList($separator = ", "){
+        if(count($this->crimes) > 0){
+            return implode($separator, $this->crimes->pluck('crime_type')->toArray());
+        }else{
+            return "N/A";
+        }
     }
 }

@@ -18,6 +18,7 @@ class CreateCrimeCommittedTable extends Migration
             $table->integer('user_id');
             $table->string('location_area_id');
             $table->string('crime_type');
+            $table->dateTime('date_occured');
             $table->timestamps();
         });
     }

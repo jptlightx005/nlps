@@ -7,20 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 class CrimeCommitted extends Model
 {
     protected $fillable = [
-        'suspect_id',
         'user_id',
         'crime_type',
-        'location_id'
+        'location_area_id',
+        'date_occured'
     ];
 
     protected $table = 'crime_committed';
 
     public function location(){
-    	return $this->belongsTo('\App\Location');
+    	return $this->belongsTo('\App\Location', 'location_area_id', 'area_id');
     }
 
     public function suspects(){
-        return $this->hasMany('\App\Suspect', 'id', 'suspect_id');
+        return $this->belongsToMany('\App\Suspect');
+    }
 
+    public function suspectsList($separator = ", "){
+        if(count($this->suspects) > 0){
+            return implode($separator, $this->suspects->pluck('full_name')->toArray());
+        }else{
+            return "N/A";
+        }
     }
 }

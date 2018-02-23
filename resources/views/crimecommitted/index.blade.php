@@ -22,15 +22,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(count(array()) > 0)
-                                {{-- @foreach($suspects as $suspect)
+                            @if(count($crimes) > 0)
+                                @foreach($crimes as $crime)
                                     <tr>
-                                        <td>{!! $suspect->fullNameEditLink() !!}</td>
-                                        <td>{{$suspect->alias}}</td>
-                                        <td>{{$suspect->qualifier}}</td>
-                                        <td>{{$suspect->crimes()->first()->location()->first()->location_name}}</td>
+                                        <td>{!! $crime->crime_type !!}</td>
+                                        <td>{{$crime->location->location_name}}</td>
+                                        <td>{{$crime->suspectsList()}}</td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             @else
                                 <td colspan="3">No crime records</td>
                             @endif
