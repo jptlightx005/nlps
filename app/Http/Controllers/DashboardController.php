@@ -80,7 +80,8 @@ class DashboardController extends Controller
     {
         return \App\Location::where('area_id', '=', $area_id)
                             ->with('crimes')
-                            ->get();
+                            ->get()
+                            ->first();
     }
 
     public function locationDetails($id){

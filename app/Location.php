@@ -23,15 +23,21 @@ class Location extends Model
     	return $this->hasMany('App\CrimeCommitted', 'location_area_id', 'area_id');
     }
 
-    public function allSuspects(){
-        return DB::table('crime_committed_suspect')
-                    ->leftJoin('crime_committed', 'crime_committed_suspect.crime_committed_id', '=', 'crime_committed.id')
-                    ->rightJoin('suspects', 'crime_committed_suspect.suspect_id', '=', 'suspects.id')
-                    ->select(['suspects.*'])
-                    ->distinct()
-                    ->where('crime_committed.location_area_id', '=', $this->area_id)
-                    ->get();
+    public function suspects()
+    {
+        return $this->crimes->flatMap(function ($crime) {
+            return $crime->suspects;
+        })->unique('id');
     }
+
+    // public function allSuspects(){
+    //     return DB::table('crime_committed_suspect')
+    //                 ->leftJoin('crime_committed', 'crime_committed_suspect.crime_committed_id', '=', 'crime_committed.id')
+    //                 ->rightJoin('suspects', 'crime_committed_suspect.suspect_id', '=', 'suspects.id')
+    //                 ->select(['suspects.*', 'full_name = first_name + last_name'])
+    //                 ->distinct()
+    //                 ->where('crime_committed.location_area_id', '=', $this->area_id);
+    // }
 
     public function freq(){
     	$year = date("Y");
@@ -53,6 +59,6 @@ class Location extends Model
     //  */
     public function getSuspectsAttribute()
     {
-        return $this->allSuspects();
+        return $this->suspects();
     }
 }

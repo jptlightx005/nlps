@@ -24,6 +24,8 @@ class Suspect extends Model
         'alias'
     ];
 
+    protected $hidden = ['pivot'];
+
     public function crimes(){
     	return $this->belongsToMany('App\CrimeCommitted');
     }
