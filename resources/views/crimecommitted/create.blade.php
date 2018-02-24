@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container" id="crimecommitted-create-wrapper">
-    {!! Form::open(['action' => 'CrimeCommittedController@store', 'method' => 'POST']) !!}
     <div class="row" style="margin-bottom: 10px">
         <div class="col-md-8 col-md-offset-2">
             <a href="{{route('suspects.index')}}" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</a>
         </div>
     </div>
+    {!! Form::open(['action' => 'CrimeCommittedController@store', 'method' => 'POST']) !!}
     <div class="row" id="crime-section">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -72,7 +72,7 @@
 
                 <div class="panel-body">
                     <div class="form-group">
-                        {{Form::label('existing_suspect', 'First Name')}}
+                        {{Form::label('existing_suspect', 'Suspect Name')}}
                         {{Form::select('existing_suspect', \App\Suspect::all()->pluck('full_name', 'id'), null, ['class' => 'form-control existing-suspect-form', 'placeholder' => 'Select Suspect'])}}
                     </div>
 

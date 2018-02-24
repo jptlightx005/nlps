@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Suspect;
 use App\CrimeCommitted;
 use App\HZR\Helper;
+
+use Auth;
+use Carbon\Carbon;
+
 class SuspectsController extends Controller
 {
     /**
@@ -44,8 +48,7 @@ class SuspectsController extends Controller
             'middle_name' => 'required',
             'last_name' => 'required',
             'alias' => 'required',
-            'crime_type' => 'required',
-            'location' => 'required'
+            'crime_exist' => 'required'
         ]);
 
         $suspect = Suspect::create([
@@ -63,14 +66,29 @@ class SuspectsController extends Controller
 
         $suspect->save();
 
-        $crime = CrimeCommitted::create([
-            'suspect_id' => $suspect->id,
-            'user_id' => auth()->user()->id,
-            'crime_type' => $request->input('crime_type'),
-            'location_id' => $request->input('location')
-        ]);
+        if($request->input('crime_exist') == "yes"){
+            $this->validate($request, [
+                'existing_crime' => 'required'
+            ]);
 
-        $crime->save();
+            $suspect->crimes()->attach($request->input('existing_crime'));
+        }else{
+            $this->validate($request, [
+                'crime_type' => 'required',
+                'location' => 'required',
+                'time_occured' => 'required',
+                'date_occured' => 'required'
+            ]);
+
+            $date_occured = $request->input('date_occured') . " " . $request->input('time_occured');
+            $crimecommitted = CrimeCommitted::create(['crime_type' => $request->input('crime_type'),
+                                                        'location_area_id' => $request->input('location'),
+                                                        'user_id' => Auth::user()->id,
+                                                        'date_occured' => Carbon::parse($date_occured),
+                                                        ]);
+
+            $crimecommitted->suspects()->attach($suspect->id);
+        }
 
         return redirect('/suspects')->with('success', 'Suspect Recorded');
     }
