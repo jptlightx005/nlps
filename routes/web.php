@@ -16,18 +16,20 @@
 Route::get('/map', 'MapViewController@index')->name('map');
 Auth::routes();
 
-Route::get('/', 'DashboardController@index')->name('dashboard');
-Route::resource('/crimecommitted', 'CrimeCommittedController');
-Route::resource('/suspects', 'SuspectsController');
-Route::put('/suspects/{id}/convict', 'SuspectsController@setAsConvict');
+Route::middleware('auth:web')->group(function(){
+	Route::get('/', 'DashboardController@index')->name('dashboard');
+	Route::resource('/crimecommitted', 'CrimeCommittedController');
+	Route::resource('/suspects', 'SuspectsController');
+	Route::put('/suspects/{id}/convict', 'SuspectsController@setAsConvict');
 
-Route::resource('/location', 'LocationController');
-Route::get('/convicts-gallery', 'DashboardController@convicts');
-Route::get('/suspects-gallery', 'DashboardController@suspects');
+	Route::resource('/location', 'LocationController');
+	Route::get('/convicts-gallery', 'DashboardController@convicts');
+	Route::get('/suspects-gallery', 'DashboardController@suspects');
 
-Route::get('/locations/dashboard', 'DashboardController@locations')->middleware('auth');
-Route::get('/locations/brgy/{area_id}', 'DashboardController@locationBrgy')->middleware('auth');
-Route::get('/locations/details/{id}', 'DashboardController@locationDetails');
-Route::get('/locations', function(){
-	return \App\Location::with('crimes')->get();
-})->middleware('auth');
+	// Route::get('/brgy/dashboard', 'DashboardController@locations');
+	Route::get('/brgy/{area_id}', 'DashboardController@locationBrgy');
+	Route::get('/brgy/details/{id}', 'DashboardController@locationDetails');
+	Route::get('/locations', function(){
+		return \App\Location::with('crimes')->get();
+	});
+});
