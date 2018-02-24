@@ -206,7 +206,7 @@
 					                	<li v-for="suspect in selected.suspects">
 					                		<a :href="'/suspects/' + suspect.id + '/edit'">
 						                		<img class="suspect-image" 
-						                			:src="suspect.front == '' ? '/res/photos/map-assets/empty-avatar.png' : suspect.front"
+						                			:src="suspect.front == '' ? '/res/photos/shares/empty-avatar.png' : suspect.front"
 						                			@error="imgError" />
 						                		<div class="info-group">
 							                		<span class="suspect-info" name="suspect-name" v-text="suspect.full_name"></span>
@@ -241,7 +241,7 @@ export default {
 			pins: [],
 			pin_height: 54,
 			pin_width: 35,
-			locations: [],
+			selectedLocation: {},
 			map: null,
 			infowindow: null,
 			selected: {crimes: [],
@@ -271,15 +271,19 @@ export default {
 		didClickArea(e){
 			console.log(e.target.id);
 			var $this = this;
-			axios.get('/locations/brgy/' + e.target.id).then(response => {
-				$this.locations = response.data;
+			axios.get('/brgy/' + e.target.id).then(response => {
+				console.log(response.data);
+				$this.selected = response.data;
 				$('#locationModal').modal(); 
 			});
 			
 		},
 		clearPin(){
 			this.pins = [];
-		}
+		},
+		imgError(e){
+
+		},
 	}
 };
 </script>
@@ -306,11 +310,6 @@ export default {
 		left: 0;
 		pointer-events: none;
 	}
-	div.map-pins{
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
 	div.map-brgy{
 	    position: absolute;
 	    cursor: pointer;
@@ -328,5 +327,40 @@ export default {
 		position: absolute;
 		pointer-events: none;
 		text-shadow: 1px 1px 4px white;
+	}
+
+	#locationModal li.no-result{
+		list-style: none;
+	}
+	.pre-scrollable{
+		height: 250px;
+		padding: 0 15px;
+	}
+
+	#suspects-list {
+	    list-style: none;
+	    padding: 0;
+	}
+
+	#suspects-list li {
+	    margin: 10px 0;
+	    position: relative;
+	}
+
+	#suspects-list li .suspect-image {
+	    width: 75px;
+	    height: 75px;
+	    object-fit: cover;
+	    border-radius: 50%;
+	}
+
+	#suspects-list div.info-group{
+		display: inline-block;
+	    position: absolute;
+	    top: 10%;
+	    margin-left: 20px;
+	}
+	#suspects-list li .suspect-info {
+	    display:block;
 	}
 </style>
