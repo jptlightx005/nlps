@@ -4,6 +4,7 @@
 /storage/*.key
 /storage/photos/*
 !/storage/photos/shares
+!/storage/photos/map-assets
 /vendor
 /.idea
 /.vagrant

@@ -16,9 +16,11 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('map-component', require('./components/MapComponent.vue'));
-Vue.component('register-map-component', require('./components/RegisterMapComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('map-component', require('./components/MapComponent.vue'));
+Vue.component('dashboard-map-component', require('./components/DashboardMapComponent.vue'));
+Vue.component('locations-map-component', require('./components/LocationsMapComponent.vue'));
+// Vue.component('register-map-component', require('./components/RegisterMapComponent.vue'));
 
 const app = new Vue({
     el: '#app'

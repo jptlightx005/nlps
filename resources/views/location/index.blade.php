@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row map-row">
             <div class="col-md-12">
-                <register-map-component></register-map-component>
+                <locations-map-component></locations-map-component>
             </div>
         </div>
     </div>

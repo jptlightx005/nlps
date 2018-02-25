@@ -63,11 +63,25 @@ class DashboardController extends Controller
      */
     public function locations()
     {
-        return \App\Location::has('crimes')
-                            ->has('suspects')
+        return \App\Location::all();
+        // return \App\Location::has('crimes')
+        //                     ->has('suspects')
+        //                     ->with('crimes')
+        //                     ->with('suspects')
+        //                     ->get();
+    }
+
+    /**
+     * Loads locations.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function locationBrgy($area_id)
+    {
+        return \App\Location::where('area_id', '=', $area_id)
                             ->with('crimes')
-                            ->with('suspects')
-                            ->get();
+                            ->get()
+                            ->first();
     }
 
     public function locationDetails($id){

@@ -43,9 +43,11 @@
 	    display: inline-block;
 	    /*border-radius: 20px;*/
 	    border: 1px #AAA solid;
+	    padding: 10px;
 	}
 	.card-image {
 	    height: 150px;
+	    border: 1px #AAA solid;
 	}
 	.card-image img{
 	    object-fit: cover;

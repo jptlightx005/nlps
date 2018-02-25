@@ -18,8 +18,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Alias</th>
-                                <th>Qualifier</th>
-                                <th>Location</th>
+                                <th>Crimes</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,8 +26,7 @@
                                 <tr>
                                     <td>{!! $suspect->fullNameEditLink() !!}</td>
                                     <td>{{$suspect->alias}}</td>
-                                    <td>{{$suspect->qualifier}}</td>
-                                    <td>{{$suspect->crimes()->first()->location()->first()->location_name}}</td>
+                                    <td>{{$suspect->crimesCommittedList()}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

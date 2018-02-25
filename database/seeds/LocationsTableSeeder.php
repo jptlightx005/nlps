@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Location;
 class LocationsTableSeeder extends Seeder
 {
 
@@ -12,66 +12,110 @@ class LocationsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        $brgy = new Location();
+        $brgy->location_name = 'Poblacion';
+        $brgy->area_id = 'brgy-poblacion';
+        $brgy->save();
 
-        \DB::table('locations')->delete();
-        
-        \DB::table('locations')->insert(array (
-            0 => 
-            array (
-                'id' => 1,
-                'location_name' => 'Barasan',
-                'long' => '122.5527906',
-                'lat' => '10.8562350',
-                'created_at' => '2018-02-02 06:01:47',
-                'updated_at' => '2018-02-02 06:01:47',
-            ),
-            1 => 
-            array (
-                'id' => 2,
-                'location_name' => 'Ban-ag',
-                'long' => '122.5443792',
-                'lat' => '10.8501657',
-                'created_at' => '2018-02-02 06:01:55',
-                'updated_at' => '2018-02-02 06:01:55',
-            ),
-            2 => 
-            array (
-                'id' => 3,
-                'location_name' => 'Dalid',
-                'long' => '122.5505590',
-                'lat' => '10.8454451',
-                'created_at' => '2018-02-02 06:02:01',
-                'updated_at' => '2018-02-02 06:02:01',
-            ),
-            3 => 
-            array (
-                'id' => 4,
-                'location_name' => 'Bantay',
-                'long' => '122.5358820',
-                'lat' => '10.8712390',
-                'created_at' => '2018-02-02 06:02:06',
-                'updated_at' => '2018-02-02 06:02:06',
-            ),
-            4 => 
-            array (
-                'id' => 5,
-                'location_name' => 'Pungsod',
-                'long' => '122.5475550',
-                'lat' => '10.8591010',
-                'created_at' => '2018-02-02 06:02:13',
-                'updated_at' => '2018-02-02 06:02:13',
-            ),
-            5 => 
-            array (
-                'id' => 6,
-                'location_name' => 'Buayahon',
-                'long' => '122.5393152',
-                'lat' => '10.8593539',
-                'created_at' => '2018-02-02 06:02:20',
-                'updated_at' => '2018-02-02 06:02:20',
-            ),
-        ));
+        $brgy = new Location();
+        $brgy->location_name = 'Dawis';
+        $brgy->area_id = 'brgy-dawis';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Baclayan';
+        $brgy->area_id = 'brgy-baclayan';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Badiang';
+        $brgy->area_id = 'brgy-badiang';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Balabag';
+        $brgy->area_id = 'brgy-balabag';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Bilidan';
+        $brgy->area_id = 'brgy-bilidan';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Bita-og Gaja';
+        $brgy->area_id = 'brgy-bitaog-gaja';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Bololacao';
+        $brgy->area_id = 'brgy-bololacao';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Burot';
+        $brgy->area_id = 'brgy-burot';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Cabilauan';
+        $brgy->area_id = 'brgy-cabilauan';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Cabugao';
+        $brgy->area_id = 'brgy-cabugao';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Cagban';
+        $brgy->area_id = 'brgy-cagban';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Calumbuyan';
+        $brgy->area_id = 'brgy-calumbuyan';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Damires';
+        $brgy->area_id = 'brgy-damires';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'General Delgado';
+        $brgy->area_id = 'brgy-general-delgado';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Guinobatan';
+        $brgy->area_id = 'brgy-guinobatan';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Janipa-an Oeste';
+        $brgy->area_id = 'brgy-janipaan-oeste';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Jelicuon Este';
+        $brgy->area_id = 'brgy-jelicuon-este';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Jelicuon Oeste';
+        $brgy->area_id = 'brgy-jelicuon-oeste';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Pasil';
+        $brgy->area_id = 'brgy-pasil';
+        $brgy->save();
+
+        $brgy = new Location();
+        $brgy->location_name = 'Wari-wari';
+        $brgy->area_id = 'brgy-wariwari';
+        $brgy->save();
         
         
     }
