@@ -14,7 +14,7 @@ class AddDescriptionToCrimeTypesTable extends Migration
     public function up()
     {
         Schema::table('crime_types', function (Blueprint $table) {
-            $table->text('description');
+            $table->text('description')->nullable();
         });
     }
 
