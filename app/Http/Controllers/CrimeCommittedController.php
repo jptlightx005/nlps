@@ -42,8 +42,6 @@ class CrimeCommittedController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // dd($request->toArray());
         $this->validate($request, [
             'crime_type' => 'required',
             'location' => 'required',

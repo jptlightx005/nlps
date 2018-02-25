@@ -4,7 +4,7 @@
 <div class="container" id="crimecommitted-create-wrapper">
     <div class="row" style="margin-bottom: 10px">
         <div class="col-md-8 col-md-offset-2">
-            <a href="{{route('suspects.index')}}" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</a>
+            <a href="{{route('crimecommitted.index')}}" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</a>
         </div>
     </div>
     {!! Form::open(['action' => 'CrimeCommittedController@store', 'method' => 'POST']) !!}

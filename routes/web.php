@@ -20,6 +20,7 @@ Route::middleware('auth:web')->group(function(){
 	Route::get('/', 'DashboardController@index')->name('dashboard');
 	Route::resource('/crimecommitted', 'CrimeCommittedController');
 	Route::resource('/suspects', 'SuspectsController');
+	Route::resource('/crimetype', 'CrimeTypesController');
 	Route::put('/suspects/{id}/convict', 'SuspectsController@setAsConvict');
 
 	Route::resource('/location', 'LocationController');

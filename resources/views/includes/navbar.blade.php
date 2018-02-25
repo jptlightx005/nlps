@@ -29,8 +29,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('crimecommitted.index') }}">Crimes Committed</a></li>
                             <li><a href="{{ route('suspects.index') }}">Suspects</a></li>
-                            <li><a href="{{ route('location.index') }}">Locations</a></li>
-                            <li><a href="#">Crime Types</a></li>
+                            <li><a href="{{ route('crimetype.index') }}">Crime Types</a></li>
                         </ul>
                     </li>
                 @endauth
