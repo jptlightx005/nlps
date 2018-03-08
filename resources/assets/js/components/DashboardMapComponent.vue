@@ -195,14 +195,17 @@
 			            	<div class="row">
 			            		<div class="col-md-6 crimes-section">
 				            		<label>Crimes committed</label>
-					                <ol id="crimes-list" class="pre-scrollable">
+					                <ol id="crimes-list" class="pre-scrollable" v-if="selected.crimes.length > 0">
 					                	<li v-for="crime in selected.crimes">{{crime.crime_type}}</li>
 					                </ol>
+					                <div v-else>
+					                	<p>No crimes occured in this place.</p>
+					                </div>
 					                <a href="" class="see-more" v-if="selected.crimes.length > 5">See More</a>
 				            	</div>
 				            	<div class="col-md-6 suspects-section">
 				            		<label>Suspects</label>
-					                <ul id="suspects-list" class="pre-scrollable">
+					                <ul id="suspects-list" class="pre-scrollable" v-if="selected.suspects.length > 0">
 					                	<li v-for="suspect in selected.suspects">
 					                		<a :href="'/suspects/' + suspect.id + '/edit'">
 						                		<img class="suspect-image" 
@@ -215,6 +218,9 @@
 					                		</a>
 					                	</li>
 					                </ul>
+					                <div v-else>
+					                	<p>No suspects recorded in this place.</p>
+					                </div>
 					                <a href="" class="see-more hidden">See More</a>
 				            	</div>
 			            	</div>

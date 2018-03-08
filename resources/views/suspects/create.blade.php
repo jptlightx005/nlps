@@ -32,6 +32,11 @@
                         {{Form::text('alias', '', ['class' => 'form-control', 'placeholder' => 'Alias', 'required'])}}
                     </div>
 
+                    <div class="form-group">
+                        {{Form::label('date_of_birth', 'Date of Birth')}}
+                        {{Form::text('date_of_birth', '', ['class' => 'form-control', 'placeholder' => 'Date of Birth', 'required'])}}
+                    </div>
+
                     {{Form::label('', 'Mugshot')}}
                     <div class="form-group">
                         <div class="input-group">
@@ -103,7 +108,7 @@
                     <div class="existing-crime-section hidden">
                         <div class="form-group">
                             {{Form::label('existing_crime', 'Crime Committed')}}
-                            {{Form::select('existing_crime', \App\CrimeCommitted::all()->pluck('crime_type', 'id'), null, ['class' => 'form-control existing-crime-form', 'placeholder' => 'Select Crime Committed'])}}
+                            {{Form::select('existing_crime', \App\CrimeCommitted::all()->pluck('title', 'id'), null, ['class' => 'form-control existing-crime-form', 'placeholder' => 'Select Crime Committed'])}}
                         </div>
                     </div>
 
@@ -147,6 +152,7 @@
         $('#lfm').filemanager('image', config);
 
         $('input[name=date_occured]').datepicker();
+        $('input[name=date_of_birth]').datepicker();
         $('input[name=time_occured]').timepicker({
                                         timeFormat: 'h:mm p',
                                         interval: 60,

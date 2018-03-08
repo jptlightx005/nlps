@@ -47,15 +47,20 @@ class CrimeCommittedController extends Controller
             'location' => 'required',
             'has_suspect' => 'required',
             'time_occured' => 'required',
-            'date_occured' => 'required'
+            'date_occured' => 'required',
         ]);
-
-        $date_occured = $request->input('date_occured') . " " . $request->input('time_occured');
-        $crimecommitted = CrimeCommitted::create(['crime_type' => $request->input('crime_type'),
-                                                    'location_area_id' => $request->input('location'),
+        
+        $date_occured = $request->date_occured . " " . $request->time_occured;
+        $crimecommitted = CrimeCommitted::create(['crime_type' => $request->crime_type,
+                                                    'location_area_id' => $request->location,
                                                     'user_id' => Auth::user()->id,
                                                     'date_occured' => Carbon::parse($date_occured),
+                                                    'description' => $request->description,
                                                     ]);
+
+        if($request->input('weapons_used')){
+            $crimecommitted->equipments()->attach($request->weapons_used);
+        }
 
         if($request->input('has_suspect') == "yes"){
             $this->validate($request, [

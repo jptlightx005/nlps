@@ -32,7 +32,6 @@ class SuspectsTableSeeder extends Seeder
                 'right_face' => '',
                 'created_at' => '2018-02-02 06:02:53',
                 'updated_at' => '2018-02-02 06:02:53',
-                'convicted' => 0,
             ),
             1 => 
             array (
@@ -49,7 +48,6 @@ class SuspectsTableSeeder extends Seeder
                 'right_face' => '',
                 'created_at' => '2018-02-02 07:52:49',
                 'updated_at' => '2018-02-02 07:52:49',
-                'convicted' => 0,
             ),
             2 => 
             array (
@@ -66,7 +64,6 @@ class SuspectsTableSeeder extends Seeder
                 'right_face' => '',
                 'created_at' => '2018-02-02 07:55:13',
                 'updated_at' => '2018-02-02 07:55:13',
-                'convicted' => 0,
             ),
             3 => 
             array (
@@ -83,7 +80,6 @@ class SuspectsTableSeeder extends Seeder
                 'right_face' => '',
                 'created_at' => '2018-02-02 11:39:28',
                 'updated_at' => '2018-02-02 11:39:28',
-                'convicted' => 0,
             ),
         ));
         

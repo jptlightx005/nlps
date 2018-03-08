@@ -17,6 +17,7 @@ class CreateCrimeCommittedSuspectTable extends Migration
             $table->increments('id');
             $table->string('crime_committed_id');
             $table->string('suspect_id');
+            $table->boolean('convicted')->default(false);
         });
     }
 

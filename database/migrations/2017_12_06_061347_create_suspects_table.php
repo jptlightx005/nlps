@@ -21,7 +21,8 @@ class CreateSuspectsTable extends Migration
             $table->string('last_name');
             $table->string('qualifier')->default('');
             $table->string('alias');
-
+            $table->date('date_of_birth')->nullable();
+            // $table->boolean('convicted')->default(false);
             //Mugshot image names
             $table->string('whole_body')->default('');
             $table->string('front')->default('');

@@ -9,6 +9,9 @@ use App\CrimeCommitted;
 use App\HZR\Helper;
 
 use Auth;
+use URL;
+use Redirect;
+
 use Carbon\Carbon;
 
 class SuspectsController extends Controller
@@ -101,7 +104,9 @@ class SuspectsController extends Controller
      */
     public function show($id)
     {
-        return redirect(route('suspects.edit', $id));
+        $suspect = Suspect::find($id);
+
+        return view('suspects.show', compact('suspect'));
     }
 
     /**
@@ -113,7 +118,7 @@ class SuspectsController extends Controller
     public function edit($id)
     {
         $suspect = Suspect::find($id);
-
+        session()->put('url.intended', URL::previous());
         return view('suspects.edit', compact('suspect'));
     }
 
@@ -132,6 +137,7 @@ class SuspectsController extends Controller
         $suspect->middle_name = $request->input('middle_name');
         $suspect->last_name = $request->input('last_name');
         $suspect->alias = $request->input('alias');
+        $suspect->date_of_birth = Carbon::parse($request->input('date_of_birth'));
         $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
         $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
         $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
@@ -139,7 +145,8 @@ class SuspectsController extends Controller
 
         $suspect->save();
 
-        return redirect(route('suspects.index'))->with('success', "Suspect record successfully updated!");
+        // return redirect(route('suspects.index'))->with('success', "Suspect record successfully updated!");
+        return Redirect::intended('/')->with('success', "Suspect record successfully updated!");
     }
 
     /**

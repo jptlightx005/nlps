@@ -19,6 +19,8 @@
                                 <th>Crime Committed</th>
                                 <th>Location</th>
                                 <th>Suspect(s)</th>
+                                <th>Date Occured</th>
+                                <th>Weapon(s) Used</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,6 +30,8 @@
                                         <td>{!! $crime->crime_type !!}</td>
                                         <td>{{$crime->location->location_name}}</td>
                                         <td>{{$crime->suspectsList()}}</td>
+                                        <td>{{$crime->date_occured->format('F d, Y')}}</td>
+                                        <td>{{$crime->equipmentsList()}}</td>
                                     </tr>
                                 @endforeach
                             @else

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\NLPS;
 use Route;
+use Carbon\Carbon;
 
 class Suspect extends Model
 {
@@ -13,7 +14,7 @@ class Suspect extends Model
      *
      * @var array
      */
-    protected $appends = ['full_name'];
+    protected $appends = ['full_name', 'age'];
 
     protected $fillable = [
         'user_id', 
@@ -22,6 +23,17 @@ class Suspect extends Model
         'last_name', 
         'qualifier',
         'alias'
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'date_of_birth'
     ];
 
     protected $hidden = ['pivot'];
@@ -35,7 +47,7 @@ class Suspect extends Model
     }
 
     public function fullNameEditLink(){
-        return "<a href=\"" . route('suspects.edit', $this->id) . "\">" . $this->fullName() . "</a>";
+        return "<a href=\"" . route('suspects.show', $this->id) . "\">" . $this->fullName() . "</a>";
     }
 
     /**
@@ -46,6 +58,20 @@ class Suspect extends Model
     public function getFullNameAttribute()
     {
         return $this->fullName();
+    }
+
+    /**
+     * Get full name of the user
+     *
+     * @return bool
+     */
+    public function getAgeAttribute()
+    {
+        $dob = $this->date_of_birth;
+        if(!$dob){
+            $dob = Carbon::now();
+        }
+        return $dob->diffInYears(Carbon::now());
     }
     public function crimesCommittedList($separator = ", "){
         if(count($this->crimes) > 0){

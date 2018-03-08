@@ -63487,6 +63487,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'google-map',
@@ -63858,16 +63864,20 @@ var render = function() {
                   _c("div", { staticClass: "col-md-6 crimes-section" }, [
                     _c("label", [_vm._v("Crimes committed")]),
                     _vm._v(" "),
-                    _c(
-                      "ol",
-                      {
-                        staticClass: "pre-scrollable",
-                        attrs: { id: "crimes-list" }
-                      },
-                      _vm._l(_vm.selected.crimes, function(crime) {
-                        return _c("li", [_vm._v(_vm._s(crime.crime_type))])
-                      })
-                    ),
+                    _vm.selected.crimes.length > 0
+                      ? _c(
+                          "ol",
+                          {
+                            staticClass: "pre-scrollable",
+                            attrs: { id: "crimes-list" }
+                          },
+                          _vm._l(_vm.selected.crimes, function(crime) {
+                            return _c("li", [_vm._v(_vm._s(crime.crime_type))])
+                          })
+                        )
+                      : _c("div", [
+                          _c("p", [_vm._v("No crimes occured in this place.")])
+                        ]),
                     _vm._v(" "),
                     _vm.selected.crimes.length > 5
                       ? _c(
@@ -63881,55 +63891,61 @@ var render = function() {
                   _c("div", { staticClass: "col-md-6 suspects-section" }, [
                     _c("label", [_vm._v("Suspects")]),
                     _vm._v(" "),
-                    _c(
-                      "ul",
-                      {
-                        staticClass: "pre-scrollable",
-                        attrs: { id: "suspects-list" }
-                      },
-                      _vm._l(_vm.selected.suspects, function(suspect) {
-                        return _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: {
-                                href: "/suspects/" + suspect.id + "/edit"
-                              }
-                            },
-                            [
-                              _c("img", {
-                                staticClass: "suspect-image",
-                                attrs: {
-                                  src:
-                                    suspect.front == ""
-                                      ? "/res/photos/shares/empty-avatar.png"
-                                      : suspect.front
+                    _vm.selected.suspects.length > 0
+                      ? _c(
+                          "ul",
+                          {
+                            staticClass: "pre-scrollable",
+                            attrs: { id: "suspects-list" }
+                          },
+                          _vm._l(_vm.selected.suspects, function(suspect) {
+                            return _c("li", [
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "/suspects/" + suspect.id + "/edit"
+                                  }
                                 },
-                                on: { error: _vm.imgError }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "info-group" }, [
-                                _c("span", {
-                                  staticClass: "suspect-info",
-                                  attrs: { name: "suspect-name" },
-                                  domProps: {
-                                    textContent: _vm._s(suspect.full_name)
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "suspect-info",
-                                  attrs: { name: "suspect-alias" },
-                                  domProps: {
-                                    textContent: _vm._s(suspect.alias)
-                                  }
-                                })
-                              ])
-                            ]
-                          )
-                        ])
-                      })
-                    ),
+                                [
+                                  _c("img", {
+                                    staticClass: "suspect-image",
+                                    attrs: {
+                                      src:
+                                        suspect.front == ""
+                                          ? "/res/photos/shares/empty-avatar.png"
+                                          : suspect.front
+                                    },
+                                    on: { error: _vm.imgError }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "info-group" }, [
+                                    _c("span", {
+                                      staticClass: "suspect-info",
+                                      attrs: { name: "suspect-name" },
+                                      domProps: {
+                                        textContent: _vm._s(suspect.full_name)
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", {
+                                      staticClass: "suspect-info",
+                                      attrs: { name: "suspect-alias" },
+                                      domProps: {
+                                        textContent: _vm._s(suspect.alias)
+                                      }
+                                    })
+                                  ])
+                                ]
+                              )
+                            ])
+                          })
+                        )
+                      : _c("div", [
+                          _c("p", [
+                            _vm._v("No suspects recorded in this place.")
+                          ])
+                        ]),
                     _vm._v(" "),
                     _c(
                       "a",

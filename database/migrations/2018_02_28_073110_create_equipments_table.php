@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDescriptionToCrimeTypesTable extends Migration
+class CreateEquipmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddDescriptionToCrimeTypesTable extends Migration
      */
     public function up()
     {
-        Schema::table('crime_types', function (Blueprint $table) {
+        Schema::create('equipments', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('equipment_name');
             $table->text('description')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddDescriptionToCrimeTypesTable extends Migration
      */
     public function down()
     {
-        Schema::table('suspects', function (Blueprint $table) {
-            $table->dropColumn('description');
-        });
+        Schema::dropIfExists('equipments');
     }
 }

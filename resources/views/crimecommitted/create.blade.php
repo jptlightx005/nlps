@@ -27,6 +27,15 @@
                     </div>
 
                     <div class="form-group">
+                        {{Form::label('weapons_used', 'Weapons Used')}}
+                        @foreach(\App\Equipment::all() as $equipment)
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="weapons_used[]" value="{{$equipment->id}}">{{$equipment->equipment_name}}</label>
+                        </div>
+                        @endforeach
+                    </div>
+
+                    <div class="form-group">
                         {{Form::label('time_occured', 'Time Occured')}}
                         {{Form::text('time_occured', null, ['class' => 'form-control', 'placeholder' => 'Time Occured', 'required'])}}
                     </div>
@@ -34,6 +43,12 @@
                     <div class="form-group">
                         {{Form::label('date_occured', 'Date Occured')}}
                         {{Form::text('date_occured', null, ['class' => 'form-control', 'placeholder' => 'Date Occured', 'required'])}}
+                    </div>
+
+
+                    <div class="form-group">
+                        {{Form::label('description', 'Description')}}
+                        {{Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Description'])}}
                     </div>
                     
                     <div class="form-group">
@@ -172,7 +187,9 @@
         var config = {prefix: '/res'}
         $('#lfm').filemanager('image', config);
 
-        $('input[name=date_occured]').datepicker();
+        $('input[name=date_occured]').datepicker({
+                                        maxDate: '0',
+                                        });
         $('input[name=time_occured]').timepicker({
                                         timeFormat: 'h:mm p',
                                         interval: 60,

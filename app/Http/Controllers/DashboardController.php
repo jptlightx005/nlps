@@ -78,10 +78,14 @@ class DashboardController extends Controller
      */
     public function locationBrgy($area_id)
     {
-        return \App\Location::where('area_id', '=', $area_id)
-                            ->with('crimes')
-                            ->get()
-                            ->first();
+        $location = \App\Location::where('area_id', '=', $area_id)
+                                ->with('crimes')
+                                ->get()
+                                ->first();
+
+        $loc_assoc = $location->toArray();
+        $loc_assoc['suspects'] =  $location->suspects();
+        return $loc_assoc;
     }
 
     public function locationDetails($id){

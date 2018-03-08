@@ -16,6 +16,7 @@ class CreateCrimeTypesTable extends Migration
         Schema::create('crime_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('crime_type');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

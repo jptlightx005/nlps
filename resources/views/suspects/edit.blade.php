@@ -38,6 +38,11 @@
                             {{Form::text('alias', $suspect->alias, ['class' => 'form-control', 'placeholder' => 'Alias'])}}
                         </div>
 
+                        <div class="form-group">
+                            {{Form::label('date_of_birth', 'Date of Birth')}}
+                            {{Form::text('date_of_birth', $suspect->date_of_birth, ['class' => 'form-control', 'placeholder' => 'Date of Birth', 'required'])}}
+                        </div>
+
                         {{Form::label('', 'Mugshot')}}
                         <div class="form-group">
                             <div class="input-group">
@@ -96,6 +101,13 @@
 </div>
 @endsection
 
+@section('page-specific-styles')
+<style>
+    #ui-datepicker-div{
+        z-index: 2 !important;
+    }
+</style>
+@endsection
 @section('page-specific-pre-defined-scripts')
 <script>
     function imgError(image){
@@ -108,6 +120,13 @@
 @section('page-specific-scripts')
     <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
     <script>
+        $('input[name=date_of_birth]').datepicker(
+                                        {changeMonth: true,
+                                        changeYear: true,
+                                        yearRange: '1900:n',
+                                        maxDate: '0',
+                                        dateFormat: 'MM dd, yy',
+                                        zIndex: '2'});
         var config = {prefix: '/res'}
         $('.lfm').filemanager('image', config);
 
