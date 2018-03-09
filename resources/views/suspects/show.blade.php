@@ -35,6 +35,21 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
+                <div class="panel-heading">Suspect Profile</div>
+
+                <div class="panel-body">
+                    <div class="profile-row">
+                        <h2 class="profile-row"><b>Civil Status: </b>{{$suspect->civil_status}}</h2>
+                        <h2 class="profile-row"><b>Occupation: </b>{{$suspect->occupation}}</h2>
+                        <h2 class="profile-row"><b>Address: </b>{{$suspect->address}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
                 <div class="panel-heading">Crimes Committed</div>
 
                 <div class="panel-body">

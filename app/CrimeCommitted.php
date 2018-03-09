@@ -11,7 +11,6 @@ class CrimeCommitted extends Model
     protected $appends = ['title'];
 
     protected $fillable = [
-        'user_id',
         'crime_type',
         'location_area_id',
         'date_occured',

@@ -55,13 +55,18 @@ class SuspectsController extends Controller
         ]);
 
         $suspect = Suspect::create([
-            'user_id' => auth()->user()->id,
             'first_name' => $request->input('first_name'),
             'middle_name' => $request->input('middle_name'),
             'last_name' => $request->input('last_name'),
             'qualifier' => "",
             'alias' => $request->input('alias'),
         ]);
+
+        $suspect->date_of_birth = Carbon::parse($request->date_of_birth);
+        $suspect->civil_status = Helper::returnBlankIfNull($request->input('civil_status'));
+        $suspect->occupation = Helper::returnBlankIfNull($request->input('occupation'));
+        $suspect->address = Helper::returnBlankIfNull($request->input('address'));
+
         $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
         $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
         $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
@@ -86,7 +91,6 @@ class SuspectsController extends Controller
             $date_occured = $request->input('date_occured') . " " . $request->input('time_occured');
             $crimecommitted = CrimeCommitted::create(['crime_type' => $request->input('crime_type'),
                                                         'location_area_id' => $request->input('location'),
-                                                        'user_id' => Auth::user()->id,
                                                         'date_occured' => Carbon::parse($date_occured),
                                                         ]);
 
@@ -137,7 +141,12 @@ class SuspectsController extends Controller
         $suspect->middle_name = $request->input('middle_name');
         $suspect->last_name = $request->input('last_name');
         $suspect->alias = $request->input('alias');
-        $suspect->date_of_birth = Carbon::parse($request->input('date_of_birth'));
+        
+        $suspect->date_of_birth = Carbon::parse($request->date_of_birth);
+        $suspect->civil_status = Helper::returnBlankIfNull($request->input('civil_status'));
+        $suspect->occupation = Helper::returnBlankIfNull($request->input('occupation'));
+        $suspect->address = Helper::returnBlankIfNull($request->input('address'));
+
         $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
         $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
         $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));

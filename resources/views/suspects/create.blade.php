@@ -37,6 +37,42 @@
                         {{Form::text('date_of_birth', '', ['class' => 'form-control', 'placeholder' => 'Date of Birth', 'required'])}}
                     </div>
 
+                    <div class="form-group">
+                        {{Form::label('age', 'Age')}}
+                        {{Form::text('age', '', ['class' => 'form-control', 'placeholder' => 'Age', 'readonly'])}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Profile</div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{Form::label('civil_status', 'Civil Status')}}
+                        {{Form::text('civil_status', '', ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}}
+                    </div>
+                    <div class="form-group">
+                        {{Form::label('occupation', 'Occupation')}}
+                        {{Form::text('occupation', '', ['class' => 'form-control', 'placeholder' => 'Occupation', 'required'])}}
+                    </div>
+                    <div class="form-group">
+                        {{Form::label('address', 'Address')}}
+                        {{Form::text('address', '', ['class' => 'form-control', 'placeholder' => 'Address', 'required'])}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Mugshots</div>
+
+                <div class="panel-body">
                     {{Form::label('', 'Mugshot')}}
                     <div class="form-group">
                         <div class="input-group">
@@ -152,7 +188,33 @@
         $('#lfm').filemanager('image', config);
 
         $('input[name=date_occured]').datepicker();
-        $('input[name=date_of_birth]').datepicker();
+
+        var start = new Date();
+        start.setFullYear(start.getFullYear() - 100);
+        var end = new Date();
+        end.setFullYear(end.getFullYear() - 18);
+        $('input[name=date_of_birth]').datepicker({
+                                        dateFormat: 'MM dd, yy',
+                                        changeMonth: true, 
+                                        changeYear: true, 
+                                        minDate: start,
+                                        maxDate: end,
+                                        yearRange: start.getFullYear() + ':' + end.getFullYear(),
+                                        onSelect: function (date) {
+                                            var dob = new Date(date);
+                                            var now = new Date();
+                                            var age = now.getYear() - dob.getYear();
+                                            if(now.getMonth() < dob.getMonth()){
+                                                age -= 1;
+                                            }else{
+                                                if(now.getDate() < dob.getDate()){
+                                                    age -= 1
+                                                }
+                                            }
+                                            
+                                            $("input[name=age]").val(age);
+                                        }
+                                    });
         $('input[name=time_occured]').timepicker({
                                         timeFormat: 'h:mm p',
                                         interval: 60,

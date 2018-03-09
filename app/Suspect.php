@@ -17,7 +17,6 @@ class Suspect extends Model
     protected $appends = ['full_name', 'age'];
 
     protected $fillable = [
-        'user_id', 
         'first_name', 
         'middle_name', 
         'last_name', 
@@ -60,6 +59,11 @@ class Suspect extends Model
         return $this->fullName();
     }
 
+    public function getDateOfBirthAttribute($date)
+    {
+        $date = new \Carbon\Carbon($date);
+        return $date->format("F d, Y");
+    }
     /**
      * Get full name of the user
      *
@@ -67,7 +71,7 @@ class Suspect extends Model
      */
     public function getAgeAttribute()
     {
-        $dob = $this->date_of_birth;
+        $dob = Carbon::parse($this->date_of_birth);
         if(!$dob){
             $dob = Carbon::now();
         }
