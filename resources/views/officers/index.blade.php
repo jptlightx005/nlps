@@ -23,7 +23,7 @@
                 <tbody>
                     @foreach($officers as $officer)
                         <tr>
-                            <td><input type="checkbox" class="record-checked" name="suspects[]" value="{{$officer->id}}" />
+                            <td><input type="checkbox" class="record-checked" name="officers[]" value="{{$officer->id}}" />
                             <td>{!! $officer->fullNameEditLink() !!}</td>
                             <td>{{$officer->rank}}</td>
                         </tr>
