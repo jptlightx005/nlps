@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
 
             <!-- Collapsed Hamburger -->
@@ -19,19 +19,13 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
+                <li>
+                    <a href="#" id="sidebarCollapse">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </a>
+                </li>
                 @auth
                     <li><a href="/">Dashboard</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                            Records <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('crimecommitted.index') }}">Crimes Committed</a></li>
-                            <li><a href="{{ route('suspects.index') }}">Suspects</a></li>
-                            <li><a href="{{ route('crimetype.index') }}">Crime Types</a></li>
-                        </ul>
-                    </li>
                 @endauth
             </ul>
 
@@ -50,6 +44,9 @@
                         </a>
 
                         <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Profile</a>
+                            </li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

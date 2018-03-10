@@ -19,10 +19,14 @@ class Controller extends BaseController
 								'type' => 'HYBRID']);
     }
 
-    public function printArray($a){
+    public function printArray($a, $die = true){
     	echo '<pre>';
     	print_r($a);
     	echo '</pre>';
+
+        if($die){
+            die();
+        }
     }
 
     public function pathToStorage($src, $urlpath = ""){

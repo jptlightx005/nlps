@@ -105,4 +105,22 @@ class CrimeTypesController extends Controller
         $crime_type->delete();
         return redirect('/admin/posts')->with('success', 'Post Removed');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteBulk(Request $request)
+    {
+        $this->validate($request, [
+            'crimes' => 'required|array'
+        ]);
+        $crimes = CrimeType::whereIn('id', $request->input('crimes'));
+
+        $crimes->delete();
+        return redirect()->back()->with('success', 'Successfully removed records');
+
+    }
 }

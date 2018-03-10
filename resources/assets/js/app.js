@@ -7,7 +7,6 @@
 
 require('./bootstrap');
 require('./waitingFor');
-
 window.Vue = require('vue');
 
 /**
@@ -26,3 +25,21 @@ const app = new Vue({
     el: '#app'
 });
 
+if(localStorage.getItem('sidebarActive') == 'false'){
+    $('.main.wrapper').removeClass('sidebar-active');
+}
+$('#sidebarCollapse').on('click', function () {
+    $('.main.wrapper').toggleClass('sidebar-active');
+    localStorage.setItem('sidebarActive', $('.main.wrapper').hasClass('sidebar-active'));
+});
+
+$('.delete-button').click(function(e){
+    $('#remove-form').submit();
+});
+$('input.record-checked').change(function(e){
+    if($('input.record-checked:checked').length){
+        $('.delete-button').removeAttr('disabled');
+    }else{
+        $('.delete-button').attr('disabled', 'disabled');
+    }
+});

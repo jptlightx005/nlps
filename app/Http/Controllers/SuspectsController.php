@@ -169,6 +169,28 @@ class SuspectsController extends Controller
         //
     }
 
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteBulk(Request $request)
+    {
+        $this->validate($request, [
+            'suspects' => 'required|array'
+        ]);
+        $suspects = Suspect::whereIn('id', $request->input('suspects'));
+        foreach($suspects as $suspect){
+            $suspect->detach();
+        }
+
+        $suspects->delete();
+        return redirect()->back()->with('success', 'Successfully removed records');
+
+    }
+
     /**
      *
      */

@@ -1,6 +1,6 @@
-#dashboard-wrapper{
+.dashboard.wrapper{
     .map-container{
-        max-width: 85%;
+        max-width: 950px;
         width: 95%;
         height: 85vh;
         
@@ -15,5 +15,14 @@
 
     .info-group .info-label{
         margin-right: 10px;
+    }
+}
+
+.main.wrapper.sidebar-active{
+    .dashboard.wrapper{
+        .map-container{
+            max-width:90%;
+            transition: all 0.3s cubic-bezier(.02, .01, .47, 1);
+        }
     }
 }
