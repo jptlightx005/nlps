@@ -18,6 +18,9 @@
         <li {{Request::segment(1) == "officers" ? "class=active" : ""}}>
             <a href="{{ route('officers.index') }}">Officers</a>
         </li>
+        <li {{Request::segment(1) == "investigators" ? "class=active" : ""}}>
+            <a href="{{ route('investigators.index') }}">Investigators</a>
+        </li>
         {{-- <li> gonna leave this as sample i might use later
             <a href="#">About</a>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages <span class="caret"></span></a>

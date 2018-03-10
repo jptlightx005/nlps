@@ -30,6 +30,9 @@ Route::middleware('auth:web')->group(function(){
 	Route::resource('/officers', 'OfficerController');
 	Route::delete('/officers', 'OfficerController@deleteBulk');
 	
+	Route::resource('/investigators', 'InvestigatorController');
+	Route::delete('/investigators', 'InvestigatorController@deleteBulk');
+
 	Route::resource('/location', 'LocationController');
 	Route::get('/convicts-gallery', 'DashboardController@convicts');
 	Route::get('/suspects-gallery', 'DashboardController@suspects');
