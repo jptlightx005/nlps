@@ -6,7 +6,7 @@
         {{ session('status') }}
     </div>
 @endif
-<div class="dashboard wrapper">
+<div class="dashboard-wrapper">
     <dashboard-map-component></dashboard-map-component>
 </div>
 @endsection

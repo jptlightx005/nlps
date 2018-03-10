@@ -1,28 +1,15 @@
-.dashboard.wrapper{
+.dashboard-wrapper{
+    padding: 10px 100px;
     .map-container{
-        max-width: 950px;
-        width: 95%;
-        height: 85vh;
-        
-        margin:0 auto;
-        border:5px #FFF solid;
-        box-shadow: 0px 0px 5px #000;
-    }
-
-    .row.map-row{
-        margin-bottom: 25px;
-    }
-
-    .info-group .info-label{
-        margin-right: 10px;
+        max-width: 1300px;
     }
 }
 
 .main.wrapper.sidebar-active{
-    .dashboard.wrapper{
+    .dashboard-wrapper{
+        padding: 10px 0;
         .map-container{
-            max-width:90%;
-            transition: all 0.3s cubic-bezier(.02, .01, .47, 1);
+            max-width: 1000px;
         }
     }
 }

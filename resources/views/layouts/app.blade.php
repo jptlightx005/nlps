@@ -22,10 +22,11 @@
     </style>
 </head>
 <body>
-    <div class="main wrapper sidebar-active">
+    <div class="main wrapper @auth sidebar-active @endauth">
         @include('includes.navbar')
-        @include('includes.sidebar')
-        
+        @auth
+            @include('includes.sidebar')
+        @endauth
         <!-- Page Content Holder -->
         <div class="content" id="app">
             <div class="container">
