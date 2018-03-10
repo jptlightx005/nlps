@@ -13655,6 +13655,14 @@ a.ui-button:active,
   max-width: 1000px;
 }
 
+.gallery-wrapper {
+  padding: 10px 100px;
+}
+
+.main.wrapper.sidebar-active .gallery-wrapper {
+  padding: 10px 50px;
+}
+
 .dashboard-wrapper {
   padding: 10px 100px;
 }

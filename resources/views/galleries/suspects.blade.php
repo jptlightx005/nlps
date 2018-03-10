@@ -6,7 +6,7 @@
         {{ session('status') }}
     </div>
 @endif
-<div class="container">
+<div class="gallery-wrapper">
 	<div class="cards-container" id="dashboard-wrapper">
 	    @foreach($crimes as $crime)
 	    	<div class="crime-section">
