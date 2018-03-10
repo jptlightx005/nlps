@@ -25,9 +25,9 @@
                             <i class="glyphicon glyphicon-align-left"></i>
                         </a>
                     </li>
-                    <li><a href="/">Dashboard</a></li>
-                    <li><a href="/convicts-gallery">Convicted Gallery</a></li>
-                    <li><a href="/suspects-gallery">Suspects Gallery</a></li>
+                    <li {{Request::segment(1) == "" ? "class=active" : ""}}><a href="/">Dashboard</a></li>
+                    <li {{Request::segment(1) == "convicts-gallery" ? "class=active" : ""}}><a href="/convicts-gallery">Convicted Gallery</a></li>
+                    <li {{Request::segment(1) == "suspects-gallery" ? "class=active" : ""}}><a href="/suspects-gallery">Suspects Gallery</a></li>
                 @endauth
             </ul>
 

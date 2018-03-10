@@ -79,16 +79,17 @@
 
 //Sidebar active
 .main.wrapper.sidebar-active{
-
+	transition: all 0.3s;
 	.sidebar-nav{
 	    margin-left: 0px;
 	}
 	.content#app{
 	    padding-left: 260px;
 	    padding-right: 10px;
+	    transition: all 0.3s;
 	    .container{
 		    width: 970px;
-		    transition: all;
+		    transition: all 0.3s;
 		}
 	}
 }

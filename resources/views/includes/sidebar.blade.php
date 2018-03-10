@@ -6,12 +6,15 @@
 
     <ul class="list-unstyled components">
         <p>Records</p>
-        <li>
+        <li {{Request::segment(1) == "crimecommitted" ? "class=active" : ""}}>
             <a href="{{ route('crimecommitted.index') }}">Crime Committed</a>
         </li>
-        <li></li>
-        <li><a href="{{ route('suspects.index') }}">Suspects</a></li>
-        <li><a href="{{ route('crimetype.index') }}">Crime Types</a></li>
+        <li {{Request::segment(1) == "suspects" ? "class=active" : ""}}>
+            <a href="{{ route('suspects.index') }}">Suspects</a>
+        </li>
+        <li {{Request::segment(1) == "crimetype" ? "class=active" : ""}}>
+            <a href="{{ route('crimetype.index') }}">Crime Types</a>
+        </li>
         {{-- <li> gonna leave this as sample i might use later
             <a href="#">About</a>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages <span class="caret"></span></a>

@@ -13615,6 +13615,11 @@ a.ui-button:active,
   position: relative;
 }
 
+.main.wrapper.sidebar-active {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
 .main.wrapper.sidebar-active .sidebar-nav {
   margin-left: 0px;
 }
@@ -13622,12 +13627,14 @@ a.ui-button:active,
 .main.wrapper.sidebar-active .content#app {
   padding-left: 260px;
   padding-right: 10px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .main.wrapper.sidebar-active .content#app .container {
   width: 970px;
-  -webkit-transition: all;
-  transition: all;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .table-wrapper {
@@ -13652,6 +13659,26 @@ a.ui-button:active,
 }
 
 .main.wrapper.sidebar-active .table-wrapper .panel {
+  max-width: 1000px;
+}
+
+.form-wrapper {
+  padding: 10px 200px;
+}
+
+.form-wrapper .btn-group {
+  margin-bottom: 5px;
+}
+
+.form-wrapper .panel {
+  max-width: 1300px;
+}
+
+.main.wrapper.sidebar-active .form-wrapper {
+  padding: 10px 100px;
+}
+
+.main.wrapper.sidebar-active .form-wrapper .panel {
   max-width: 1000px;
 }
 

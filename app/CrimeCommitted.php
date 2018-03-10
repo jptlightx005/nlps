@@ -61,7 +61,7 @@ class CrimeCommitted extends Model
     public function getTitleAttribute()
     {
         $title = "";
-        // $title = $this->crime_type . " | " . count($this->suspects) . " suspect(s) | " . Carbon::parse($this->date_occured)->format('m/d/Y') . " | " . $this->location->location_name;
+        $title = $this->crime_type . " | " . count($this->suspects) . " suspect(s) | " . Carbon::parse($this->date_occured)->format('m/d/Y') . " | " . $this->location->location_name;
         return $title;
     }
 }

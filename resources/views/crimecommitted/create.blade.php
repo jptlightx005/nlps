@@ -1,180 +1,166 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" id="crimecommitted-create-wrapper">
-    <div class="row" style="margin-bottom: 10px">
-        <div class="col-md-8 col-md-offset-2">
-            <a href="{{route('crimecommitted.index')}}" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</a>
-        </div>
+<div class="form-wrapper">
+    <div class="btn-group">
+        <a href="{{route('crimecommitted.index')}}" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</a>
     </div>
     {!! Form::open(['action' => 'CrimeCommittedController@store', 'method' => 'POST']) !!}
-    <div class="row" id="crime-section">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register Crime</div>
+    <div class="panel panel-default" id="crime-section">
+        <div class="panel-heading">Register Crime</div>
 
-                <div class="panel-body">
-                
+        <div class="panel-body">
+        
 
-                    <div class="form-group">
-                        {{Form::label('crime_type', 'Crime Type')}}
-                        {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'crime_type')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
-                    </div>
+            <div class="form-group">
+                {{Form::label('crime_type', 'Crime Type')}}
+                {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'crime_type')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
+            </div>
 
-                    <div class="form-group">
-                        {{Form::label('location', 'Location')}}
-                        {{Form::select('location', \App\Location::pluck('location_name', 'area_id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
-                    </div>
+            <div class="form-group">
+                {{Form::label('location', 'Location')}}
+                {{Form::select('location', \App\Location::pluck('location_name', 'area_id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
+            </div>
 
-                    <div class="form-group">
-                        {{Form::label('weapons_used', 'Weapons Used')}}
-                        @foreach(\App\Equipment::all() as $equipment)
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="weapons_used[]" value="{{$equipment->id}}">{{$equipment->equipment_name}}</label>
-                        </div>
-                        @endforeach
-                    </div>
-
-                    <div class="form-group">
-                        {{Form::label('time_occured', 'Time Occured')}}
-                        {{Form::text('time_occured', null, ['class' => 'form-control', 'placeholder' => 'Time Occured', 'required'])}}
-                    </div>
-
-                    <div class="form-group">
-                        {{Form::label('date_occured', 'Date Occured')}}
-                        {{Form::text('date_occured', null, ['class' => 'form-control', 'placeholder' => 'Date Occured', 'required'])}}
-                    </div>
-
-
-                    <div class="form-group">
-                        {{Form::label('description', 'Description')}}
-                        {{Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Description'])}}
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="crime-lead col-md-12">
-                            {{Form::label('has_suspect', 'Does the crime have a lead?')}}
-                            <p>
-                                <input type="radio" name="has_suspect" value="yes"> Yes</input>
-                            </p>
-                            <p>
-                                <input type="radio" name="has_suspect" value="no" checked> No</input>
-                            </p>
-                        </div>
-                        <div class="suspect-exist col-md-6 hidden">
-                            &nbsp;
-                            {{Form::label('suspect_exist', 'Is the suspect on the records?')}}
-                            <p>
-                                <input type="radio" class="exist-radio" name="suspect_exist" value="yes"> Yes</input>
-                            </p>
-                            <p>
-                                <input type="radio" class="exist-radio" name="suspect_exist" value="no"> No</input>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="form-group submit-group">
-                        {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
-                    </div>
+            <div class="form-group">
+                {{Form::label('weapons_used', 'Weapons Used')}}
+                @foreach(\App\Equipment::all() as $equipment)
+                <div class="checkbox">
+                    <label><input type="checkbox" name="weapons_used[]" value="{{$equipment->id}}">{{$equipment->equipment_name}}</label>
                 </div>
+                @endforeach
+            </div>
+
+            <div class="form-group">
+                {{Form::label('time_occured', 'Time Occured')}}
+                {{Form::text('time_occured', null, ['class' => 'form-control', 'placeholder' => 'Time Occured', 'required'])}}
+            </div>
+
+            <div class="form-group">
+                {{Form::label('date_occured', 'Date Occured')}}
+                {{Form::text('date_occured', null, ['class' => 'form-control', 'placeholder' => 'Date Occured', 'required'])}}
+            </div>
+
+
+            <div class="form-group">
+                {{Form::label('description', 'Description')}}
+                {{Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Description'])}}
+            </div>
+            
+            <div class="form-group">
+                <div class="crime-lead col-md-12">
+                    {{Form::label('has_suspect', 'Does the crime have a lead?')}}
+                    <p>
+                        <input type="radio" name="has_suspect" value="yes"> Yes</input>
+                    </p>
+                    <p>
+                        <input type="radio" name="has_suspect" value="no" checked> No</input>
+                    </p>
+                </div>
+                <div class="suspect-exist col-md-6 hidden">
+                    &nbsp;
+                    {{Form::label('suspect_exist', 'Is the suspect on the records?')}}
+                    <p>
+                        <input type="radio" class="exist-radio" name="suspect_exist" value="yes"> Yes</input>
+                    </p>
+                    <p>
+                        <input type="radio" class="exist-radio" name="suspect_exist" value="no"> No</input>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group submit-group">
+                {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
             </div>
         </div>
     </div>
-    <div class="row existing-suspect-section hidden">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Suspect</div>
+    <div class="panel panel-default existing-suspect-section hidden">
+        <div class="panel-heading">Suspect</div>
 
-                <div class="panel-body">
-                    <div class="form-group">
-                        {{Form::label('existing_suspect', 'Suspect Name')}}
-                        {{Form::select('existing_suspect', \App\Suspect::all()->pluck('full_name', 'id'), null, ['class' => 'form-control existing-suspect-form', 'placeholder' => 'Select Suspect'])}}
-                    </div>
+        <div class="panel-body">
+            <div class="form-group">
+                {{Form::label('existing_suspect', 'Suspect Name')}}
+                {{Form::select('existing_suspect', \App\Suspect::all()->pluck('full_name', 'id'), null, ['class' => 'form-control existing-suspect-form', 'placeholder' => 'Select Suspect'])}}
+            </div>
 
-                    <div class="form-group submit-group">
-                        {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
-                    </div>
-                </div>
+            <div class="form-group submit-group">
+                {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
             </div>
         </div>
     </div>
-    <div class="row new-suspect-section hidden">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Suspect</div>
+    <div class="panel panel-default new-suspect-section hidden">
+        <div class="panel-heading">Suspect Profile</div>
 
-                <div class="panel-body">
-                    {!! Form::open(['action' => 'SuspectsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                        <div class="form-group">
-                            {{Form::label('first_name', 'First Name')}}
-                            {{Form::text('first_name', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'First Name'])}}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('middle_name', 'Middle Name')}}
-                            {{Form::text('middle_name', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'Middle Name'])}}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('last_name', 'Last Name')}}
-                            {{Form::text('last_name', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'Last Name'])}}
-                        </div>
-
-                        <div class="form-group">
-                            {{Form::label('alias', 'Alias')}}
-                            {{Form::text('alias', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'Alias'])}}
-                        </div>
-
-                        {{Form::label('', 'Mugshot')}}
-                        <div class="form-group">
-                            <div class="input-group">
-                               <span class="input-group-btn">
-                                 <a data-input="whole-thumbnail" data-preview="whole-holder" class="btn btn-primary lfm">
-                                   <i class="fa fa-picture-o"></i> Whole Body
-                                 </a>
-                               </span>
-                               <input id="whole-thumbnail" class="form-control preview-thumbnail" type="text" name="whole_body">
-                             </div>
-                             <img id="whole-holder" style="margin-top:15px;max-height:100px;">
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                               <span class="input-group-btn">
-                                 <a data-input="front-thumbnail" data-preview="front-holder" class="btn btn-primary lfm">
-                                   <i class="fa fa-picture-o"></i> Front Face
-                                 </a>
-                               </span>
-                               <input id="front-thumbnail" class="form-control preview-thumbnail" type="text" name="front_face">
-                             </div>
-                             <img id="front-holder" style="margin-top:15px;max-height:100px;">
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                               <span class="input-group-btn">
-                                 <a data-input="left-thumbnail" data-preview="left-holder" class="btn btn-primary lfm">
-                                   <i class="fa fa-picture-o"></i> Left Face
-                                 </a>
-                               </span>
-                               <input id="left-thumbnail" class="form-control preview-thumbnail" type="text" name="left_face">
-                             </div>
-                             <img id="left-holder" style="margin-top:15px;max-height:100px;">
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                               <span class="input-group-btn">
-                                 <a data-input="right-thumbnail" data-preview="right-holder" class="btn btn-primary lfm">
-                                   <i class="fa fa-picture-o"></i> Right Face
-                                 </a>
-                               </span>
-                               <input id="right-thumbnail" class="form-control preview-thumbnail" type="text" name="right_face">
-                             </div>
-                             <img id="right-holder" style="margin-top:15px;max-height:100px;">
-                        </div>
-
-                        <div class="form-group submit-group">
-                            {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
-                        </div>
-                    {!! Form::close() !!}
+        <div class="panel-body">
+            {!! Form::open(['action' => 'SuspectsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                <div class="form-group">
+                    {{Form::label('first_name', 'First Name')}}
+                    {{Form::text('first_name', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'First Name'])}}
                 </div>
-            </div>
+                <div class="form-group">
+                    {{Form::label('middle_name', 'Middle Name')}}
+                    {{Form::text('middle_name', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'Middle Name'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('last_name', 'Last Name')}}
+                    {{Form::text('last_name', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'Last Name'])}}
+                </div>
+
+                <div class="form-group">
+                    {{Form::label('alias', 'Alias')}}
+                    {{Form::text('alias', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'Alias'])}}
+                </div>
+
+                {{Form::label('', 'Mugshot')}}
+                <div class="form-group">
+                    <div class="input-group">
+                       <span class="input-group-btn">
+                         <a data-input="whole-thumbnail" data-preview="whole-holder" class="btn btn-primary lfm">
+                           <i class="fa fa-picture-o"></i> Whole Body
+                         </a>
+                       </span>
+                       <input id="whole-thumbnail" class="form-control preview-thumbnail" type="text" name="whole_body">
+                     </div>
+                     <img id="whole-holder" style="margin-top:15px;max-height:100px;">
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                       <span class="input-group-btn">
+                         <a data-input="front-thumbnail" data-preview="front-holder" class="btn btn-primary lfm">
+                           <i class="fa fa-picture-o"></i> Front Face
+                         </a>
+                       </span>
+                       <input id="front-thumbnail" class="form-control preview-thumbnail" type="text" name="front_face">
+                     </div>
+                     <img id="front-holder" style="margin-top:15px;max-height:100px;">
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                       <span class="input-group-btn">
+                         <a data-input="left-thumbnail" data-preview="left-holder" class="btn btn-primary lfm">
+                           <i class="fa fa-picture-o"></i> Left Face
+                         </a>
+                       </span>
+                       <input id="left-thumbnail" class="form-control preview-thumbnail" type="text" name="left_face">
+                     </div>
+                     <img id="left-holder" style="margin-top:15px;max-height:100px;">
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                       <span class="input-group-btn">
+                         <a data-input="right-thumbnail" data-preview="right-holder" class="btn btn-primary lfm">
+                           <i class="fa fa-picture-o"></i> Right Face
+                         </a>
+                       </span>
+                       <input id="right-thumbnail" class="form-control preview-thumbnail" type="text" name="right_face">
+                     </div>
+                     <img id="right-holder" style="margin-top:15px;max-height:100px;">
+                </div>
+
+                <div class="form-group submit-group">
+                    {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
+                </div>
+            {!! Form::close() !!}
         </div>
     </div>
     {!! Form::close() !!}
@@ -240,6 +226,7 @@
         });
 
         $('input[name=suspect_exist]').on('change', function(){
+            console.log(this.value);
             if(this.value == "yes"){
                 //if will select on existing
                 $('.existing-suspect-form').prop('required', true);
