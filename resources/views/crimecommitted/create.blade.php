@@ -41,12 +41,21 @@
                 {{Form::text('date_occured', null, ['class' => 'form-control', 'placeholder' => 'Date Occured', 'required'])}}
             </div>
 
-
             <div class="form-group">
                 {{Form::label('description', 'Description')}}
                 {{Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Description'])}}
             </div>
             
+            <div class="form-group">
+                {{Form::label('officer_in_charge', 'Officer in Charge')}}
+                {{Form::select('officer_in_charge', \App\Officer::all()->pluck('full_name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Select Officer'])}}
+            </div>
+
+            <div class="form-group">
+                {{Form::label('investigator', 'Investigator')}}
+                {{Form::select('investigator', \App\Investigator::all()->pluck('full_name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Select Investigator'])}}
+            </div>
+
             <div class="form-group">
                 <div class="crime-lead col-md-12">
                     {{Form::label('has_suspect', 'Does the crime have a lead?')}}

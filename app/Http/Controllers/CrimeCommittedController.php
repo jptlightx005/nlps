@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\CrimeCommitted;
+use App\Investigator;
+use App\Officer;
 use App\Suspect;
 use App\HZR\Helper;
 
@@ -51,12 +53,18 @@ class CrimeCommittedController extends Controller
         ]);
         
         $date_occured = $request->date_occured . " " . $request->time_occured;
+        // $this->printArray($request->all());
         $crimecommitted = CrimeCommitted::create(['crime_type' => $request->crime_type,
                                                     'location_area_id' => $request->location,
                                                     'user_id' => Auth::user()->id,
                                                     'date_occured' => Carbon::parse($date_occured),
                                                     'description' => $request->description,
                                                     ]);
+
+        $crimecommitted->officer_in_charge = Helper::returnBlankIfNull(optional(Officer::find($request->officer_in_charge))->full_name);
+        $crimecommitted->investigator = Helper::returnBlankIfNull(optional(Investigator::find($request->investigator))->full_name);
+
+        $crimecommitted->save();
 
         if($request->input('weapons_used')){
             $crimecommitted->equipments()->attach($request->weapons_used);
