@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li><a href="/">Dashboard</a></li>
-                    <li><a href="/convicts-gallery">Crime Gallery</a></li>
+                    <li><a href="/convicts-gallery">Convicted Gallery</a></li>
                     <li><a href="/suspects-gallery">Suspects Gallery</a></li>
                 @endauth
             </ul>
