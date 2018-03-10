@@ -1,0 +1,20 @@
+//sidebar inactive
+.form-wrapper{
+	padding: 10px 200px;
+		.btn-group{
+		margin-bottom: 5px;
+	}
+	.panel{
+		max-width: 1300px;
+	}
+}
+
+//sidebar active
+.main.wrapper.sidebar-active{
+	.form-wrapper{
+		padding: 10px 100px;
+		.panel{
+			max-width: 1000px;
+		}
+	}
+}

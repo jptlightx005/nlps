@@ -15,10 +15,13 @@ class CreateCrimeCommittedTable extends Migration
     {
         Schema::create('crime_committed', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
             $table->string('location_area_id');
             $table->string('crime_type');
-            $table->dateTime('date_occured');
+            $table->text('description')->nullable();
+            $table->string('officer_in_charge')->default('');
+            $table->string('investigator')->default('');
+            $table->dateTime('date_occured')->nullable();
+            $table->dateTime('convicted_date')->nullable();
             $table->timestamps();
         });
     }

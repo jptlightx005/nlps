@@ -14,7 +14,6 @@ class CreateCrimeCommittedSuspectTable extends Migration
     public function up()
     {
         Schema::create('crime_committed_suspect', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('crime_committed_id');
             $table->string('suspect_id');
         });

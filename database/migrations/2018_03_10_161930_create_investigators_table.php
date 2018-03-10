@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCrimeTypesTable extends Migration
+class CreateInvestigatorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateCrimeTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('crime_types', function (Blueprint $table) {
+        Schema::create('investigators', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('crime_type');
-            $table->text('description')->nullable();
+            $table->string('first_name');
+            $table->string('middle_name');
+            $table->string('last_name');
+            $table->string('rank');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateCrimeTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('crime_types');
+        Schema::dropIfExists('investigators');
     }
 }

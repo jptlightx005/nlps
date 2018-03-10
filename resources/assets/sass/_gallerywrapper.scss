@@ -1,0 +1,11 @@
+//sidebar inactive
+.gallery-wrapper{
+	padding: 10px 100px;
+}
+
+//sidebar active
+.main.wrapper.sidebar-active{
+	.gallery-wrapper{
+		padding: 10px 50px;
+	}
+}

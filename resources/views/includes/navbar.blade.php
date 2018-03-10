@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
 
             <!-- Collapsed Hamburger -->
@@ -20,18 +20,14 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 @auth
-                    <li><a href="/">Dashboard</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                            Records <span class="caret"></span>
+                    <li>
+                        <a href="#" id="sidebarCollapse">
+                            <i class="glyphicon glyphicon-align-left"></i>
                         </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('crimecommitted.index') }}">Crimes Committed</a></li>
-                            <li><a href="{{ route('suspects.index') }}">Suspects</a></li>
-                            <li><a href="{{ route('crimetype.index') }}">Crime Types</a></li>
-                        </ul>
                     </li>
+                    <li {{Request::segment(1) == "" ? "class=active" : ""}}><a href="/">Dashboard</a></li>
+                    <li {{Request::segment(1) == "convicts-gallery" ? "class=active" : ""}}><a href="/convicts-gallery">Convicted Gallery</a></li>
+                    <li {{Request::segment(1) == "suspects-gallery" ? "class=active" : ""}}><a href="/suspects-gallery">Suspects Gallery</a></li>
                 @endauth
             </ul>
 
@@ -42,14 +38,15 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                 @else
-                    <li><a href="/convicts-gallery">Crime Gallery</a></li>
-                    <li><a href="/suspects-gallery">Suspects Gallery</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Profile</a>
+                            </li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

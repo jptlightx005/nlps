@@ -502,7 +502,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(48)
+var listToStyles = __webpack_require__(49)
 
 /*
 type StyleObject = {
@@ -11753,7 +11753,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(66);
+module.exports = __webpack_require__(67);
 
 
 /***/ }),
@@ -11769,8 +11769,7 @@ module.exports = __webpack_require__(66);
 
 __webpack_require__(15);
 __webpack_require__(41);
-
-window.Vue = __webpack_require__(42);
+window.Vue = __webpack_require__(43);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -11780,12 +11779,31 @@ window.Vue = __webpack_require__(42);
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 // Vue.component('map-component', require('./components/MapComponent.vue'));
-Vue.component('dashboard-map-component', __webpack_require__(45));
-Vue.component('locations-map-component', __webpack_require__(51));
+Vue.component('dashboard-map-component', __webpack_require__(46));
+Vue.component('locations-map-component', __webpack_require__(52));
 // Vue.component('register-map-component', require('./components/RegisterMapComponent.vue'));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
+});
+
+if (localStorage.getItem('sidebarActive') == 'false') {
+    $('.main.wrapper').removeClass('sidebar-active');
+}
+$('#sidebarCollapse').on('click', function () {
+    $('.main.wrapper').toggleClass('sidebar-active');
+    localStorage.setItem('sidebarActive', $('.main.wrapper').hasClass('sidebar-active'));
+});
+
+$('.delete-button').click(function (e) {
+    $('#remove-form').submit();
+});
+$('input.record-checked').change(function (e) {
+    if ($('input.record-checked:checked').length) {
+        $('.delete-button').removeAttr('disabled');
+    } else {
+        $('.delete-button').attr('disabled', 'disabled');
+    }
 });
 
 /***/ }),
@@ -11866,7 +11884,7 @@ if (token) {
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.4';
+  var VERSION = '4.17.5';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -11997,7 +12015,6 @@ if (token) {
   /** Used to match property names within property paths. */
   var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
       reIsPlainProp = /^\w*$/,
-      reLeadingDot = /^\./,
       rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
 
   /**
@@ -12097,8 +12114,8 @@ if (token) {
       reOptMod = rsModifier + '?',
       rsOptVar = '[' + rsVarRange + ']?',
       rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
-      rsOrdLower = '\\d*(?:(?:1st|2nd|3rd|(?![123])\\dth)\\b)',
-      rsOrdUpper = '\\d*(?:(?:1ST|2ND|3RD|(?![123])\\dTH)\\b)',
+      rsOrdLower = '\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])',
+      rsOrdUpper = '\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])',
       rsSeq = rsOptVar + reOptMod + rsOptJoin,
       rsEmoji = '(?:' + [rsDingbat, rsRegional, rsSurrPair].join('|') + ')' + rsSeq,
       rsSymbol = '(?:' + [rsNonAstral + rsCombo + '?', rsCombo, rsRegional, rsSurrPair, rsAstral].join('|') + ')';
@@ -12304,34 +12321,6 @@ if (token) {
       nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
 
   /*--------------------------------------------------------------------------*/
-
-  /**
-   * Adds the key-value `pair` to `map`.
-   *
-   * @private
-   * @param {Object} map The map to modify.
-   * @param {Array} pair The key-value pair to add.
-   * @returns {Object} Returns `map`.
-   */
-  function addMapEntry(map, pair) {
-    // Don't return `map.set` because it's not chainable in IE 11.
-    map.set(pair[0], pair[1]);
-    return map;
-  }
-
-  /**
-   * Adds `value` to `set`.
-   *
-   * @private
-   * @param {Object} set The set to modify.
-   * @param {*} value The value to add.
-   * @returns {Object} Returns `set`.
-   */
-  function addSetEntry(set, value) {
-    // Don't return `set.add` because it's not chainable in IE 11.
-    set.add(value);
-    return set;
-  }
 
   /**
    * A faster alternative to `Function#apply`, this function invokes `func`
@@ -13097,6 +13086,20 @@ if (token) {
       }
     }
     return result;
+  }
+
+  /**
+   * Gets the value at `key`, unless `key` is "__proto__".
+   *
+   * @private
+   * @param {Object} object The object to query.
+   * @param {string} key The key of the property to get.
+   * @returns {*} Returns the property value.
+   */
+  function safeGet(object, key) {
+    return key == '__proto__'
+      ? undefined
+      : object[key];
   }
 
   /**
@@ -14531,7 +14534,7 @@ if (token) {
           if (!cloneableTags[tag]) {
             return object ? value : {};
           }
-          result = initCloneByTag(value, tag, baseClone, isDeep);
+          result = initCloneByTag(value, tag, isDeep);
         }
       }
       // Check for circular references and return its corresponding clone.
@@ -14541,6 +14544,22 @@ if (token) {
         return stacked;
       }
       stack.set(value, result);
+
+      if (isSet(value)) {
+        value.forEach(function(subValue) {
+          result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
+        });
+
+        return result;
+      }
+
+      if (isMap(value)) {
+        value.forEach(function(subValue, key) {
+          result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
+        });
+
+        return result;
+      }
 
       var keysFunc = isFull
         ? (isFlat ? getAllKeysIn : getAllKeys)
@@ -15469,7 +15488,7 @@ if (token) {
         }
         else {
           var newValue = customizer
-            ? customizer(object[key], srcValue, (key + ''), object, source, stack)
+            ? customizer(safeGet(object, key), srcValue, (key + ''), object, source, stack)
             : undefined;
 
           if (newValue === undefined) {
@@ -15496,8 +15515,8 @@ if (token) {
      *  counterparts.
      */
     function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
-      var objValue = object[key],
-          srcValue = source[key],
+      var objValue = safeGet(object, key),
+          srcValue = safeGet(source, key),
           stacked = stack.get(srcValue);
 
       if (stacked) {
@@ -16406,20 +16425,6 @@ if (token) {
     }
 
     /**
-     * Creates a clone of `map`.
-     *
-     * @private
-     * @param {Object} map The map to clone.
-     * @param {Function} cloneFunc The function to clone values.
-     * @param {boolean} [isDeep] Specify a deep clone.
-     * @returns {Object} Returns the cloned map.
-     */
-    function cloneMap(map, isDeep, cloneFunc) {
-      var array = isDeep ? cloneFunc(mapToArray(map), CLONE_DEEP_FLAG) : mapToArray(map);
-      return arrayReduce(array, addMapEntry, new map.constructor);
-    }
-
-    /**
      * Creates a clone of `regexp`.
      *
      * @private
@@ -16430,20 +16435,6 @@ if (token) {
       var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
       result.lastIndex = regexp.lastIndex;
       return result;
-    }
-
-    /**
-     * Creates a clone of `set`.
-     *
-     * @private
-     * @param {Object} set The set to clone.
-     * @param {Function} cloneFunc The function to clone values.
-     * @param {boolean} [isDeep] Specify a deep clone.
-     * @returns {Object} Returns the cloned set.
-     */
-    function cloneSet(set, isDeep, cloneFunc) {
-      var array = isDeep ? cloneFunc(setToArray(set), CLONE_DEEP_FLAG) : setToArray(set);
-      return arrayReduce(array, addSetEntry, new set.constructor);
     }
 
     /**
@@ -18040,7 +18031,7 @@ if (token) {
      */
     function initCloneArray(array) {
       var length = array.length,
-          result = array.constructor(length);
+          result = new array.constructor(length);
 
       // Add properties assigned by `RegExp#exec`.
       if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
@@ -18067,16 +18058,15 @@ if (token) {
      * Initializes an object clone based on its `toStringTag`.
      *
      * **Note:** This function only supports cloning values with tags of
-     * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+     * `Boolean`, `Date`, `Error`, `Map`, `Number`, `RegExp`, `Set`, or `String`.
      *
      * @private
      * @param {Object} object The object to clone.
      * @param {string} tag The `toStringTag` of the object to clone.
-     * @param {Function} cloneFunc The function to clone values.
      * @param {boolean} [isDeep] Specify a deep clone.
      * @returns {Object} Returns the initialized clone.
      */
-    function initCloneByTag(object, tag, cloneFunc, isDeep) {
+    function initCloneByTag(object, tag, isDeep) {
       var Ctor = object.constructor;
       switch (tag) {
         case arrayBufferTag:
@@ -18095,7 +18085,7 @@ if (token) {
           return cloneTypedArray(object, isDeep);
 
         case mapTag:
-          return cloneMap(object, isDeep, cloneFunc);
+          return new Ctor;
 
         case numberTag:
         case stringTag:
@@ -18105,7 +18095,7 @@ if (token) {
           return cloneRegExp(object);
 
         case setTag:
-          return cloneSet(object, isDeep, cloneFunc);
+          return new Ctor;
 
         case symbolTag:
           return cloneSymbol(object);
@@ -18152,10 +18142,13 @@ if (token) {
      * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
      */
     function isIndex(value, length) {
+      var type = typeof value;
       length = length == null ? MAX_SAFE_INTEGER : length;
+
       return !!length &&
-        (typeof value == 'number' || reIsUint.test(value)) &&
-        (value > -1 && value % 1 == 0 && value < length);
+        (type == 'number' ||
+          (type != 'symbol' && reIsUint.test(value))) &&
+            (value > -1 && value % 1 == 0 && value < length);
     }
 
     /**
@@ -18605,11 +18598,11 @@ if (token) {
      */
     var stringToPath = memoizeCapped(function(string) {
       var result = [];
-      if (reLeadingDot.test(string)) {
+      if (string.charCodeAt(0) === 46 /* . */) {
         result.push('');
       }
-      string.replace(rePropName, function(match, number, quote, string) {
-        result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
+      string.replace(rePropName, function(match, number, quote, subString) {
+        result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
       });
       return result;
     });
@@ -22217,9 +22210,11 @@ if (token) {
       function remainingWait(time) {
         var timeSinceLastCall = time - lastCallTime,
             timeSinceLastInvoke = time - lastInvokeTime,
-            result = wait - timeSinceLastCall;
+            timeWaiting = wait - timeSinceLastCall;
 
-        return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+        return maxing
+          ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke)
+          : timeWaiting;
       }
 
       function shouldInvoke(time) {
@@ -24651,9 +24646,35 @@ if (token) {
      * _.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
      * // => { 'a': 1, 'b': 2 }
      */
-    var defaults = baseRest(function(args) {
-      args.push(undefined, customDefaultsAssignIn);
-      return apply(assignInWith, undefined, args);
+    var defaults = baseRest(function(object, sources) {
+      object = Object(object);
+
+      var index = -1;
+      var length = sources.length;
+      var guard = length > 2 ? sources[2] : undefined;
+
+      if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+        length = 1;
+      }
+
+      while (++index < length) {
+        var source = sources[index];
+        var props = keysIn(source);
+        var propsIndex = -1;
+        var propsLength = props.length;
+
+        while (++propsIndex < propsLength) {
+          var key = props[propsIndex];
+          var value = object[key];
+
+          if (value === undefined ||
+              (eq(value, objectProto[key]) && !hasOwnProperty.call(object, key))) {
+            object[key] = source[key];
+          }
+        }
+      }
+
+      return object;
     });
 
     /**
@@ -25050,6 +25071,11 @@ if (token) {
      * // => { '1': 'c', '2': 'b' }
      */
     var invert = createInverter(function(result, value, key) {
+      if (value != null &&
+          typeof value.toString != 'function') {
+        value = nativeObjectToString.call(value);
+      }
+
       result[value] = key;
     }, constant(identity));
 
@@ -25080,6 +25106,11 @@ if (token) {
      * // => { 'group1': ['a', 'c'], 'group2': ['b'] }
      */
     var invertBy = createInverter(function(result, value, key) {
+      if (value != null &&
+          typeof value.toString != 'function') {
+        value = nativeObjectToString.call(value);
+      }
+
       if (hasOwnProperty.call(result, value)) {
         result[value].push(key);
       } else {
@@ -29057,7 +29088,7 @@ $.widget = function( name, base, prototype ) {
 	}
 
 	// Create selector for plugin
-	$.expr.pseudos[ fullName.toLowerCase() ] = function( elem ) {
+	$.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
 		return !!$.data( elem, fullName );
 	};
 
@@ -29491,7 +29522,7 @@ $.Widget.prototype = {
 			for ( i = 0; i < classes.length; i++ ) {
 				current = that.classesElementLookup[ classes[ i ] ] || $();
 				if ( options.add ) {
-					current = $( $.uniqueSort( current.get().concat( options.element.get() ) ) );
+					current = $( $.unique( current.get().concat( options.element.get() ) ) );
 				} else {
 					current = $( current.not( options.element ).get() );
 				}
@@ -30223,7 +30254,7 @@ var position = $.ui.position;
 //>>docs: http://api.jqueryui.com/data-selector/
 
 
-var data = $.extend( $.expr.pseudos, {
+var data = $.extend( $.expr[ ":" ], {
 	data: $.expr.createPseudo ?
 		$.expr.createPseudo( function( dataName ) {
 			return function( elem ) {
@@ -30338,7 +30369,7 @@ function visible( element ) {
 	return visibility !== "hidden";
 }
 
-$.extend( $.expr.pseudos, {
+$.extend( $.expr[ ":" ], {
 	focusable: function( element ) {
 		return $.ui.focusable( element, $.attr( element, "tabindex" ) != null );
 	}
@@ -30648,7 +30679,7 @@ var scrollParent = $.fn.scrollParent = function( includeHidden ) {
 
 
 
-var tabbable = $.extend( $.expr.pseudos, {
+var tabbable = $.extend( $.expr[ ":" ], {
 	tabbable: function( element ) {
 		var tabIndex = $.attr( element, "tabindex" ),
 			hasTabindex = tabIndex != null;
@@ -37768,7 +37799,7 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 				} );
 		} );
 
-		this.childWidgets = $( $.uniqueSort( childWidgets ) );
+		this.childWidgets = $( $.unique( childWidgets ) );
 		this._addClass( this.childWidgets, "ui-controlgroup-item" );
 	},
 
@@ -39438,7 +39469,7 @@ $.extend( Datepicker.prototype, {
 			inst = this._getInst( obj ),
 			isRTL = this._get( inst, "isRTL" );
 
-		while ( obj && ( obj.type === "hidden" || obj.nodeType !== 1 || $.expr.pseudos.hidden( obj ) ) ) {
+		while ( obj && ( obj.type === "hidden" || obj.nodeType !== 1 || $.expr.filters.hidden( obj ) ) ) {
 			obj = obj[ isRTL ? "previousSibling" : "nextSibling" ];
 		}
 
@@ -46028,12 +46059,12 @@ $.fn.extend( {
 
 ( function() {
 
-if ( $.expr && $.expr.pseudos && $.expr.pseudos.animated ) {
-	$.expr.pseudos.animated = ( function( orig ) {
+if ( $.expr && $.expr.filters && $.expr.filters.animated ) {
+	$.expr.filters.animated = ( function( orig ) {
 		return function( elem ) {
 			return !!$( elem ).data( dataSpaceAnimated ) || orig( elem );
 		};
-	} )( $.expr.pseudos.animated );
+	} )( $.expr.filters.animated );
 }
 
 if ( $.uiBackCompat !== false ) {
@@ -52048,7 +52079,8 @@ window.waitingDialog = window.waitingDialog || function ($) {
 }(jQuery);
 
 /***/ }),
-/* 42 */
+/* 42 */,
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62862,10 +62894,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(43).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(44).setImmediate))
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -62918,7 +62950,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(44);
+__webpack_require__(45);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -62932,7 +62964,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -63125,19 +63157,19 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(8)))
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(46)
+  __webpack_require__(47)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(50)
 /* template */
-var __vue_template__ = __webpack_require__(50)
+var __vue_template__ = __webpack_require__(51)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63176,13 +63208,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(47);
+var content = __webpack_require__(48);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -63202,7 +63234,7 @@ if(false) {
 }
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -63210,13 +63242,13 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.map-container[data-v-f99238e4]{\n\t\toverflow:scroll;\n}\nimg#lucena-map[data-v-f99238e4]{\n\t\theight: 100%;\n}\ndiv.new-lucena-map[data-v-f99238e4]{\n\t\tposition: relative;\n\t\ttop: 0;\n\t\tleft: 0;\n}\nimg#lucena-map[data-v-f99238e4]{\n\t\t-o-object-fit: cover;\n\t\t   object-fit: cover;\n}\ndiv.map-brgys[data-v-f99238e4]{\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tpointer-events: none;\n}\ndiv.map-brgy[data-v-f99238e4]{\n\t    position: absolute;\n\t    cursor: pointer;\n}\ndiv.map-brgy img[data-v-f99238e4]{\n\t\t-webkit-filter: drop-shadow(1px 1px 0 black) \n                    drop-shadow(-1px -1px 0 white);\n    \tfilter:drop-shadow(1px 1px 0 black) \n           drop-shadow(-1px -1px 0 white);\n        opacity: 0.25;\n}\ndiv.map-brgy label[data-v-f99238e4]{\n\t\tposition: absolute;\n\t\tpointer-events: none;\n\t\ttext-shadow: 1px 1px 4px white;\n}\n#locationModal li.no-result[data-v-f99238e4]{\n\t\tlist-style: none;\n}\n.pre-scrollable[data-v-f99238e4]{\n\t\theight: 250px;\n\t\tpadding: 0 15px;\n}\n#suspects-list[data-v-f99238e4] {\n\t    list-style: none;\n\t    padding: 0;\n}\n#suspects-list li[data-v-f99238e4] {\n\t    margin: 10px 0;\n\t    position: relative;\n}\n#suspects-list li .suspect-image[data-v-f99238e4] {\n\t    width: 75px;\n\t    height: 75px;\n\t    -o-object-fit: cover;\n\t       object-fit: cover;\n\t    border-radius: 50%;\n}\n#suspects-list div.info-group[data-v-f99238e4]{\n\t\tdisplay: inline-block;\n\t    position: absolute;\n\t    top: 10%;\n\t    margin-left: 20px;\n}\n#suspects-list li .suspect-info[data-v-f99238e4] {\n\t    display:block;\n}\n", ""]);
+exports.push([module.i, "\nimg#lucena-map[data-v-f99238e4]{\n\t\theight: 100%;\n}\ndiv.new-lucena-map[data-v-f99238e4]{\n\t\tposition: relative;\n\t\ttop: 0;\n\t\tleft: 0;\n}\nimg#lucena-map[data-v-f99238e4]{\n\t\t-o-object-fit: cover;\n\t\t   object-fit: cover;\n}\ndiv.map-brgys[data-v-f99238e4]{\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tpointer-events: none;\n}\ndiv.map-brgy[data-v-f99238e4]{\n\t    position: absolute;\n\t    cursor: pointer;\n}\ndiv.map-brgy img[data-v-f99238e4]{\n\t\t-webkit-filter: drop-shadow(1px 1px 0 black) \n                    drop-shadow(-1px -1px 0 white);\n    \tfilter:drop-shadow(1px 1px 0 black) \n           drop-shadow(-1px -1px 0 white);\n        opacity: 0.25;\n}\ndiv.map-brgy label[data-v-f99238e4]{\n\t\tposition: absolute;\n\t\tpointer-events: none;\n\t\ttext-shadow: 1px 1px 4px white;\n}\n#locationModal li.no-result[data-v-f99238e4]{\n\t\tlist-style: none;\n}\n.pre-scrollable[data-v-f99238e4]{\n\t\theight: 250px;\n\t\tpadding: 0 15px;\n}\n#suspects-list[data-v-f99238e4] {\n\t    list-style: none;\n\t    padding: 0;\n}\n#suspects-list li[data-v-f99238e4] {\n\t    margin: 10px 0;\n\t    position: relative;\n}\n#suspects-list li .suspect-image[data-v-f99238e4] {\n\t    width: 75px;\n\t    height: 75px;\n\t    -o-object-fit: cover;\n\t       object-fit: cover;\n\t    border-radius: 50%;\n}\n#suspects-list div.info-group[data-v-f99238e4]{\n\t\tdisplay: inline-block;\n\t    position: absolute;\n\t    top: 10%;\n\t    margin-left: 20px;\n}\n#suspects-list li .suspect-info[data-v-f99238e4] {\n\t    display:block;\n}\n.info-group .info-label[data-v-f99238e4]{\n        margin-right: 10px;\n}\n.map-container[data-v-f99238e4]{\n\t\toverflow: hidden;\n\t    border:5px #FFF solid;\n\t    min-width: 930px;\n}\n.map-container .map[data-v-f99238e4]{\n\t\tmargin:0 auto;\n        position: relative;\n        -webkit-box-shadow: 0px 0px 5px #000;\n                box-shadow: 0px 0px 5px #000;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 /**
@@ -63249,11 +63281,19 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -63540,7 +63580,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63548,287 +63588,289 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "map-container" }, [
-    _c("div", { staticClass: "new-lucena-map" }, [
-      _c("img", {
-        attrs: {
-          src: "/res/photos/map-assets/new-lucena-map.jpg",
-          id: "lucena-map",
-          usemap: "#image-map"
-        }
-      }),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("map", { attrs: { name: "image-map" } }, [
-        _c("area", {
-          staticClass: "brgy-area",
+    _c("div", { staticClass: "map" }, [
+      _c("div", { staticClass: "new-lucena-map" }, [
+        _c("img", {
           attrs: {
-            id: "brgy-poblacion",
-            alt: "Poblacion",
-            title: "Poblacion",
-            coords:
-              "499,383,738,320,744,328,763,324,772,330,780,340,784,335,792,337,799,345,807,380,818,387,815,404,818,416,829,412,837,420,847,416,854,426,862,429,865,437,861,451,851,474,842,485,836,504,829,510,788,512,788,519,741,520,730,433",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
+            src: "/res/photos/map-assets/new-lucena-map.jpg",
+            id: "lucena-map",
+            usemap: "#image-map"
+          }
         }),
         _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-dawis",
-            alt: "Dawis",
-            title: "Dawis",
-            coords:
-              "735,320,852,167,859,172,880,163,890,169,921,176,865,266,848,420,844,412,834,418,827,411,815,414,817,385,806,380,798,343,791,335,779,332,760,322,745,326",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
+        _vm._m(0),
         _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-badiang",
-            alt: "Badiang",
-            title: "Badiang",
-            coords:
-              "735,319,852,166,827,178,802,166,781,124,762,116,716,112,650,82,609,79,595,86,585,142,634,177,672,213,722,233,704,244,706,295,727,303",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-balabag",
-            alt: "Balabag",
-            title: "Balabag",
-            coords:
-              "738,522,785,519,787,511,825,510,809,526,800,556,801,565,815,567,827,609,762,593",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-bilidan",
-            alt: "Bilidan",
-            title: "Bilidan",
-            coords:
-              "459,675,564,574,578,583,580,572,593,555,624,570,618,580,635,589,639,608,630,634,641,638,634,655,622,676,634,696,650,693,651,702,676,712,683,721,677,731,684,739,709,770,701,787",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-bitaog-gaja",
-            alt: "Bita-og Gaja",
-            title: "Bita-og Gaja",
-            coords: "461,676,422,708,534,854,679,846,700,788",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-bololacao",
-            alt: "Bololacao",
-            title: "Bololacao",
-            coords:
-              "497,382,635,178,670,213,723,233,705,244,705,295,729,302,734,319",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-burot",
-            alt: "Burot",
-            title: "Burot",
-            coords:
-              "163,522,266,451,275,456,317,461,355,487,372,490,394,500,267,560",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-cabilauan",
-            alt: "Cabilauan",
-            title: "Cabilauan",
-            coords:
-              "266,560,396,500,482,527,497,542,512,536,520,544,507,551,517,557,529,547,539,556,538,569,550,573,559,569,564,572,422,710",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-cabugao",
-            alt: "Cabugao",
-            title: "Cabugao",
-            coords: "142,363,351,262,267,452,217,434,195,418,183,406,174,377",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-cagban",
-            alt: "Cagban",
-            title: "Cagban",
-            coords:
-              "10,414,23,395,39,347,60,318,174,376,181,406,213,433,265,451,161,520,124,503,90,482",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-calumbuyan",
-            alt: "Calumbuyan",
-            title: "Calumbuyan",
-            coords:
-              "833,504,892,563,876,617,826,607,815,568,798,564,804,547,810,525",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-damires",
-            alt: "Damires",
-            title: "Damires",
-            coords:
-              "737,521,763,593,798,601,794,610,785,606,787,618,773,618,769,627,776,634,776,647,787,659,789,682,798,694,801,719,818,755,831,774,826,791,814,791,813,799,802,793,797,761,789,765,759,763,743,772,727,774,723,755,709,772,679,732,685,719,677,713,651,702,650,692,634,692,621,674,642,635,631,632,639,606,634,585,618,581,625,569",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-general-delgado",
-            alt: "General Delgado",
-            title: "General Delgado",
-            coords:
-              "144,359,153,339,177,325,171,310,146,284,135,283,117,291,86,258,60,317",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-guinobatan",
-            alt: "Guinobatan",
-            title: "Guinobatan",
-            coords:
-              "499,381,634,179,583,142,554,142,559,160,572,155,560,170,555,193,525,180,495,180,496,158,479,134,471,138,463,164,455,189,433,285",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-janipaan-oeste",
-            alt: "Janipa-an Oeste",
-            title: "Janipa-an Oeste",
-            coords:
-              "432,283,462,169,411,174,400,161,383,154,362,161,362,148,376,141,387,117,341,91,304,110,286,90,258,79,270,60,242,21,199,85,347,263",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-jelicuon-este",
-            alt: "Jelicuon Este",
-            title: "Jelicuon Este",
-            coords:
-              "700,788,822,826,835,825,825,814,834,798,825,791,814,789,813,800,802,792,796,762,787,766,756,762,742,772,727,773,723,755,710,770",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-jelicuon-oeste",
-            alt: "Jelicuon Oeste",
-            title: "Jelicuon Oeste",
-            coords:
-              "145,362,346,263,200,86,87,257,117,291,136,282,146,282,174,312,178,324,153,340",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-pasil",
-            alt: "Pasil",
-            title: "Pasil",
-            coords:
-              "701,788,679,844,793,875,796,860,810,866,817,854,831,855,838,838,822,831,819,826",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-wariwari",
-            alt: "Wari-wari",
-            title: "Wari-wari",
-            coords:
-              "351,265,266,451,275,456,319,462,358,486,390,497,483,527,499,540,511,535,521,544,509,552,517,557,530,546,539,556,539,568,550,573,558,568,579,582,580,574,541,483,499,385,430,284",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        }),
-        _vm._v(" "),
-        _c("area", {
-          staticClass: "brgy-area",
-          attrs: {
-            id: "brgy-baclayan",
-            alt: "Baclayan",
-            title: "Baclayan",
-            coords: "499,382,581,570,592,554,624,570,741,519,729,431",
-            shape: "poly"
-          },
-          on: { click: _vm.didClickArea }
-        })
+        _c("map", { attrs: { name: "image-map" } }, [
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-poblacion",
+              alt: "Poblacion",
+              title: "Poblacion",
+              coords:
+                "499,383,738,320,744,328,763,324,772,330,780,340,784,335,792,337,799,345,807,380,818,387,815,404,818,416,829,412,837,420,847,416,854,426,862,429,865,437,861,451,851,474,842,485,836,504,829,510,788,512,788,519,741,520,730,433",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-dawis",
+              alt: "Dawis",
+              title: "Dawis",
+              coords:
+                "735,320,852,167,859,172,880,163,890,169,921,176,865,266,848,420,844,412,834,418,827,411,815,414,817,385,806,380,798,343,791,335,779,332,760,322,745,326",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-badiang",
+              alt: "Badiang",
+              title: "Badiang",
+              coords:
+                "735,319,852,166,827,178,802,166,781,124,762,116,716,112,650,82,609,79,595,86,585,142,634,177,672,213,722,233,704,244,706,295,727,303",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-balabag",
+              alt: "Balabag",
+              title: "Balabag",
+              coords:
+                "738,522,785,519,787,511,825,510,809,526,800,556,801,565,815,567,827,609,762,593",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-bilidan",
+              alt: "Bilidan",
+              title: "Bilidan",
+              coords:
+                "459,675,564,574,578,583,580,572,593,555,624,570,618,580,635,589,639,608,630,634,641,638,634,655,622,676,634,696,650,693,651,702,676,712,683,721,677,731,684,739,709,770,701,787",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-bitaog-gaja",
+              alt: "Bita-og Gaja",
+              title: "Bita-og Gaja",
+              coords: "461,676,422,708,534,854,679,846,700,788",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-bololacao",
+              alt: "Bololacao",
+              title: "Bololacao",
+              coords:
+                "497,382,635,178,670,213,723,233,705,244,705,295,729,302,734,319",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-burot",
+              alt: "Burot",
+              title: "Burot",
+              coords:
+                "163,522,266,451,275,456,317,461,355,487,372,490,394,500,267,560",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-cabilauan",
+              alt: "Cabilauan",
+              title: "Cabilauan",
+              coords:
+                "266,560,396,500,482,527,497,542,512,536,520,544,507,551,517,557,529,547,539,556,538,569,550,573,559,569,564,572,422,710",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-cabugao",
+              alt: "Cabugao",
+              title: "Cabugao",
+              coords: "142,363,351,262,267,452,217,434,195,418,183,406,174,377",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-cagban",
+              alt: "Cagban",
+              title: "Cagban",
+              coords:
+                "10,414,23,395,39,347,60,318,174,376,181,406,213,433,265,451,161,520,124,503,90,482",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-calumbuyan",
+              alt: "Calumbuyan",
+              title: "Calumbuyan",
+              coords:
+                "833,504,892,563,876,617,826,607,815,568,798,564,804,547,810,525",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-damires",
+              alt: "Damires",
+              title: "Damires",
+              coords:
+                "737,521,763,593,798,601,794,610,785,606,787,618,773,618,769,627,776,634,776,647,787,659,789,682,798,694,801,719,818,755,831,774,826,791,814,791,813,799,802,793,797,761,789,765,759,763,743,772,727,774,723,755,709,772,679,732,685,719,677,713,651,702,650,692,634,692,621,674,642,635,631,632,639,606,634,585,618,581,625,569",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-general-delgado",
+              alt: "General Delgado",
+              title: "General Delgado",
+              coords:
+                "144,359,153,339,177,325,171,310,146,284,135,283,117,291,86,258,60,317",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-guinobatan",
+              alt: "Guinobatan",
+              title: "Guinobatan",
+              coords:
+                "499,381,634,179,583,142,554,142,559,160,572,155,560,170,555,193,525,180,495,180,496,158,479,134,471,138,463,164,455,189,433,285",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-janipaan-oeste",
+              alt: "Janipa-an Oeste",
+              title: "Janipa-an Oeste",
+              coords:
+                "432,283,462,169,411,174,400,161,383,154,362,161,362,148,376,141,387,117,341,91,304,110,286,90,258,79,270,60,242,21,199,85,347,263",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-jelicuon-este",
+              alt: "Jelicuon Este",
+              title: "Jelicuon Este",
+              coords:
+                "700,788,822,826,835,825,825,814,834,798,825,791,814,789,813,800,802,792,796,762,787,766,756,762,742,772,727,773,723,755,710,770",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-jelicuon-oeste",
+              alt: "Jelicuon Oeste",
+              title: "Jelicuon Oeste",
+              coords:
+                "145,362,346,263,200,86,87,257,117,291,136,282,146,282,174,312,178,324,153,340",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-pasil",
+              alt: "Pasil",
+              title: "Pasil",
+              coords:
+                "701,788,679,844,793,875,796,860,810,866,817,854,831,855,838,838,822,831,819,826",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-wariwari",
+              alt: "Wari-wari",
+              title: "Wari-wari",
+              coords:
+                "351,265,266,451,275,456,319,462,358,486,390,497,483,527,499,540,511,535,521,544,509,552,517,557,530,546,539,556,539,568,550,573,558,568,579,582,580,574,541,483,499,385,430,284",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          }),
+          _vm._v(" "),
+          _c("area", {
+            staticClass: "brgy-area",
+            attrs: {
+              id: "brgy-baclayan",
+              alt: "Baclayan",
+              title: "Baclayan",
+              coords: "499,382,581,570,592,554,624,570,741,519,729,431",
+              shape: "poly"
+            },
+            on: { click: _vm.didClickArea }
+          })
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -63858,16 +63900,20 @@ var render = function() {
                   _c("div", { staticClass: "col-md-6 crimes-section" }, [
                     _c("label", [_vm._v("Crimes committed")]),
                     _vm._v(" "),
-                    _c(
-                      "ol",
-                      {
-                        staticClass: "pre-scrollable",
-                        attrs: { id: "crimes-list" }
-                      },
-                      _vm._l(_vm.selected.crimes, function(crime) {
-                        return _c("li", [_vm._v(_vm._s(crime.crime_type))])
-                      })
-                    ),
+                    _vm.selected.crimes.length > 0
+                      ? _c(
+                          "ol",
+                          {
+                            staticClass: "pre-scrollable",
+                            attrs: { id: "crimes-list" }
+                          },
+                          _vm._l(_vm.selected.crimes, function(crime) {
+                            return _c("li", [_vm._v(_vm._s(crime.crime_type))])
+                          })
+                        )
+                      : _c("div", [
+                          _c("p", [_vm._v("No crimes occured in this place.")])
+                        ]),
                     _vm._v(" "),
                     _vm.selected.crimes.length > 5
                       ? _c(
@@ -63881,55 +63927,61 @@ var render = function() {
                   _c("div", { staticClass: "col-md-6 suspects-section" }, [
                     _c("label", [_vm._v("Suspects")]),
                     _vm._v(" "),
-                    _c(
-                      "ul",
-                      {
-                        staticClass: "pre-scrollable",
-                        attrs: { id: "suspects-list" }
-                      },
-                      _vm._l(_vm.selected.suspects, function(suspect) {
-                        return _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: {
-                                href: "/suspects/" + suspect.id + "/edit"
-                              }
-                            },
-                            [
-                              _c("img", {
-                                staticClass: "suspect-image",
-                                attrs: {
-                                  src:
-                                    suspect.front == ""
-                                      ? "/res/photos/shares/empty-avatar.png"
-                                      : suspect.front
+                    _vm.selected.suspects.length > 0
+                      ? _c(
+                          "ul",
+                          {
+                            staticClass: "pre-scrollable",
+                            attrs: { id: "suspects-list" }
+                          },
+                          _vm._l(_vm.selected.suspects, function(suspect) {
+                            return _c("li", [
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "/suspects/" + suspect.id + "/edit"
+                                  }
                                 },
-                                on: { error: _vm.imgError }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "info-group" }, [
-                                _c("span", {
-                                  staticClass: "suspect-info",
-                                  attrs: { name: "suspect-name" },
-                                  domProps: {
-                                    textContent: _vm._s(suspect.full_name)
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "suspect-info",
-                                  attrs: { name: "suspect-alias" },
-                                  domProps: {
-                                    textContent: _vm._s(suspect.alias)
-                                  }
-                                })
-                              ])
-                            ]
-                          )
-                        ])
-                      })
-                    ),
+                                [
+                                  _c("img", {
+                                    staticClass: "suspect-image",
+                                    attrs: {
+                                      src:
+                                        suspect.front == ""
+                                          ? "/res/photos/shares/empty-avatar.png"
+                                          : suspect.front
+                                    },
+                                    on: { error: _vm.imgError }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "info-group" }, [
+                                    _c("span", {
+                                      staticClass: "suspect-info",
+                                      attrs: { name: "suspect-name" },
+                                      domProps: {
+                                        textContent: _vm._s(suspect.full_name)
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", {
+                                      staticClass: "suspect-info",
+                                      attrs: { name: "suspect-alias" },
+                                      domProps: {
+                                        textContent: _vm._s(suspect.alias)
+                                      }
+                                    })
+                                  ])
+                                ]
+                              )
+                            ])
+                          })
+                        )
+                      : _c("div", [
+                          _c("p", [
+                            _vm._v("No suspects recorded in this place.")
+                          ])
+                        ]),
                     _vm._v(" "),
                     _c(
                       "a",
@@ -63966,7 +64018,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "34%", left: "38%" } }, [
-            _vm._v("\n\t\t\t\t\t    Dawis\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Dawis\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -63983,7 +64035,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "29%", left: "50%" } }, [
-            _vm._v("\n\t\t\t\t\t    Poblacion\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Poblacion\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64000,7 +64052,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "39%", left: "40%" } }, [
-            _vm._v("\n\t\t\t\t\t    Baclayan\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Baclayan\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64017,7 +64069,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "34%", left: "42%" } }, [
-            _vm._v("\n\t\t\t\t\t    Badiang\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Badiang\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64034,7 +64086,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "52%", left: "50%" } }, [
-            _vm._v("\n\t\t\t\t\t    Bololacao\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Bololacao\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64051,7 +64103,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "34%", left: "37%" } }, [
-            _vm._v("\n\t\t\t\t\t    Cabilauan\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Cabilauan\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64068,7 +64120,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "29%", left: "50%" } }, [
-            _vm._v("\n\t\t\t\t\t    Burot\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Burot\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64082,7 +64134,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "42%", left: "31%" } }, [
-            _vm._v("\n\t\t\t\t\t    Cagban\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Cagban\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64101,7 +64153,7 @@ var staticRenderFns = [
           _c(
             "label",
             { staticStyle: { top: "38%", left: "15%", "font-size": "8pt" } },
-            [_vm._v("\n\t\t\t\t\t    Calumbuyan\n\t\t\t\t")]
+            [_vm._v("\n\t\t\t\t\t\t    Calumbuyan\n\t\t\t\t\t")]
           )
         ]
       ),
@@ -64118,7 +64170,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "44%", left: "29%" } }, [
-            _vm._v("\n\t\t\t\t\t    Damires\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Damires\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64137,7 +64189,7 @@ var staticRenderFns = [
           _c(
             "label",
             { staticStyle: { top: "30%", left: "15%", "font-size": "9pt" } },
-            [_vm._v("\n\t\t\t\t\t    Balabag\n\t\t\t\t")]
+            [_vm._v("\n\t\t\t\t\t\t    Balabag\n\t\t\t\t\t")]
           )
         ]
       ),
@@ -64154,7 +64206,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "42%", left: "42%" } }, [
-            _vm._v("\n\t\t\t\t\t    Bita-og Gaja\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Bita-og Gaja\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64171,7 +64223,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "38%", left: "35%" } }, [
-            _vm._v("\n\t\t\t\t\t    Bilidan\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Bilidan\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64188,7 +64240,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "42%", left: "18%" } }, [
-            _vm._v("\n\t\t\t\t\t    Guinobatan\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Guinobatan\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64205,7 +64257,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "62%", left: "46%" } }, [
-            _vm._v("\n\t\t\t\t\t    Janipa-an Oeste\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Janipa-an Oeste\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64224,7 +64276,7 @@ var staticRenderFns = [
           _c(
             "label",
             { staticStyle: { top: "29%", left: "11%", "font-size": "10pt" } },
-            [_vm._v("\n\t\t\t\t\t    Jelicuon Este\n\t\t\t\t")]
+            [_vm._v("\n\t\t\t\t\t\t    Jelicuon Este\n\t\t\t\t\t")]
           )
         ]
       ),
@@ -64238,7 +64290,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "42%", left: "28%" } }, [
-            _vm._v("\n\t\t\t\t\t    Jelicuon Oeste\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Jelicuon Oeste\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64255,7 +64307,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "40%", left: "36%" } }, [
-            _vm._v("\n\t\t\t\t\t    Pasil\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Pasil\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64272,7 +64324,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "37%", left: "33%" } }, [
-            _vm._v("\n\t\t\t\t\t    Wari-wari\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Wari-wari\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64289,7 +64341,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "49%", left: "31%" } }, [
-            _vm._v("\n\t\t\t\t\t    Cabugao\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    Cabugao\n\t\t\t\t\t")
           ])
         ]
       ),
@@ -64306,7 +64358,7 @@ var staticRenderFns = [
           }),
           _vm._v(" "),
           _c("label", { staticStyle: { top: "36%", left: "29%" } }, [
-            _vm._v("\n\t\t\t\t\t    General Delgado\n\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t    General Delgado\n\t\t\t\t\t")
           ])
         ]
       )
@@ -64364,19 +64416,19 @@ if (false) {
 }
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(52)
+  __webpack_require__(53)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(54)
+var __vue_script__ = __webpack_require__(55)
 /* template */
-var __vue_template__ = __webpack_require__(65)
+var __vue_template__ = __webpack_require__(66)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -64415,13 +64467,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(53);
+var content = __webpack_require__(54);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -64441,7 +64493,7 @@ if(false) {
 }
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -64455,14 +64507,14 @@ exports.push([module.i, "\n.map-wrapper[data-v-78017c58]{\n\toverflow: scroll;\n
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapComponent__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapComponent__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__MapComponent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PinComponent__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PinComponent__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PinComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PinComponent__);
 //
 //
@@ -64619,19 +64671,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(56)
+  __webpack_require__(57)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(58)
+var __vue_script__ = __webpack_require__(59)
 /* template */
-var __vue_template__ = __webpack_require__(59)
+var __vue_template__ = __webpack_require__(60)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -64670,13 +64722,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(57);
+var content = __webpack_require__(58);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -64696,7 +64748,7 @@ if(false) {
 }
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -64710,7 +64762,7 @@ exports.push([module.i, "\n.map-container[data-v-f8e2ef90]{\n\t\toverflow:scroll
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64951,7 +65003,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65579,19 +65631,19 @@ if (false) {
 }
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(61)
+  __webpack_require__(62)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(63)
+var __vue_script__ = __webpack_require__(64)
 /* template */
-var __vue_template__ = __webpack_require__(64)
+var __vue_template__ = __webpack_require__(65)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -65630,13 +65682,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(62);
+var content = __webpack_require__(63);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -65656,7 +65708,7 @@ if(false) {
 }
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -65670,7 +65722,7 @@ exports.push([module.i, "\nimg.map-pin[data-v-3363e09f]{\n\t-o-object-fit: cover
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65706,7 +65758,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65735,7 +65787,7 @@ if (false) {
 }
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65931,7 +65983,7 @@ if (false) {
 }
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

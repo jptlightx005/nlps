@@ -21,7 +21,6 @@ class CrimeCommittedTableSeeder extends Seeder
             array (
                 'id' => 1,
                 'suspect_id' => 1,
-                'user_id' => 1,
                 'location_id' => 5,
                 'crime_type' => 'Homicide',
                 'created_at' => '2018-02-02 06:02:53',
@@ -31,7 +30,6 @@ class CrimeCommittedTableSeeder extends Seeder
             array (
                 'id' => 2,
                 'suspect_id' => 2,
-                'user_id' => 1,
                 'location_id' => 5,
                 'crime_type' => 'Infanticide',
                 'created_at' => '2018-02-02 07:52:50',
@@ -41,7 +39,6 @@ class CrimeCommittedTableSeeder extends Seeder
             array (
                 'id' => 3,
                 'suspect_id' => 3,
-                'user_id' => 1,
                 'location_id' => 5,
                 'crime_type' => 'Murder',
                 'created_at' => '2018-02-02 07:55:13',
@@ -51,7 +48,6 @@ class CrimeCommittedTableSeeder extends Seeder
             array (
                 'id' => 4,
                 'suspect_id' => 4,
-                'user_id' => 1,
                 'location_id' => 2,
                 'crime_type' => 'Physical Injuries',
                 'created_at' => '2018-02-02 11:39:28',

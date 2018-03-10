@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddConvictedToSuspectsTable extends Migration
+class CreateCrimeCommittedEquipmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddConvictedToSuspectsTable extends Migration
      */
     public function up()
     {
-        Schema::table('suspects', function (Blueprint $table) {
-            $table->boolean('convicted')->default(false);
+        Schema::create('crime_committed_equipment', function (Blueprint $table) {
+            $table->string('crime_committed_id');
+            $table->string('equipment_id');
         });
     }
 
@@ -25,8 +26,6 @@ class AddConvictedToSuspectsTable extends Migration
      */
     public function down()
     {
-        Schema::table('suspects', function (Blueprint $table) {
-            $table->dropColumn('convicted');
-        });
+        Schema::dropIfExists('crime_committed_equipment');
     }
 }

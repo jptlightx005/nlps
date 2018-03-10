@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CrimeCommitted;
 use App\Location;
 use App\Suspect;
 
@@ -35,11 +36,16 @@ class DashboardController extends Controller
      */
     public function convicts()
     {
-        $suspects = Suspect::where('convicted', '=', '1')
-                    ->with('crimes')
+        $crimes = CrimeCommitted::whereNotNull('convicted_date')
+                    ->with('suspects')
                     ->orderBy('created_at', 'DESC')
                     ->paginate(10);
-        return view('galleries.suspects', compact('suspects'));
+
+        // $suspects = Suspect::with('crimes')
+        //             ->where('crimes.convicted', '=', '1')
+        //             ->orderBy('created_at', 'DESC')
+        //             ->paginate(10);
+        return view('galleries.suspects', compact('crimes'));
     }
 
     /**
@@ -49,11 +55,16 @@ class DashboardController extends Controller
      */
     public function suspects()
     {
-        $suspects = Suspect::where('convicted', '=', '0')
-                    ->with('crimes')
+        $crimes = CrimeCommitted::whereNull('convicted_date')
+                    ->with('suspects')
                     ->orderBy('created_at', 'DESC')
                     ->paginate(10);
-        return view('galleries.suspects', compact('suspects'));
+                    // $this->printArray($crimes);
+        // $suspects =->with('crimes')
+        //             ->orderBy('created_at', 'DESC')
+        //             ->paginate(10); Suspect::where('convicted', '=', '0')
+                    
+        return view('galleries.suspects', compact('crimes'));
     }
 
     /**
@@ -78,10 +89,14 @@ class DashboardController extends Controller
      */
     public function locationBrgy($area_id)
     {
-        return \App\Location::where('area_id', '=', $area_id)
-                            ->with('crimes')
-                            ->get()
-                            ->first();
+        $location = \App\Location::where('area_id', '=', $area_id)
+                                ->with('crimes')
+                                ->get()
+                                ->first();
+
+        $loc_assoc = $location->toArray();
+        $loc_assoc['suspects'] =  $location->suspects();
+        return $loc_assoc;
     }
 
     public function locationDetails($id){

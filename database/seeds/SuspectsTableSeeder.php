@@ -20,7 +20,6 @@ class SuspectsTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'user_id' => 1,
                 'first_name' => 'John',
                 'middle_name' => 'Smith',
                 'last_name' => 'Doe',
@@ -32,12 +31,10 @@ class SuspectsTableSeeder extends Seeder
                 'right_face' => '',
                 'created_at' => '2018-02-02 06:02:53',
                 'updated_at' => '2018-02-02 06:02:53',
-                'convicted' => 0,
             ),
             1 => 
             array (
                 'id' => 2,
-                'user_id' => 1,
                 'first_name' => 'George',
                 'middle_name' => 'Washington',
                 'last_name' => 'Bush',
@@ -49,12 +46,10 @@ class SuspectsTableSeeder extends Seeder
                 'right_face' => '',
                 'created_at' => '2018-02-02 07:52:49',
                 'updated_at' => '2018-02-02 07:52:49',
-                'convicted' => 0,
             ),
             2 => 
             array (
                 'id' => 3,
-                'user_id' => 1,
                 'first_name' => 'Robin',
                 'middle_name' => 'A',
                 'last_name' => 'Padilla',
@@ -66,12 +61,10 @@ class SuspectsTableSeeder extends Seeder
                 'right_face' => '',
                 'created_at' => '2018-02-02 07:55:13',
                 'updated_at' => '2018-02-02 07:55:13',
-                'convicted' => 0,
             ),
             3 => 
             array (
                 'id' => 4,
-                'user_id' => 1,
                 'first_name' => 'Kotori',
                 'middle_name' => 'Kousaka',
                 'last_name' => 'Minami',
@@ -83,7 +76,6 @@ class SuspectsTableSeeder extends Seeder
                 'right_face' => '',
                 'created_at' => '2018-02-02 11:39:28',
                 'updated_at' => '2018-02-02 11:39:28',
-                'convicted' => 0,
             ),
         ));
         

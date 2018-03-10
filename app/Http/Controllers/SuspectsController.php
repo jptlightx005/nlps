@@ -9,6 +9,9 @@ use App\CrimeCommitted;
 use App\HZR\Helper;
 
 use Auth;
+use URL;
+use Redirect;
+
 use Carbon\Carbon;
 
 class SuspectsController extends Controller
@@ -52,13 +55,18 @@ class SuspectsController extends Controller
         ]);
 
         $suspect = Suspect::create([
-            'user_id' => auth()->user()->id,
             'first_name' => $request->input('first_name'),
             'middle_name' => $request->input('middle_name'),
             'last_name' => $request->input('last_name'),
             'qualifier' => "",
             'alias' => $request->input('alias'),
         ]);
+
+        $suspect->date_of_birth = Carbon::parse($request->date_of_birth);
+        $suspect->civil_status = Helper::returnBlankIfNull($request->input('civil_status'));
+        $suspect->occupation = Helper::returnBlankIfNull($request->input('occupation'));
+        $suspect->address = Helper::returnBlankIfNull($request->input('address'));
+
         $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
         $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
         $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
@@ -83,7 +91,6 @@ class SuspectsController extends Controller
             $date_occured = $request->input('date_occured') . " " . $request->input('time_occured');
             $crimecommitted = CrimeCommitted::create(['crime_type' => $request->input('crime_type'),
                                                         'location_area_id' => $request->input('location'),
-                                                        'user_id' => Auth::user()->id,
                                                         'date_occured' => Carbon::parse($date_occured),
                                                         ]);
 
@@ -101,7 +108,9 @@ class SuspectsController extends Controller
      */
     public function show($id)
     {
-        return redirect(route('suspects.edit', $id));
+        $suspect = Suspect::find($id);
+
+        return view('suspects.show', compact('suspect'));
     }
 
     /**
@@ -113,7 +122,7 @@ class SuspectsController extends Controller
     public function edit($id)
     {
         $suspect = Suspect::find($id);
-
+        session()->put('url.intended', URL::previous());
         return view('suspects.edit', compact('suspect'));
     }
 
@@ -132,6 +141,12 @@ class SuspectsController extends Controller
         $suspect->middle_name = $request->input('middle_name');
         $suspect->last_name = $request->input('last_name');
         $suspect->alias = $request->input('alias');
+        
+        $suspect->date_of_birth = Carbon::parse($request->date_of_birth);
+        $suspect->civil_status = Helper::returnBlankIfNull($request->input('civil_status'));
+        $suspect->occupation = Helper::returnBlankIfNull($request->input('occupation'));
+        $suspect->address = Helper::returnBlankIfNull($request->input('address'));
+
         $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
         $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
         $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
@@ -139,7 +154,8 @@ class SuspectsController extends Controller
 
         $suspect->save();
 
-        return redirect(route('suspects.index'))->with('success', "Suspect record successfully updated!");
+        // return redirect(route('suspects.index'))->with('success', "Suspect record successfully updated!");
+        return Redirect::intended('/')->with('success', "Suspect record successfully updated!");
     }
 
     /**
@@ -151,6 +167,28 @@ class SuspectsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteBulk(Request $request)
+    {
+        $this->validate($request, [
+            'suspects' => 'required|array'
+        ]);
+        $suspects = Suspect::whereIn('id', $request->input('suspects'));
+        foreach($suspects as $suspect){
+            $suspect->detach();
+        }
+
+        $suspects->delete();
+        return redirect()->back()->with('success', 'Successfully removed records');
+
     }
 
     /**

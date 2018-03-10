@@ -10,25 +10,34 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
+     <!-- Bootstrap CSS CDN -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @yield('page-specific-styles')
 
-    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API_KEY')}}"></script>
+    @yield('page-specific-styles')
     @yield('page-specific-pre-defined-scripts')
+    <style type="text/css">
+        div.wrapper .content{
+            padding-top:40px;
+        }
+    </style>
 </head>
 <body>
-    <div id="app">
+    <div class="main wrapper @auth sidebar-active @endauth">
         @include('includes.navbar')
-
-        <div class="container">
-            @include('includes.messages')
-            @yield('content')
+        @auth
+            @include('includes.sidebar')
+        @endauth
+        <!-- Page Content Holder -->
+        <div class="content" id="app">
+            <div class="container">
+                @include('includes.messages')
+                @yield('content')
+            </div>
         </div>
     </div>
 
     @yield('modals')
-    
+
     <!-- Scripts -->
     
     <script src="{{ asset('js/app.js') }}"></script>
