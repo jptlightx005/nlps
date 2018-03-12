@@ -56,6 +56,7 @@ class DashboardController extends Controller
     public function suspects()
     {
         $crimes = CrimeCommitted::whereNull('convicted_date')
+                    ->has('suspects')
                     ->with('suspects')
                     ->orderBy('created_at', 'DESC')
                     ->paginate(10);
