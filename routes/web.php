@@ -27,6 +27,9 @@ Route::middleware('auth:web')->group(function(){
 	Route::resource('/crimetype', 'CrimeTypesController');
 	Route::delete('/crimetype/bulk/delete', 'CrimeTypesController@deleteBulk');
 
+	Route::resource('/equipments', 'EquipmentController');
+	Route::delete('/equipments/bulk/delete', 'EquipmentController@deleteBulk');
+
 	Route::resource('/officers', 'OfficerController');
 	Route::delete('/officers', 'OfficerController@deleteBulk');
 	
