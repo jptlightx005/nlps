@@ -11,9 +11,12 @@
         <div class="panel-heading">Crime Records</div>
 
         <div class="panel-body">
+            {{Form::open(['action' => 'CrimeTypesController@deleteBulk',
+                            'id' => 'remove-form'])}}
             <table class="table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Crime Committed</th>
                         <th>Location</th>
                         <th>Suspect(s)</th>
@@ -25,7 +28,8 @@
                     @if(count($crimes) > 0)
                         @foreach($crimes as $crime)
                             <tr>
-                                <td>{!! $crime->crime_type !!}</td>
+                                <td><input type="checkbox" class="record-checked" name="crimes[]" value="{{$crime->id}}" />
+                                <td><a href="{{route('crimecommitted.edit', $crime->id)}}">{!! $crime->crime_type !!}</a></td>
                                 <td>{{$crime->location->location_name}}</td>
                                 <td>{{$crime->suspectsList()}}</td>
                                 <td>{{$crime->date_occured->format('F d, Y')}}</td>
@@ -37,7 +41,9 @@
                     @endif
                 </tbody>
             </table>
-            {{-- {{$suspects->links()}} --}}
+            {{Form::hidden('_method', 'delete')}}
+            {{Form::close()}}
+            {{$crimes->links()}}
         </div>
     </div>
 </div>

@@ -5,7 +5,7 @@
     <div class="btn-group">
         <a href="{{route('crimecommitted.index')}}" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</a>
     </div>
-    {!! Form::open(['action' => 'CrimeCommittedController@store', 'method' => 'POST']) !!}
+    {!! Form::model($crime, ['action' => ['CrimeCommittedController@update', $crime->id], 'method' => 'POST']) !!}
     <div class="panel panel-default" id="crime-section">
         <div class="panel-heading">Register Crime</div>
 
@@ -33,12 +33,12 @@
 
             <div class="form-group">
                 {{Form::label('time_occured', 'Time Occured')}}
-                {{Form::text('time_occured', null, ['class' => 'form-control', 'placeholder' => 'Time Occured', 'required'])}}
+                {{Form::text('time_occured', $crime->date_occured->format('h:i A'), ['class' => 'form-control', 'placeholder' => 'Time Occured', 'required'])}}
             </div>
 
             <div class="form-group">
                 {{Form::label('date_occured', 'Date Occured')}}
-                {{Form::text('date_occured', null, ['class' => 'form-control', 'placeholder' => 'Date Occured', 'required'])}}
+                {{Form::text('date_occured', $crime->date_occured->format('F d, Y'), ['class' => 'form-control', 'placeholder' => 'Date Occured', 'required'])}}
             </div>
 
             <div class="form-group">
@@ -60,10 +60,10 @@
                 <div class="crime-lead col-md-12">
                     {{Form::label('has_suspect', 'Does the crime have a lead?')}}
                     <p>
-                        <input type="radio" name="has_suspect" value="yes"> Yes</input>
+                        <input type="radio" name="has_suspect" value="yes" {{count($crime->suspects) ? "checked" : ""}}> Yes</input>
                     </p>
                     <p>
-                        <input type="radio" name="has_suspect" value="no" checked> No</input>
+                        <input type="radio" name="has_suspect" value="no" {{!count($crime->suspects) ? "checked" : ""}}> No</input>
                     </p>
                 </div>
                 <div class="suspect-exist col-md-6 hidden">
@@ -103,20 +103,20 @@
         <div class="panel-body">
             <div class="form-group">
                 {{Form::label('first_name', 'First Name')}}
-                {{Form::text('first_name', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'First Name'])}}
+                {{Form::text('first_name', null, ['class' => 'form-control new-suspect-form', 'placeholder' => 'First Name'])}}
             </div>
             <div class="form-group">
                 {{Form::label('middle_name', 'Middle Name')}}
-                {{Form::text('middle_name', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'Middle Name'])}}
+                {{Form::text('middle_name', null, ['class' => 'form-control new-suspect-form', 'placeholder' => 'Middle Name'])}}
             </div>
             <div class="form-group">
                 {{Form::label('last_name', 'Last Name')}}
-                {{Form::text('last_name', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'Last Name'])}}
+                {{Form::text('last_name', null, ['class' => 'form-control new-suspect-form', 'placeholder' => 'Last Name'])}}
             </div>
 
             <div class="form-group">
                 {{Form::label('alias', 'Alias')}}
-                {{Form::text('alias', '', ['class' => 'form-control new-suspect-form', 'placeholder' => 'Alias'])}}
+                {{Form::text('alias', null, ['class' => 'form-control new-suspect-form', 'placeholder' => 'Alias'])}}
             </div>
 
             {{Form::label('', 'Mugshot')}}
@@ -170,6 +170,7 @@
             </div>
         </div>
     </div>
+    {{Form::hidden('_method', 'PUT')}}
     {!! Form::close() !!}
 </div>
 @endsection
@@ -186,11 +187,11 @@
         $('input[name=time_occured]').timepicker({
                                         timeFormat: 'h:mm p',
                                         interval: 60,
-                                        defaultTime: new Date(),
                                         dynamic: false,
                                         dropdown: true,
                                         scrollbar: true
                                     });
+        
         $('input[name=has_suspect]').on('change', function(){
             if(this.value == "yes"){
                 //If Has Suspect
@@ -207,8 +208,8 @@
                 $('#crime-section .submit-group').addClass('hidden');
 
                 //auto select an option for existing. default: no
-                $('input[name=suspect_exist][value=no]').prop("checked", true);
-                $('input[name=suspect_exist][value=no]').change();
+                $('input[name=suspect_exist][value=yes]').prop("checked", true);
+                $('input[name=suspect_exist][value=yes]').change();
             }else{
                 //If otherwise
                 //The suspect exist section will disappear
@@ -233,7 +234,6 @@
         });
 
         $('input[name=suspect_exist]').on('change', function(){
-            console.log(this.value);
             if(this.value == "yes"){
                 //if will select on existing
                 $('.existing-suspect-form').prop('required', true);
@@ -248,6 +248,30 @@
                 $('.existing-suspect-section').addClass('hidden');
                 $('.new-suspect-section').removeClass('hidden');
             }
+        });
+
+        $(document).ready(function(){
+            console.log($('input[name=has_suspect]').val());
+            if($('input[name=has_suspect]:checked').val() == "yes"){
+                $('input[name=has_suspect][value=yes]').change();
+
+                var suspect_name = '{{optional($crime->suspects->first())->full_name}}';
+                var sopt = $('select[name=existing_suspect]').find('option:contains(\'' + suspect_name + '\')');
+                sopt.prop('selected', 'selected');
+
+            }
+
+            var location_name = '{{$crime->location->location_name}}';
+            var lopt = $('select[name=location]').find('option:contains(\'' + location_name + '\')');
+            lopt.prop('selected', 'selected');
+
+            var officer_in_charge = '{{$crime->officer_in_charge}}';
+            var oopt = $('select[name=officer_in_charge]').find('option:contains(\'' + officer_in_charge + '\')');
+            oopt.prop('selected', 'selected');
+
+            var investigator = '{{$crime->investigator}}';
+            var iopt = $('select[name=investigator]').find('option:contains(\'' + investigator + '\')');
+            iopt.prop('selected', 'selected');
         });
     </script>
 @endsection
