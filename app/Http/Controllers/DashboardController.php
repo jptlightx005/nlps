@@ -34,17 +34,33 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function convicts()
+    public function convicts(Request $request)
     {
-        $crimes = CrimeCommitted::whereNotNull('convicted_date')
-                    ->with('suspects')
-                    ->orderBy('created_at', 'DESC')
-                    ->paginate(10);
-
-        // $suspects = Suspect::with('crimes')
-        //             ->where('crimes.convicted', '=', '1')
+        if($request->search){
+            $crimes = CrimeCommitted::where(function($query) use($request){
+                                $query->where('crime_type', 'LIKE', '%' . $request->search . '%')
+                                ->orWhereHas('suspects', function($query) use($request){
+                                    $query->where('first_name', 'LIKE', '%' . $request->search . '%')
+                                        ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
+                                });
+                            })
+                            ->whereNotNull('convicted_date')
+                            ->has('suspects')
+                            ->with('suspects')
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate(10);
+        }else{
+            $crimes = CrimeCommitted::whereNotNull('convicted_date')
+                        ->has('suspects')
+                        ->with('suspects')
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate(10);
+        }
+                    // $this->printArray($crimes);
+        // $suspects =->with('crimes')
         //             ->orderBy('created_at', 'DESC')
-        //             ->paginate(10);
+        //             ->paginate(10); Suspect::where('convicted', '=', '0')
+                    
         return view('galleries.suspects', compact('crimes'));
     }
 
@@ -53,13 +69,28 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function suspects()
+    public function suspects(Request $request)
     {
-        $crimes = CrimeCommitted::whereNull('convicted_date')
-                    ->has('suspects')
-                    ->with('suspects')
-                    ->orderBy('created_at', 'DESC')
-                    ->paginate(10);
+        if($request->search){
+            $crimes = CrimeCommitted::where(function($query) use($request){
+                                $query->where('crime_type', 'LIKE', '%' . $request->search . '%')
+                                ->orWhereHas('suspects', function($query) use($request){
+                                    $query->where('first_name', 'LIKE', '%' . $request->search . '%')
+                                        ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
+                                });
+                            })
+                            ->whereNull('convicted_date')
+                            ->has('suspects')
+                            ->with('suspects')
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate(10);
+        }else{
+            $crimes = CrimeCommitted::whereNull('convicted_date')
+                        ->has('suspects')
+                        ->with('suspects')
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate(10);
+        }
                     // $this->printArray($crimes);
         // $suspects =->with('crimes')
         //             ->orderBy('created_at', 'DESC')
