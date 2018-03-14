@@ -7,7 +7,7 @@
     </div>
     {!! Form::model($crime, ['action' => ['CrimeCommittedController@update', $crime->id], 'method' => 'POST']) !!}
     <div class="panel panel-default" id="crime-section">
-        <div class="panel-heading">Register Crime</div>
+        <div class="panel-heading">Edit Crime</div>
 
         <div class="panel-body">
         
@@ -21,12 +21,11 @@
                 {{Form::label('location', 'Location')}}
                 {{Form::select('location', \App\Location::pluck('location_name', 'area_id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
             </div>
-
             <div class="form-group">
                 {{Form::label('weapons_used', 'Weapons Used')}}
                 @foreach(\App\Equipment::all() as $equipment)
                 <div class="checkbox">
-                    <label><input type="checkbox" name="weapons_used[]" value="{{$equipment->id}}">{{$equipment->equipment_name}}</label>
+                    <label><input type="checkbox" name="weapons_used[]" value="{{$equipment->id}}" {{$crime->equipments->contains($equipment->id) ? "checked" : ""}}>{{$equipment->equipment_name}}</label>
                 </div>
                 @endforeach
             </div>
