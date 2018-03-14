@@ -11771,6 +11771,15 @@ __webpack_require__(15);
 __webpack_require__(41);
 window.Vue = __webpack_require__(42);
 
+$.urlParam = function (name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results) {
+        return results[1] || 0;
+    } else {
+        return "";
+    }
+};
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -63546,11 +63555,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		this.map = document.getElementsByClassName('new-lucena-map')[0];
 		this.map.querySelector("img").draggable = false;
 
-		// $('.brgy-area').on('click', function(e){
-		// 	console.log(e.target.id);
-		// });
+		var search = $.urlParam('search');
 		var $this = this;
-		axios.get('/brgy/').then(function (response) {
+		var url = '/brgy';
+		if (search != '') {
+			url += '?search=' + search;
+		}
+		axios.get(url).then(function (response) {
 			$this.locations = response.data;
 			$.each($this.locations, function (i, location) {
 				var lab = $('.map-brgys').find('label:contains(\'' + location.location_name + '\')');

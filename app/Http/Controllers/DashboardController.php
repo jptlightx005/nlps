@@ -73,14 +73,23 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function locations()
+    public function brgyList(Request $request)
     {
-        return \App\Location::all();
-        // return \App\Location::has('crimes')
-        //                     ->has('suspects')
-        //                     ->with('crimes')
-        //                     ->with('suspects')
-        //                     ->get();
+        if($request->search){
+            return Location::where('location_name', 'LIKE', '%' . $request->search . '%')
+                            ->orWhereHas('crimes', function($query) use($request){
+                                $query->where('crime_type', 'LIKE', '%' . $request->search . '%');
+                            })
+                            ->orWhereHas('crimes.suspects', function($query) use($request){
+                                $query->where('first_name', 'LIKE', '%' . $request->search . '%')
+                                    ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
+                            })
+                            ->with('crimes')
+                            ->with('crimes.suspects')
+                            ->get();
+        }else{
+            return Location::with('crimes')->get();    
+        }
     }
 
     /**

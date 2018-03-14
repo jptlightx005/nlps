@@ -9,6 +9,16 @@ require('./bootstrap');
 require('./waitingFor');
 window.Vue = require('vue');
 
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if(results){
+        return results[1] || 0;
+    }else{
+        return "";
+    }
+    
+}
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

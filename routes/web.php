@@ -41,7 +41,5 @@ Route::middleware('auth:web')->group(function(){
 
 	// Route::get('/brgy/dashboard', 'DashboardController@locations');
 	Route::get('/brgy/{area_id}', 'DashboardController@locationBrgy');
-	Route::get('/brgy/', function(){
-		return \App\Location::with('crimes')->get();
-	});
+	Route::get('/brgy/', 'DashboardController@brgyList');
 });

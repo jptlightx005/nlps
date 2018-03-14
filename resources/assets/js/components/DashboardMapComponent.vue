@@ -259,11 +259,14 @@ export default {
 		this.map = document.getElementsByClassName('new-lucena-map')[0];
 		this.map.querySelector("img").draggable = false;
 
-		// $('.brgy-area').on('click', function(e){
-		// 	console.log(e.target.id);
-		// });
+		
+		var search = $.urlParam('search');
 		var $this = this;
-		axios.get('/brgy/').then(response => {
+		var url = '/brgy';
+		if(search != ''){
+			url += '?search=' + search;
+		}
+		axios.get(url).then(response => {
 			$this.locations = response.data;
 			$.each($this.locations, function(i, location){
 				var lab = $('.map-brgys').find('label:contains(\'' + location.location_name + '\')')
