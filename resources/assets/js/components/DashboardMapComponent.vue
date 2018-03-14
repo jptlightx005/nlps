@@ -265,7 +265,6 @@ export default {
 		var $this = this;
 		axios.get('/brgy/').then(response => {
 			$this.locations = response.data;
-			console.log($this.locations);
 			$.each($this.locations, function(i, location){
 				var lab = $('.map-brgys').find('label:contains(\'' + location.location_name + '\')')
 				var mapbrgy = lab.closest('.map-brgy');
