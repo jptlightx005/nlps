@@ -180,7 +180,7 @@
     <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
     <script>
         var config = {prefix: '/res'}
-        $('#lfm').filemanager('image', config);
+        $('.lfm').filemanager('image', config);
 
         $('input[name=date_occured]').datepicker({
                                         maxDate: '0',
