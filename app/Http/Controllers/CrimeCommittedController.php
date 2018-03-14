@@ -219,4 +219,24 @@ class CrimeCommittedController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteBulk(Request $request)
+    {
+        $this->validate($request, [
+            'crimes' => 'required|array'
+        ]);
+        $crimes = CrimeCommitted::whereIn('id', $request->input('crimes'));
+        foreach($crimes as $crime){
+            $crime->detach();
+        }
+        $crimes->delete();
+        return redirect()->back()->with('success', 'Successfully removed records');
+
+    }
 }

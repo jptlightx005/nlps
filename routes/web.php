@@ -19,7 +19,8 @@ Auth::routes();
 Route::middleware('auth:web')->group(function(){
 	Route::get('/', 'DashboardController@index')->name('dashboard');
 	Route::resource('/crimecommitted', 'CrimeCommittedController');
-
+	Route::delete('/crimecommitted/bulk/delete', 'CrimeCommittedController@deleteBulk');
+	
 	Route::resource('/suspects', 'SuspectsController');
 	Route::put('/suspects/{id}/convict', 'SuspectsController@setAsConvict');
 	Route::delete('/suspects/bulk/delete', 'SuspectsController@deleteBulk');
