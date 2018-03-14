@@ -36,14 +36,12 @@ Route::middleware('auth:web')->group(function(){
 	Route::resource('/investigators', 'InvestigatorController');
 	Route::delete('/investigators', 'InvestigatorController@deleteBulk');
 
-	Route::resource('/location', 'LocationController');
 	Route::get('/convicts-gallery', 'DashboardController@convicts');
 	Route::get('/suspects-gallery', 'DashboardController@suspects');
 
 	// Route::get('/brgy/dashboard', 'DashboardController@locations');
 	Route::get('/brgy/{area_id}', 'DashboardController@locationBrgy');
-	Route::get('/brgy/details/{id}', 'DashboardController@locationDetails');
-	Route::get('/locations', function(){
+	Route::get('/brgy/', function(){
 		return \App\Location::with('crimes')->get();
 	});
 });

@@ -63533,9 +63533,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			mapName: this.name + "-map",
-			pins: [],
-			pin_height: 54,
-			pin_width: 35,
+			locations: [],
 			selectedLocation: {},
 			map: null,
 			infowindow: null,
@@ -63551,6 +63549,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		// $('.brgy-area').on('click', function(e){
 		// 	console.log(e.target.id);
 		// });
+		var $this = this;
+		axios.get('/brgy/').then(function (response) {
+			$this.locations = response.data;
+			console.log($this.locations);
+			$.each($this.locations, function (i, location) {
+				var lab = $('.map-brgys').find('label:contains(\'' + location.location_name + '\')');
+				var mapbrgy = lab.closest('.map-brgy');
+
+				if (location.crimes.length > 0) {
+					mapbrgy.removeClass('hidden');
+				}
+			});
+		});
 	},
 	created: function created() {},
 
@@ -63563,10 +63574,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return { x: lat, y: lng };
 		},
 		didClickArea: function didClickArea(e) {
-			console.log(e.target.id);
 			var $this = this;
-			axios.get('/brgy/' + e.target.id).then(function (response) {
-				console.log(response.data);
+			var area_id = $(e.target).data('id');
+			axios.get('/brgy/' + area_id).then(function (response) {
 				$this.selected = response.data;
 				$('#locationModal').modal();
 			});
@@ -63603,7 +63613,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-poblacion",
+              "data-id": "brgy-poblacion",
               alt: "Poblacion",
               title: "Poblacion",
               coords:
@@ -63616,7 +63626,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-dawis",
+              "data-id": "brgy-dawis",
               alt: "Dawis",
               title: "Dawis",
               coords:
@@ -63629,7 +63639,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-badiang",
+              "data-id": "brgy-badiang",
               alt: "Badiang",
               title: "Badiang",
               coords:
@@ -63642,7 +63652,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-balabag",
+              "data-id": "brgy-balabag",
               alt: "Balabag",
               title: "Balabag",
               coords:
@@ -63655,7 +63665,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-bilidan",
+              "data-id": "brgy-bilidan",
               alt: "Bilidan",
               title: "Bilidan",
               coords:
@@ -63668,7 +63678,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-bitaog-gaja",
+              "data-id": "brgy-bitaog-gaja",
               alt: "Bita-og Gaja",
               title: "Bita-og Gaja",
               coords: "461,676,422,708,534,854,679,846,700,788",
@@ -63680,7 +63690,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-bololacao",
+              "data-id": "brgy-bololacao",
               alt: "Bololacao",
               title: "Bololacao",
               coords:
@@ -63693,7 +63703,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-burot",
+              "data-id": "brgy-burot",
               alt: "Burot",
               title: "Burot",
               coords:
@@ -63706,7 +63716,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-cabilauan",
+              "data-id": "brgy-cabilauan",
               alt: "Cabilauan",
               title: "Cabilauan",
               coords:
@@ -63719,7 +63729,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-cabugao",
+              "data-id": "brgy-cabugao",
               alt: "Cabugao",
               title: "Cabugao",
               coords: "142,363,351,262,267,452,217,434,195,418,183,406,174,377",
@@ -63731,7 +63741,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-cagban",
+              "data-id": "brgy-cagban",
               alt: "Cagban",
               title: "Cagban",
               coords:
@@ -63744,7 +63754,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-calumbuyan",
+              "data-id": "brgy-calumbuyan",
               alt: "Calumbuyan",
               title: "Calumbuyan",
               coords:
@@ -63757,7 +63767,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-damires",
+              "data-id": "brgy-damires",
               alt: "Damires",
               title: "Damires",
               coords:
@@ -63770,7 +63780,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-general-delgado",
+              "data-id": "brgy-general-delgado",
               alt: "General Delgado",
               title: "General Delgado",
               coords:
@@ -63783,7 +63793,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-guinobatan",
+              "data-id": "brgy-guinobatan",
               alt: "Guinobatan",
               title: "Guinobatan",
               coords:
@@ -63796,7 +63806,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-janipaan-oeste",
+              "data-id": "brgy-janipaan-oeste",
               alt: "Janipa-an Oeste",
               title: "Janipa-an Oeste",
               coords:
@@ -63809,7 +63819,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-jelicuon-este",
+              "data-id": "brgy-jelicuon-este",
               alt: "Jelicuon Este",
               title: "Jelicuon Este",
               coords:
@@ -63822,7 +63832,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-jelicuon-oeste",
+              "data-id": "brgy-jelicuon-oeste",
               alt: "Jelicuon Oeste",
               title: "Jelicuon Oeste",
               coords:
@@ -63835,7 +63845,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-pasil",
+              "data-id": "brgy-pasil",
               alt: "Pasil",
               title: "Pasil",
               coords:
@@ -63848,7 +63858,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-wariwari",
+              "data-id": "brgy-wariwari",
               alt: "Wari-wari",
               title: "Wari-wari",
               coords:
@@ -63861,7 +63871,7 @@ var render = function() {
           _c("area", {
             staticClass: "brgy-area",
             attrs: {
-              id: "brgy-baclayan",
+              "data-id": "brgy-baclayan",
               alt: "Baclayan",
               title: "Baclayan",
               coords: "499,382,581,570,592,554,624,570,741,519,729,431",
@@ -63939,7 +63949,7 @@ var render = function() {
                                 "a",
                                 {
                                   attrs: {
-                                    href: "/suspects/" + suspect.id + "/edit"
+                                    href: "/suspects/" + suspect.id + "/"
                                   }
                                 },
                                 [
@@ -64008,7 +64018,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "162px", left: "731px" }
         },
         [
@@ -64025,7 +64035,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "319px", left: "496px" }
         },
         [
@@ -64042,7 +64052,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "376px", left: "493px" }
         },
         [
@@ -64059,7 +64069,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "75px", left: "580px" }
         },
         [
@@ -64076,7 +64086,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "149px", left: "429px" }
         },
         [
@@ -64093,7 +64103,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "496px", left: "263px" }
         },
         [
@@ -64110,7 +64120,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "448px", left: "160px" }
         },
         [
@@ -64126,7 +64136,10 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "map-brgy", staticStyle: { top: "315px", left: "8px" } },
+        {
+          staticClass: "map-brgy hidden",
+          staticStyle: { top: "315px", left: "8px" }
+        },
         [
           _c("img", {
             attrs: { src: "/res/photos/map-assets/brgy/cagban.png" }
@@ -64141,7 +64154,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "507px", left: "801px" }
         },
         [
@@ -64160,7 +64173,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "517px", left: "617px" }
         },
         [
@@ -64177,7 +64190,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "500px", left: "739px" }
         },
         [
@@ -64196,7 +64209,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "652px", left: "354px" }
         },
         [
@@ -64213,7 +64226,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "555px", left: "456px" }
         },
         [
@@ -64230,7 +64243,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "132px", left: "430px" }
         },
         [
@@ -64247,7 +64260,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "20px", left: "197px" }
         },
         [
@@ -64264,7 +64277,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "755px", left: "699px" }
         },
         [
@@ -64282,7 +64295,10 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "map-brgy", staticStyle: { top: "83px", left: "85px" } },
+        {
+          staticClass: "map-brgy hidden",
+          staticStyle: { top: "83px", left: "85px" }
+        },
         [
           _c("img", {
             attrs: { src: "/res/photos/map-assets/brgy/jelicuon+oeste.png" }
@@ -64297,7 +64313,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "789px", left: "676px" }
         },
         [
@@ -64314,7 +64330,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "260px", left: "263px" }
         },
         [
@@ -64331,7 +64347,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "260px", left: "141px" }
         },
         [
@@ -64348,7 +64364,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "map-brgy",
+          staticClass: "map-brgy hidden",
           staticStyle: { top: "254px", left: "60px" }
         },
         [
