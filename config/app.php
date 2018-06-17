@@ -170,7 +170,7 @@ return [
         Cornford\Googlmapper\MapperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
-        
+        PrettyRoutes\ServiceProvider::class,
         /*
          * Application Service Providers...
          */

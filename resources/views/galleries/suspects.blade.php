@@ -7,6 +7,14 @@
     </div>
 @endif
 <div class="gallery-wrapper">
+	<form class="input-group stylish-input-group">
+	    <input type="text" class="form-control" name="search" value="{{Request::get('search')}}" required>
+	    <span class="input-group-addon">
+	        <button type="submit">
+	            <span class="glyphicon glyphicon-search"></span>
+	        </button>  
+	    </span>
+	</form>
 	<div class="cards-container" id="dashboard-wrapper">
 	    @foreach($crimes as $crime)
 			@if(count($crime->suspects))

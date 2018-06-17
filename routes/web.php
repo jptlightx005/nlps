@@ -19,7 +19,8 @@ Auth::routes();
 Route::middleware('auth:web')->group(function(){
 	Route::get('/', 'DashboardController@index')->name('dashboard');
 	Route::resource('/crimecommitted', 'CrimeCommittedController');
-
+	Route::delete('/crimecommitted/bulk/delete', 'CrimeCommittedController@deleteBulk');
+	
 	Route::resource('/suspects', 'SuspectsController');
 	Route::put('/suspects/{id}/convict', 'SuspectsController@setAsConvict');
 	Route::delete('/suspects/bulk/delete', 'SuspectsController@deleteBulk');
@@ -27,20 +28,19 @@ Route::middleware('auth:web')->group(function(){
 	Route::resource('/crimetype', 'CrimeTypesController');
 	Route::delete('/crimetype/bulk/delete', 'CrimeTypesController@deleteBulk');
 
+	Route::resource('/equipments', 'EquipmentController');
+	Route::delete('/equipments/bulk/delete', 'EquipmentController@deleteBulk');
+
 	Route::resource('/officers', 'OfficerController');
 	Route::delete('/officers', 'OfficerController@deleteBulk');
 	
 	Route::resource('/investigators', 'InvestigatorController');
 	Route::delete('/investigators', 'InvestigatorController@deleteBulk');
 
-	Route::resource('/location', 'LocationController');
 	Route::get('/convicts-gallery', 'DashboardController@convicts');
 	Route::get('/suspects-gallery', 'DashboardController@suspects');
 
 	// Route::get('/brgy/dashboard', 'DashboardController@locations');
 	Route::get('/brgy/{area_id}', 'DashboardController@locationBrgy');
-	Route::get('/brgy/details/{id}', 'DashboardController@locationDetails');
-	Route::get('/locations', function(){
-		return \App\Location::with('crimes')->get();
-	});
+	Route::get('/brgy/', 'DashboardController@brgyList');
 });

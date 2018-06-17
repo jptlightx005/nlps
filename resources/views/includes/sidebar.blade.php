@@ -15,6 +15,9 @@
         <li {{Request::segment(1) == "crimetype" ? "class=active" : ""}}>
             <a href="{{ route('crimetype.index') }}">Crime Types</a>
         </li>
+        <li {{Request::segment(1) == "equipments" ? "class=active" : ""}}>
+            <a href="{{ route('equipments.index') }}">Equipments</a>
+        </li>
         <li {{Request::segment(1) == "officers" ? "class=active" : ""}}>
             <a href="{{ route('officers.index') }}">Officers</a>
         </li>

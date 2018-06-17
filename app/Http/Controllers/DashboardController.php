@@ -34,17 +34,33 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function convicts()
+    public function convicts(Request $request)
     {
-        $crimes = CrimeCommitted::whereNotNull('convicted_date')
-                    ->with('suspects')
-                    ->orderBy('created_at', 'DESC')
-                    ->paginate(10);
-
-        // $suspects = Suspect::with('crimes')
-        //             ->where('crimes.convicted', '=', '1')
+        if($request->search){
+            $crimes = CrimeCommitted::where(function($query) use($request){
+                                $query->where('crime_type', 'LIKE', '%' . $request->search . '%')
+                                ->orWhereHas('suspects', function($query) use($request){
+                                    $query->where('first_name', 'LIKE', '%' . $request->search . '%')
+                                        ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
+                                });
+                            })
+                            ->whereNotNull('convicted_date')
+                            ->has('suspects')
+                            ->with('suspects')
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate(10);
+        }else{
+            $crimes = CrimeCommitted::whereNotNull('convicted_date')
+                        ->has('suspects')
+                        ->with('suspects')
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate(10);
+        }
+                    // $this->printArray($crimes);
+        // $suspects =->with('crimes')
         //             ->orderBy('created_at', 'DESC')
-        //             ->paginate(10);
+        //             ->paginate(10); Suspect::where('convicted', '=', '0')
+                    
         return view('galleries.suspects', compact('crimes'));
     }
 
@@ -53,12 +69,28 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function suspects()
+    public function suspects(Request $request)
     {
-        $crimes = CrimeCommitted::whereNull('convicted_date')
-                    ->with('suspects')
-                    ->orderBy('created_at', 'DESC')
-                    ->paginate(10);
+        if($request->search){
+            $crimes = CrimeCommitted::where(function($query) use($request){
+                                $query->where('crime_type', 'LIKE', '%' . $request->search . '%')
+                                ->orWhereHas('suspects', function($query) use($request){
+                                    $query->where('first_name', 'LIKE', '%' . $request->search . '%')
+                                        ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
+                                });
+                            })
+                            ->whereNull('convicted_date')
+                            ->has('suspects')
+                            ->with('suspects')
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate(10);
+        }else{
+            $crimes = CrimeCommitted::whereNull('convicted_date')
+                        ->has('suspects')
+                        ->with('suspects')
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate(10);
+        }
                     // $this->printArray($crimes);
         // $suspects =->with('crimes')
         //             ->orderBy('created_at', 'DESC')
@@ -72,14 +104,23 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function locations()
+    public function brgyList(Request $request)
     {
-        return \App\Location::all();
-        // return \App\Location::has('crimes')
-        //                     ->has('suspects')
-        //                     ->with('crimes')
-        //                     ->with('suspects')
-        //                     ->get();
+        if($request->search){
+            return Location::where('location_name', 'LIKE', '%' . $request->search . '%')
+                            ->orWhereHas('crimes', function($query) use($request){
+                                $query->where('crime_type', 'LIKE', '%' . $request->search . '%');
+                            })
+                            ->orWhereHas('crimes.suspects', function($query) use($request){
+                                $query->where('first_name', 'LIKE', '%' . $request->search . '%')
+                                    ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
+                            })
+                            ->with('crimes')
+                            ->with('crimes.suspects')
+                            ->get();
+        }else{
+            return Location::with('crimes')->get();    
+        }
     }
 
     /**
@@ -97,26 +138,5 @@ class DashboardController extends Controller
         $loc_assoc = $location->toArray();
         $loc_assoc['suspects'] =  $location->suspects();
         return $loc_assoc;
-    }
-
-    public function locationDetails($id){
-        $loc = Location::find($id);
-
-        $locname = $loc->location_name;
-        $freq = $loc->freq();
-
-        $top_crimes = $loc->crimes->toArray();
-
-        // $remarks = "";
-
-        // if($freq < 1){
-        //     $remarks = "Too safe";
-        // }else if($freq == 1){
-        //     $remarks = "Normal";
-        // }else if($freq > 1){
-        //     $remarks = "Needs cleaning";
-        // }
-
-        return compact('id', 'locname', 'freq', 'top_crimes', 'remarks');
     }
 }
