@@ -17,6 +17,7 @@
 	</form>
 	<div class="cards-container" id="dashboard-wrapper">
 	    @foreach($crimes as $crime)
+			@if(count($crime->suspects))
 	    	<div class="crime-section">
 	    		<h2 class="section-label">{{$crime->crime_type}}</h2>
 	    		@foreach($crime->suspects as $suspect)
@@ -40,6 +41,7 @@
 				    </div>
 	    		@endforeach
 	    	</div>
+	    	@endif
 	    @endforeach
 	</div>
 	<div class="row">
