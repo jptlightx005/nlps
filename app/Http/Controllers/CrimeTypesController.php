@@ -42,6 +42,7 @@ class CrimeTypesController extends Controller
 
         $crime_type = CrimeType::create(['crime_type' => $request->input('crime_type'),
                                         'description' => $request->input('description')]);
+        $crime_type->classification = $request->classification;
 
         return redirect('/crimetype')->with('success', 'Crime Type has been added.');
     }
@@ -85,6 +86,7 @@ class CrimeTypesController extends Controller
         $crime_type = CrimeType::findOrFail($id);
         $crime_type->crime_type = $request->input('crime_type');
         $crime_type->description = $request->input('description');
+        $crime_type->classification = $request->classification;
 
         $crime_type->save();
         return redirect('/crimetype')->with('success', 'Crime Type has been updated.');
