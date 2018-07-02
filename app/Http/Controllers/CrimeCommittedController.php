@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\CrimeCommitted;
+use App\CrimeType;
 use App\Investigator;
 use App\Officer;
 use App\Suspect;
@@ -153,13 +154,15 @@ class CrimeCommittedController extends Controller
         
         $date_occured = $request->date_occured . " " . $request->time_occured;
         $crimecommitted = CrimeCommitted::findOrFail($id);
-        $crimecommitted->crime_type = $request->crime_type;
+        $crimecommitted->crime_type = CrimeType::findOrFail($request->crime_type)->crime_type;
+        \Log::debug(CrimeType::findOrFail($request->crime_type));
+        $crimecommitted->crime_type_id = $request->crime_type;
         $crimecommitted->location_area_id = $request->location;
         $crimecommitted->date_occured = Carbon::parse($date_occured);
         $crimecommitted->description = $request->description;
 
-        $crimecommitted->officer_in_charge = Helper::returnBlankIfNull(optional(Officer::find($request->officer_in_charge))->full_name);
-        $crimecommitted->investigator = Helper::returnBlankIfNull(optional(Investigator::find($request->investigator))->full_name);
+        $crimecommitted->officer_in_charge = $request->officer_in_charge;
+        $crimecommitted->investigator = $request->investigator;
 
         $crimecommitted->save();
 

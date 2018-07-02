@@ -31,9 +31,12 @@ class CrimeCommitted extends Model
     protected $table = 'crime_committed';
 
     public function location(){
-    	return $this->belongsTo('\App\Location', 'location_area_id', 'area_id');
+    	return $this->belongsTo('\App\Location', 'location_area_id');
     }
 
+    public function crimeType(){
+        return $this->belongsTo('\App\CrimeType');
+    }
     public function suspects(){
         return $this->belongsToMany('\App\Suspect');
     }
@@ -42,9 +45,22 @@ class CrimeCommitted extends Model
         return $this->belongsToMany('\App\Equipment');
     }
 
+    public function officer(){
+        return $this->belongsTo('\App\Officer', 'officer_in_charge');
+    }
+
+    public function investigator(){
+        return $this->belongsTo('\App\Investigator', 'investigator');
+    }
+
     public function suspectsList($separator = ", "){
         if(count($this->suspects) > 0){
-            return implode($separator, $this->suspects->pluck('full_name')->toArray());
+            $suspects = array();
+            foreach($this->suspects as $suspect){
+                $suspects[] = "<a href='" . route('suspects.show', $suspect->id) . "'>" . $suspect->full_name . "</a>";
+            }
+            return implode($separator,$suspects);
+            // return implode($separator, $this->suspects->pluck('full_name')->toArray());
         }else{
             return "N/A";
         }

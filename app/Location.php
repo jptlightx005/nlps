@@ -20,7 +20,7 @@ class Location extends Model
     ];
 
     public function crimes(){
-    	return $this->hasMany('App\CrimeCommitted', 'location_area_id', 'area_id');
+    	return $this->hasMany('App\CrimeCommitted', 'location_area_id');
     }
 
     public function freq(){

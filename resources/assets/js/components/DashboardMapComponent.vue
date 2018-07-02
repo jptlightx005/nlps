@@ -197,9 +197,9 @@
 			            	<div class="row">
 			            		<div class="col-md-6 crimes-section">
 				            		<label>Crimes committed</label>
-					                <ol id="crimes-list" class="pre-scrollable" v-if="selected.crimes.length > 0">
+					                <ul id="crimes-list" class="pre-scrollable" v-if="selected.crimes.length > 0">
 					                	<li v-for="crime in selected.crimes">{{crime.crime_type}}</li>
-					                </ol>
+					                </ul>
 					                <div v-else>
 					                	<p>No crimes occured in this place.</p>
 					                </div>

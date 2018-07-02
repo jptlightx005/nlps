@@ -23,10 +23,18 @@
                         <h2 class="profile-row"><b>Age: </b>{{$suspect->age}}</h2>
                     </div>
                     <div class="profile-row center">
-                        <img class="inline-flex" onerror="imgError(this)" src="{{$suspect->whole_body}}">
+                        @if($suspect->whole_body)
+                            <img class="inline-flex" onerror="imgError(this)" src="{{$suspect->whole_body}}">
+                        @endif
+                        @if($suspect->front)
                         <img class="inline-flex" onerror="imgError(this)" src="{{$suspect->front}}">
+                        @endif
+                        @if($suspect->left_face)
                         <img class="inline-flex" onerror="imgError(this)" src="{{$suspect->left_face}}">
+                        @endif
+                        @if($suspect->right_face)
                         <img class="inline-flex" onerror="imgError(this)" src="{{$suspect->right_face}}">
+                        @endif
                     </div>
                 </div>
             </div>

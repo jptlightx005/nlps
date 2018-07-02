@@ -14,12 +14,12 @@
 
             <div class="form-group">
                 {{Form::label('crime_type', 'Crime Type')}}
-                {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'crime_type')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
+                {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'id')->all(), $crime->crime_type_id, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
             </div>
 
             <div class="form-group">
                 {{Form::label('location', 'Location')}}
-                {{Form::select('location', \App\Location::pluck('location_name', 'area_id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
+                {{Form::select('location', \App\Location::pluck('location_name', 'id'), $crime->location_area_id, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('weapons_used', 'Weapons Used')}}
@@ -260,17 +260,17 @@
 
             }
 
-            var location_name = '{{$crime->location->location_name}}';
-            var lopt = $('select[name=location]').find('option:contains(\'' + location_name + '\')');
-            lopt.prop('selected', 'selected');
+            // var location_name = '{{$crime->location->location_name}}';
+            // var lopt = $('select[name=location]').find('option:contains(\'' + location_name + '\')');
+            // lopt.prop('selected', 'selected');
 
-            var officer_in_charge = '{{$crime->officer_in_charge}}';
-            var oopt = $('select[name=officer_in_charge]').find('option:contains(\'' + officer_in_charge + '\')');
-            oopt.prop('selected', 'selected');
+            // var officer_in_charge = '{{$crime->officer_in_charge}}';
+            // var oopt = $('select[name=officer_in_charge]').find('option:contains(\'' + officer_in_charge + '\')');
+            // oopt.prop('selected', 'selected');
 
-            var investigator = '{{$crime->investigator}}';
-            var iopt = $('select[name=investigator]').find('option:contains(\'' + investigator + '\')');
-            iopt.prop('selected', 'selected');
+            // var investigator = '{{$crime->investigator}}';
+            // var iopt = $('select[name=investigator]').find('option:contains(\'' + investigator + '\')');
+            // iopt.prop('selected', 'selected');
         });
     </script>
 @endsection
