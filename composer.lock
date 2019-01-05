@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "78fd72c89bbefd343f6daf742f3fc735",
@@ -646,16 +646,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.25",
+            "version": "v5.5.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "0a5b6112f325c56ae5a6679c08a0a10723153fe0"
+                "reference": "b0e15382ecf51a082ef8b2ae0d26f62972f6c3ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/0a5b6112f325c56ae5a6679c08a0a10723153fe0",
-                "reference": "0a5b6112f325c56ae5a6679c08a0a10723153fe0",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b0e15382ecf51a082ef8b2ae0d26f62972f6c3ce",
+                "reference": "b0e15382ecf51a082ef8b2ae0d26f62972f6c3ce",
                 "shasum": ""
             },
             "require": {
@@ -712,7 +712,7 @@
                 "illuminate/translation": "self.version",
                 "illuminate/validation": "self.version",
                 "illuminate/view": "self.version",
-                "tightenco/collect": "self.version"
+                "tightenco/collect": "<5.5.33"
             },
             "require-dev": {
                 "aws/aws-sdk-php": "~3.0",
@@ -776,7 +776,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-12-11T14:59:28+00:00"
+            "time": "2018-02-22T19:56:29+00:00"
         },
         {
             "name": "laravel/tinker",
