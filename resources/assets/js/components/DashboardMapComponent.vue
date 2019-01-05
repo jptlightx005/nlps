@@ -197,9 +197,9 @@
 			            	<div class="row">
 			            		<div class="col-md-6 crimes-section">
 				            		<label>Crimes committed</label>
-					                <ol id="crimes-list" class="pre-scrollable" v-if="selected.crimes.length > 0">
+					                <ul id="crimes-list" class="pre-scrollable" v-if="selected.crimes.length > 0">
 					                	<li v-for="crime in selected.crimes">{{crime.crime_type}}</li>
-					                </ol>
+					                </ul>
 					                <div v-else>
 					                	<p>No crimes occured in this place.</p>
 					                </div>
@@ -229,7 +229,7 @@
 			            </div>
 			        </div>
 			        <div class="modal-footer">
-			            <a href="link/to/details" id="more_details" class="btn btn-primary">Details</a>
+			            <a :href="'/locations/' + selected.id" id="more_details" class="btn btn-primary">Details</a>
 			            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			        </div>
 			    </div>

@@ -18,6 +18,7 @@
                         <th></th>
                         <th>Crime Type</th>
                         <th>Description</th>
+                        <th>Classification</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                                 <td><input type="checkbox" class="record-checked" name="crimes[]" value="{{$crime->id}}" />
                                 <td><a href="{{route('crimetype.edit', $crime->id)}}">{!! $crime->crime_type !!}</a></td>
                                 <td>{{$crime->description}}</td>
+                                <td>{{$crime->class()}}</td>
                             </tr>
                         @endforeach
                     @else

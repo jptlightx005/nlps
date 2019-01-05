@@ -37,6 +37,10 @@ Route::middleware('auth:web')->group(function(){
 	Route::resource('/investigators', 'InvestigatorController');
 	Route::delete('/investigators', 'InvestigatorController@deleteBulk');
 
+	Route::resource('/locations', 'LocationController');
+	Route::resource('/victims', 'VictimController');
+	Route::resource('/witnesses', 'WitnessController');
+
 	Route::get('/convicts-gallery', 'DashboardController@convicts');
 	Route::get('/suspects-gallery', 'DashboardController@suspects');
 

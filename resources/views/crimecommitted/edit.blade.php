@@ -14,12 +14,12 @@
 
             <div class="form-group">
                 {{Form::label('crime_type', 'Crime Type')}}
-                {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'crime_type')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
+                {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'id')->all(), $crime->crime_type_id, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
             </div>
 
             <div class="form-group">
                 {{Form::label('location', 'Location')}}
-                {{Form::select('location', \App\Location::pluck('location_name', 'area_id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
+                {{Form::select('location', \App\Location::pluck('location_name', 'id'), $crime->location_area_id, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('weapons_used', 'Weapons Used')}}
@@ -73,6 +73,28 @@
                     </p>
                     <p>
                         <input type="radio" class="exist-radio" name="suspect_exist" value="no"> No</input>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="crime-victims col-md-6">
+                    {{Form::label('has_victims', 'Does the crime have victims?')}}
+                    <p>
+                        <input type="radio" name="has_victims" value="yes" {{count($crime->victims) ? "checked" : ""}}> Yes</input>
+                    </p>
+                    <p>
+                        <input type="radio" name="has_victims" value="no" {{!count($crime->victims) ? "checked" : ""}}> No</input>
+                    </p>
+                </div>
+                <div class="crime-witnesses col-md-6">
+                    &nbsp;
+                    {{Form::label('has_witnesses', 'Does the crime have witnesses?')}}
+                    <p>
+                        <input type="radio" name="has_witnesses" value="yes" {{count($crime->witnesses) ? "checked" : ""}}> Yes</input>
+                    </p>
+                    <p>
+                        <input type="radio" name="has_witnesses" value="no" {{!count($crime->witnesses) ? "checked" : ""}}> No</input>
                     </p>
                 </div>
             </div>
@@ -171,6 +193,17 @@
     </div>
     {{Form::hidden('_method', 'PUT')}}
     {!! Form::close() !!}
+
+    <div class="panel panel-default" id="crime-section">
+        <div class="panel-heading">Victims</div>
+
+        <div class="panel-body">
+            <div class="col-md-6">
+                {{Form::open(['class' => '', 'action' => ['VictimController@store', $crime->id]])}}
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
 </div>
 @endsection
 
@@ -260,17 +293,17 @@
 
             }
 
-            var location_name = '{{$crime->location->location_name}}';
-            var lopt = $('select[name=location]').find('option:contains(\'' + location_name + '\')');
-            lopt.prop('selected', 'selected');
+            // var location_name = '{{$crime->location->location_name}}';
+            // var lopt = $('select[name=location]').find('option:contains(\'' + location_name + '\')');
+            // lopt.prop('selected', 'selected');
 
-            var officer_in_charge = '{{$crime->officer_in_charge}}';
-            var oopt = $('select[name=officer_in_charge]').find('option:contains(\'' + officer_in_charge + '\')');
-            oopt.prop('selected', 'selected');
+            // var officer_in_charge = '{{$crime->officer_in_charge}}';
+            // var oopt = $('select[name=officer_in_charge]').find('option:contains(\'' + officer_in_charge + '\')');
+            // oopt.prop('selected', 'selected');
 
-            var investigator = '{{$crime->investigator}}';
-            var iopt = $('select[name=investigator]').find('option:contains(\'' + investigator + '\')');
-            iopt.prop('selected', 'selected');
+            // var investigator = '{{$crime->investigator}}';
+            // var iopt = $('select[name=investigator]').find('option:contains(\'' + investigator + '\')');
+            // iopt.prop('selected', 'selected');
         });
     </script>
 @endsection
