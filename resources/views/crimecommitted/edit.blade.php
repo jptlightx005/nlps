@@ -77,6 +77,28 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <div class="crime-victims col-md-6">
+                    {{Form::label('has_victims', 'Does the crime have victims?')}}
+                    <p>
+                        <input type="radio" name="has_victims" value="yes" {{count($crime->victims) ? "checked" : ""}}> Yes</input>
+                    </p>
+                    <p>
+                        <input type="radio" name="has_victims" value="no" {{!count($crime->victims) ? "checked" : ""}}> No</input>
+                    </p>
+                </div>
+                <div class="crime-witnesses col-md-6">
+                    &nbsp;
+                    {{Form::label('has_witnesses', 'Does the crime have witnesses?')}}
+                    <p>
+                        <input type="radio" name="has_witnesses" value="yes" {{count($crime->witnesses) ? "checked" : ""}}> Yes</input>
+                    </p>
+                    <p>
+                        <input type="radio" name="has_witnesses" value="no" {{!count($crime->witnesses) ? "checked" : ""}}> No</input>
+                    </p>
+                </div>
+            </div>
+
             <div class="form-group submit-group">
                 {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
             </div>
@@ -171,6 +193,17 @@
     </div>
     {{Form::hidden('_method', 'PUT')}}
     {!! Form::close() !!}
+
+    <div class="panel panel-default" id="crime-section">
+        <div class="panel-heading">Victims</div>
+
+        <div class="panel-body">
+            <div class="col-md-6">
+                {{Form::open(['class' => '', 'action' => ['VictimController@store', $crime->id]])}}
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
 </div>
 @endsection
 

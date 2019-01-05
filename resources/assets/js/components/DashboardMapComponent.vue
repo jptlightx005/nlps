@@ -229,7 +229,7 @@
 			            </div>
 			        </div>
 			        <div class="modal-footer">
-			            <a href="link/to/details" id="more_details" class="btn btn-primary">Details</a>
+			            <a :href="'/locations/' + selected.id" id="more_details" class="btn btn-primary">Details</a>
 			            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			        </div>
 			    </div>

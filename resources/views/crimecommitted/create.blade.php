@@ -14,12 +14,12 @@
 
             <div class="form-group">
                 {{Form::label('crime_type', 'Crime Type')}}
-                {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'crime_type')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
+                {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'id')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
             </div>
 
             <div class="form-group">
                 {{Form::label('location', 'Location')}}
-                {{Form::select('location', \App\Location::pluck('location_name', 'area_id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
+                {{Form::select('location', \App\Location::pluck('location_name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
             </div>
 
             <div class="form-group">

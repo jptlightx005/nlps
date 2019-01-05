@@ -25,7 +25,7 @@ class Location extends Model
 
     public function freq(){
     	$year = date("Y");
-    	$crimes = CrimeCommitted::where('location_id', '=', $this->id)
+    	$crimes = CrimeCommitted::where('location_area_id', '=', $this->id)
     							->where('created_at', '>=', $year . '-01-01')
                                 ->where('created_at', '<=', $year . '-12-31')
                                 ->count();

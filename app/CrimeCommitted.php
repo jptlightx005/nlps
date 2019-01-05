@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 class CrimeCommitted extends Model
 {
+    public $crime_type;
     protected $appends = ['title'];
 
     protected $fillable = [
@@ -53,6 +54,14 @@ class CrimeCommitted extends Model
         return $this->belongsTo('\App\Investigator', 'investigator');
     }
 
+    public function victims(){
+        return $this->hasMany('\App\Victim');
+    }
+
+    public function witnesses(){
+        return $this->hasMany('\App\Witness');
+    }
+    
     public function suspectsList($separator = ", "){
         if(count($this->suspects) > 0){
             $suspects = array();

@@ -55,12 +55,13 @@ class CrimeCommittedController extends Controller
         
         $date_occured = $request->date_occured . " " . $request->time_occured;
         // $this->printArray($request->all());
-        $crimecommitted = CrimeCommitted::create(['crime_type' => $request->crime_type,
-                                                    'location_area_id' => $request->location,
-                                                    'date_occured' => Carbon::parse($date_occured),
-                                                    'description' => $request->description,
-                                                    ]);
-
+        return $request->all();
+        $crimecommitted = new CrimeCommitted;
+        $crimecommitted->crime_type = $request->crime_type;
+        $crimecommitted->location_area_id = $request->location;
+        $crimecommitted->crime_type_id = $request->location;
+        $crimecommitted->date_occured = $request->date_occured;
+        $crimecommitted->description = $request->description;
         $crimecommitted->officer_in_charge = Helper::returnBlankIfNull(optional(Officer::find($request->officer_in_charge))->full_name);
         $crimecommitted->investigator = Helper::returnBlankIfNull(optional(Investigator::find($request->investigator))->full_name);
 
