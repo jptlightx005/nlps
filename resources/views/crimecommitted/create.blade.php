@@ -7,14 +7,14 @@
     </div>
     {!! Form::open(['action' => 'CrimeCommittedController@store', 'method' => 'POST']) !!}
     <div class="panel panel-default" id="crime-section">
-        <div class="panel-heading">Register Crime</div>
+        <div class="panel-heading">Register Case</div>
 
         <div class="panel-body">
         
 
             <div class="form-group">
-                {{Form::label('crime_type', 'Crime Type')}}
-                {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'id')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
+                {{Form::label('crime_type', 'Crime')}}
+                {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'id')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime', 'required'])}}
             </div>
 
             <div class="form-group">
@@ -58,7 +58,7 @@
 
             <div class="form-group">
                 <div class="crime-lead col-md-12">
-                    {{Form::label('has_suspect', 'Does the crime have a lead?')}}
+                    {{Form::label('has_suspect', 'Does the case have a lead?')}}
                     <p>
                         <input type="radio" name="has_suspect" value="yes"> Yes</input>
                     </p>

@@ -14,8 +14,11 @@ class CrimeType extends Model
     public function class()
     {
     	$class = $this->classification;
-    	$classifications = config('crime_classifications');
-    	return $classifications;
-    	return $classifications[$class];
+    	$classifications = config('nlps.crime_classifications');
+        if($class == "minor" || $class == "major") {
+            return $classifications[$class];
+        }else{
+            return "";
+        }
     }
 }

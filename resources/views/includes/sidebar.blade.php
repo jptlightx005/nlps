@@ -7,13 +7,13 @@
     <ul class="list-unstyled components">
         <p>Records</p>
         <li {{Request::segment(1) == "crimecommitted" ? "class=active" : ""}}>
-            <a href="{{ route('crimecommitted.index') }}">Crime Committed</a>
+            <a href="{{ route('crimecommitted.index') }}">Cases</a>
         </li>
         <li {{Request::segment(1) == "suspects" ? "class=active" : ""}}>
             <a href="{{ route('suspects.index') }}">Suspects</a>
         </li>
         <li {{Request::segment(1) == "crimetype" ? "class=active" : ""}}>
-            <a href="{{ route('crimetype.index') }}">Crime Types</a>
+            <a href="{{ route('crimetype.index') }}">Crimes</a>
         </li>
         <li {{Request::segment(1) == "equipments" ? "class=active" : ""}}>
             <a href="{{ route('equipments.index') }}">Equipments</a>

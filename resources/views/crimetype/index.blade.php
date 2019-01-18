@@ -3,11 +3,11 @@
 @section('content')
 <div class="table-wrapper" id="crimes-index">
     <div class="btn-group">
-        <a href="{{route('crimetype.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> New Crime Type</a>
-        <button type="button" class="btn btn-danger delete-button" disabled><span class="glyphicon glyphicon-remove"></span> Remove Crime Type(s)</button>
+        <a href="{{route('crimetype.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> New Crime</a>
+        <button type="button" class="btn btn-danger delete-button" disabled><span class="glyphicon glyphicon-remove"></span> Remove Crime(s)</button>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">Crime Types</div>
+        <div class="panel-heading">Crimes</div>
 
         <div class="panel-body">
             {{Form::open(['action' => 'CrimeTypesController@deleteBulk',
@@ -16,7 +16,7 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Crime Type</th>
+                        <th>Crime</th>
                         <th>Description</th>
                         <th>Classification</th>
                     </tr>
