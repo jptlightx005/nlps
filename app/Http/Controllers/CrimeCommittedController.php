@@ -55,18 +55,20 @@ class CrimeCommittedController extends Controller
         
         $date_occured = $request->date_occured . " " . $request->time_occured;
         // $this->printArray($request->all());
-        return $request->all();
+        // return $date_occured;
+        // return $request->all();
         $crimecommitted = new CrimeCommitted;
-        $crimecommitted->crime_type = $request->crime_type;
+        $crimetype = CrimeType::findOrFail($request->crime_type);
         $crimecommitted->location_area_id = $request->location;
-        $crimecommitted->crime_type_id = $request->location;
-        $crimecommitted->date_occured = $request->date_occured;
+        $crimecommitted->crime_type = $crimetype->crime_type;
+        $crimecommitted->crime_type_id = $crimetype->id;
+
+        $crimecommitted->date_occured = Carbon::createFromFormat('m/d/Y g:i A', $date_occured);
         $crimecommitted->description = $request->description;
         $crimecommitted->officer_in_charge = Helper::returnBlankIfNull(optional(Officer::find($request->officer_in_charge))->full_name);
         $crimecommitted->investigator = Helper::returnBlankIfNull(optional(Investigator::find($request->investigator))->full_name);
 
         $crimecommitted->save();
-
         if($request->input('weapons_used')){
             $crimecommitted->equipments()->attach($request->weapons_used);
         }
