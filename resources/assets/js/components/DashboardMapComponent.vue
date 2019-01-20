@@ -5,149 +5,149 @@
 				<img src="/res/photos/map-assets/new-lucena-map.jpg" id="lucena-map" usemap="#image-map"/>
 				<div class="map-brgys">
 					<div class="map-brgy hidden"
-						style="top:162px; left:731px;">
-						<img src="/res/photos/map-assets/brgy/dawis.png"/>
-						<label style="top: 34%; left: 38%;">
+						style="top:232px; left:801px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 34%; left: 0%;">
 							    Dawis
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:319px; left:496px;">
-						<img src="/res/photos/map-assets/brgy/poblacion.png"/>
-						<label style="top: 29%; left: 50%;">
+						style="top:309px; left:696px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 29%; left: 0%;">
 							    Poblacion
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:376px; left:493px;">
-						<img src="/res/photos/map-assets/brgy/baclayan.png"/>
-						<label style="top: 39%; left: 40%;">
+						style="top:406px; left:573px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 39%; left: 0%;">
 							    Baclayan
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:75px; left:580px;">
-						<img src="/res/photos/map-assets/brgy/badiang.png"/>
-						<label style="top: 34%; left: 42%;">
+						style="top:105px; left:700px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 34%; left: 0%;">
 							    Badiang
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:149px; left:429px;">
-						<img src="/res/photos/map-assets/brgy/bololacao.png"/>
-						<label style="top: 52%; left: 50%;">
+						style="top:239px; left:559px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 52%; left: 0%;">
 							    Bololacao
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:496px; left:263px;">
-						<img src="/res/photos/map-assets/brgy/cabilauan.png"/>
-						<label style="top: 34%; left: 37%;">
+						style="top:556px; left:403px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 34%; left: 0%;">
 							    Cabilauan
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:448px; left:160px;">
-						<img src="/res/photos/map-assets/brgy/burot.png"/>
-						<label style="top: 29%; left: 50%;">
+						style="top:468px; left:250px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 29%; left: 0%;">
 							    Burot
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:315px; left:8px;">
-						<img src="/res/photos/map-assets/brgy/cagban.png"/>
-						<label style="top: 42%; left: 31%;">
+						style="top:355px; left:108px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 42%; left: 0%;">
 							    Cagban
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:507px; left:801px;">
-						<img src="/res/photos/map-assets/brgy/calumbuyan.png"/>
-						<label style="top: 38%;left: 15%;font-size: 8pt;">
+						style="top:500px; left:825px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 38%;left: 0%;">
 							    Calumbuyan
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:517px; left:617px">
-						<img src="/res/photos/map-assets/brgy/damires.png"/>
-						<label style="top: 44%; left: 29%;">
+						style="top:577px; left:667px">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 44%; left: 0%;">
 							    Damires
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:500px; left:739px;">
-						<img src="/res/photos/map-assets/brgy/balabag.png"/>
-						<label style="top: 30%; left: 15%; font-size:9pt">
+						style="top:500px; left:749px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 30%; left: 0%;">
 							    Balabag
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:652px; left:354px;">
-						<img src="/res/photos/map-assets/brgy/bita-og+gaja.png"/>
-						<label style="top: 42%; left: 42%;">
+						style="top:702px; left:454px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 42%; left: 0%;">
 							    Bita-og Gaja
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:555px; left:456px;">
-						<img src="/res/photos/map-assets/brgy/bilidan.png"/>
-						<label style="top: 38%; left: 35%;">
+						style="top:585px; left:546px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 38%; left: 0%;">
 							    Bilidan
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:132px; left:430px;">
-						<img src="/res/photos/map-assets/brgy/guinobatan.png"/>
-						<label style="top: 42%; left: 18%;">
+						style="top:192px; left:475px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 42%; left: 0%;">
 							    Guinobatan
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:20px; left:197px;">
-						<img src="/res/photos/map-assets/brgy/janipa-an+oeste.png"/>
-						<label style="top: 62%; left: 46%;">
+						style="top:90px; left:297px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 62%; left: 0%;">
 							    Janipa-an Oeste
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:755px; left:699px;">
-						<img src="/res/photos/map-assets/brgy/jelicuon+este.png"/>
+						style="top:725px; left:755px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
 						<label style="top: 29%; left: 11%; font-size: 10pt">
 							    Jelicuon Este
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:83px; left:85px;">
-						<img src="/res/photos/map-assets/brgy/jelicuon+oeste.png"/>
-						<label style="top: 42%; left: 28%;">
+						style="top:183px; left:185px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 42%; left: 0%;">
 							    Jelicuon Oeste
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:789px; left:676px;">
-						<img src="/res/photos/map-assets/brgy/pasil.png"/>
-						<label style="top: 40%; left: 36%;">
+						style="top:750px; left:700px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 40%; left: 0%;">
 							    Pasil
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:260px; left:263px;">
-						<img src="/res/photos/map-assets/brgy/wari-wari.png"/>
-						<label style="top: 37%; left: 33%;">
+						style="top:320px; left:373px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 37%; left: 0%;">
 							    Wari-wari
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:260px; left:141px;">
-						<img src="/res/photos/map-assets/brgy/cabugao.png"/>
-						<label style="top: 49%; left: 31%;">
+						style="top:330px; left:221px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 49%; left: 0%;">
 							    Cabugao
 						</label>
 					</div>
 					<div class="map-brgy hidden"
-						style="top:254px; left:60px;">
-						<img src="/res/photos/map-assets/brgy/general+delgado.png"/>
-						<label style="top: 36%; left: 29%;">
+						style="top:254px; left:100px;">
+						<img width="50px" src="/res/photos/map-assets/map-pin.png"/>
+						<label style="top: 36%; left: 0%;">
 							    General Delgado
 						</label>
 					</div>
@@ -198,7 +198,7 @@
 			            		<div class="col-md-6 crimes-section">
 				            		<label>Crimes committed</label>
 					                <ul id="crimes-list" class="pre-scrollable" v-if="selected.crimes.length > 0">
-					                	<li v-for="crime in selected.crimes">{{crime.crime_type}}</li>
+					                	<li v-for="crime in selected.crimes">{{crime.crime_type.crime_type}}</li>
 					                </ul>
 					                <div v-else>
 					                	<p>No crimes occured in this place.</p>

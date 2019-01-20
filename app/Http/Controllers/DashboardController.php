@@ -108,7 +108,7 @@ class DashboardController extends Controller
     {
         if($request->search){
             return Location::where('location_name', 'LIKE', '%' . $request->search . '%')
-                            ->orWhereHas('crimes', function($query) use($request){
+                            ->orWhereHas('crimes.crimeType', function($query) use($request){
                                 $query->where('crime_type', 'LIKE', '%' . $request->search . '%');
                             })
                             ->orWhereHas('crimes.suspects', function($query) use($request){
@@ -116,10 +116,13 @@ class DashboardController extends Controller
                                     ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
                             })
                             ->with('crimes')
+                            ->with('crimes.crimeType')
                             ->with('crimes.suspects')
                             ->get();
         }else{
-            return Location::with('crimes')->get();    
+            return Location::with('crimes')
+                            ->with('crimes.crimeType')
+                            ->get();    
         }
     }
 
@@ -132,6 +135,7 @@ class DashboardController extends Controller
     {
         $location = \App\Location::where('area_id', '=', $area_id)
                                 ->with('crimes')
+                                ->with('crimes.crimeType')
                                 ->get()
                                 ->first();
 
