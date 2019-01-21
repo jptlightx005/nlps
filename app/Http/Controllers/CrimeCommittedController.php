@@ -54,9 +54,6 @@ class CrimeCommittedController extends Controller
         ]);
         
         $date_occured = $request->date_occured . " " . $request->time_occured;
-        // $this->printArray($request->all());
-        // return $date_occured;
-        // return $request->all();
         $crimecommitted = new CrimeCommitted;
         $crimetype = CrimeType::findOrFail($request->crime_type);
         $crimecommitted->location_area_id = $request->location;

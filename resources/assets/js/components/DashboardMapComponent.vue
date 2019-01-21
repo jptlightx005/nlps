@@ -275,6 +275,14 @@ export default {
 				if(location.crimes.length > 0){
 					mapbrgy.removeClass('hidden');
 				}
+
+				if(location.crimes.length < 5){
+					mapbrgy.find('img').attr('src', '/res/photos/map-assets/low-crime-pin.png');
+				}else if(location.crimes.length >= 5 && location.crimes.length < 10){
+					mapbrgy.find('img').attr('src', '/res/photos/map-assets/medium-crime-pin.png');
+				}else{
+					mapbrgy.find('img').attr('src', '/res/photos/map-assets/high-crime-pin.png');
+				}
 			});
 		});
 		

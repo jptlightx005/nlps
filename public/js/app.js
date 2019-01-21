@@ -63732,6 +63732,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				if (location.crimes.length > 0) {
 					mapbrgy.removeClass('hidden');
 				}
+
+				if (location.crimes.length < 5) {
+					mapbrgy.find('img').attr('src', '/res/photos/map-assets/low-crime-pin.png');
+				} else if (location.crimes.length >= 5 && location.crimes.length < 10) {
+					mapbrgy.find('img').attr('src', '/res/photos/map-assets/medium-crime-pin.png');
+				} else {
+					mapbrgy.find('img').attr('src', '/res/photos/map-assets/high-crime-pin.png');
+				}
 			});
 		});
 	},
@@ -65151,10 +65159,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	mounted: function mounted() {
 		this.map = document.getElementsByClassName('new-lucena-map')[0];
 		this.map.querySelector("img").draggable = false;
-
-		// $('.brgy-area').on('click', function(e){
-		// 	console.log(e.target.id);
-		// });
 	},
 	created: function created() {},
 

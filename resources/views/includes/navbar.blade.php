@@ -47,10 +47,22 @@
                             <li class="hidden">
                                 <a href="#">Profile</a>
                             </li>
+                            <li {{Request::segment(1) == "crimetype" ? "class=active" : ""}}>
+                                <a href="{{ route('crimetype.index') }}">Crimes</a>
+                            </li>
+                            <li {{Request::segment(1) == "officers" ? "class=active" : ""}}>
+                                <a href="{{ route('officers.index') }}">Officers</a>
+                            </li>
+                            <li {{Request::segment(1) == "investigators" ? "class=active" : ""}}>
+                                <a href="{{ route('investigators.index') }}">Investigators</a>
+                            </li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
+                                            if(confirm('Are you sure you want to log out?')) {
+
+                                             document.getElementById('logout-form').submit();
+                                         }">
                                     Logout
                                 </a>
 

@@ -200,10 +200,6 @@ export default {
 	mounted() {
 		this.map = document.getElementsByClassName('new-lucena-map')[0];
 		this.map.querySelector("img").draggable = false;
-
-		// $('.brgy-area').on('click', function(e){
-		// 	console.log(e.target.id);
-		// });
 	},
 	created(){
 		
