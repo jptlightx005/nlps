@@ -204,4 +204,15 @@ class SuspectsController extends Controller
 
         return redirect(route('suspects.index'))->with('success', "Suspect record successfully updated!");
     }
+
+    public function search(Request $request){
+        $last_name = $request->input('last_name');
+        $first_name = $request->input('first_name');
+        $middle_name = $request->input('middle_name');
+        $suspectsMatch = Suspect::where('last_name', 'LIKE', '%' . $last_name . '%')
+                            ->where('first_name', 'LIKE', '%' . $first_name . '%')
+                            ->where('middle_name', 'LIKE', '%' . $middle_name . '%')
+                            ->get();
+        return ['found' => (count($suspectsMatch) > 0)];
+    }
 }

@@ -26,8 +26,9 @@
                         </a>
                     </li>
                     <li {{Request::segment(1) == "" ? "class=active" : ""}}><a href="/">Dashboard</a></li>
+                    <li {{Request::segment(1) == "crime-statistics" ? "class=active" : ""}}><a href="/suspects-gallery">Crime Statistics</a></li>
                     <li class="hidden" {{Request::segment(1) == "convicts-gallery" ? "class=active" : ""}}><a href="/convicts-gallery">Convicted Gallery</a></li>
-                    <li {{Request::segment(1) == "suspects-gallery" ? "class=active" : ""}}><a href="/suspects-gallery">Suspects Gallery</a></li>
+                    <li class="hidden" {{Request::segment(1) == "suspects-gallery" ? "class=active" : ""}}><a href="/suspects-gallery">Suspects Gallery</a></li>
                 @endauth
             </ul>
 
@@ -55,6 +56,9 @@
                             </li>
                             <li {{Request::segment(1) == "investigators" ? "class=active" : ""}}>
                                 <a href="{{ route('investigators.index') }}">Investigators</a>
+                            </li>
+                             <li {{Request::segment(1) == "equipments" ? "class=active" : ""}}>
+                                <a href="{{ route('equipments.index') }}">Equipments</a>
                             </li>
                             <li>
                                 <a href="{{ route('logout') }}"

@@ -142,9 +142,10 @@ class BlotterReportController extends Controller
      * @param  \App\BlotterReport  $blotterReport
      * @return \Illuminate\Http\Response
      */
-    public function edit(BlotterReport $blotterReport)
+    public function edit($id)
     {
-        //
+        $report = BlotterReport::find($id);
+        return view('blotterreports.edit', compact('report'));
     }
 
     /**

@@ -43,10 +43,15 @@ Route::resource('/blotterreports', 'BlotterReportController');
 	Route::resource('/victims', 'VictimController');
 	Route::resource('/witnesses', 'WitnessController');
 
+	Route::resource('/policeclearance', 'PoliceClearanceController');
+	Route::get('/policeclearance/{policeClearance}/print', 'PoliceClearanceController@print')->name('policeclearance.print');
+
 	Route::get('/convicts-gallery', 'DashboardController@convicts');
 	Route::get('/suspects-gallery', 'DashboardController@suspects');
 
 	// Route::get('/brgy/dashboard', 'DashboardController@locations');
 	Route::get('/brgy/{area_id}', 'DashboardController@locationBrgy');
 	Route::get('/brgy/', 'DashboardController@brgyList');
+	
+	Route::post('/search/suspects', 'SuspectsController@search');
 });

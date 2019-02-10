@@ -15,20 +15,20 @@
 
             {{Form::label('date_reported', 'Date & Time Reported *')}}
             <div class="input-group">
-                {{Form::text('date_reported', null, ['class' => 'form-control date_picker', 'placeholder' => 'Date Reported', 'required'])}}
+                {{Form::text('date_reported', optional($report->date_reported)->format('m/d/Y'), ['class' => 'form-control date_picker', 'placeholder' => 'Date Reported', 'required'])}}
                 <span class="input-group-addon"></span>
-                {{Form::text('time_reported', null, ['class' => 'form-control time_picker', 'placeholder' => 'Time Reported', 'required'])}}
+                {{Form::text('time_reported', optional($report->date_reported)->format('h:i A'), ['class' => 'form-control time_picker', 'placeholder' => 'Time Reported', 'required'])}}
             </div>
             {{Form::label('date_of_incident', 'Date & Time of Incident *')}}
             <div class="input-group">
-                {{Form::text('date_of_incident', null, ['class' => 'form-control date_picker', 'placeholder' => 'Date of Incident', 'required'])}}
+                {{Form::text('date_of_incident', optional($report->date_of_incident)->format('m/d/Y'), ['class' => 'form-control date_picker', 'placeholder' => 'Date of Incident', 'required'])}}
                 <span class="input-group-addon"></span>
-                {{Form::text('time_of_incident', null, ['class' => 'form-control time_picker', 'placeholder' => 'Time of Incident', 'required'])}}
+                {{Form::text('time_of_incident', optional($report->date_of_incident)->format('h:i A'), ['class' => 'form-control time_picker', 'placeholder' => 'Time of Incident', 'required'])}}
             </div>
 
             <div class="form-group">
                 {{Form::label('location', 'Place of Incident *')}}
-                {{Form::select('location', \App\Location::pluck('location_name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Place of Incident', 'required'])}}
+                {{Form::select('location', \App\Location::pluck('location_name', 'id'), $report->place_of_incident, ['class' => 'form-control', 'placeholder' => 'Place of Incident', 'required'])}}
             </div>
         </div>
     </div>
@@ -38,43 +38,39 @@
         <div class="panel-body">
             <div class="form-group">
                 {{Form::label('reporting_last_name', 'Last Name *')}}
-                {{Form::text('reporting_last_name', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Last Name', 'required'])}}
+                {{Form::text('reporting_last_name', $report->reportingPerson->last_name, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Last Name', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('reporting_first_name', 'First Name *')}}
-                {{Form::text('reporting_first_name', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'First Name', 'required'])}}
+                {{Form::text('reporting_first_name', $report->reportingPerson->first_name, ['class' => 'form-control new-reporting-form', 'placeholder' => 'First Name', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('reporting_middle_name', 'Middle Name *')}}
-                {{Form::text('reporting_middle_name', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Middle Name', 'required'])}}
+                {{Form::text('reporting_middle_name', $report->reportingPerson->middle_name, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Middle Name', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('nickname', 'Nickname')}}
-                {{Form::text('nickname', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Nickname'])}}
+                {{Form::text('nickname', $report->reportingPerson->nickname, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Nickname'])}}
             </div>
             <div class="form-group">
                 {{Form::label('citizenship', 'Citizenship')}}
-                {{Form::text('citizenship', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Citizenship'])}}
+                {{Form::text('citizenship', $report->reportingPerson->citizenship, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Citizenship'])}}
             </div>
             <div class="form-group">
-                {{Form::label('gender', 'Gender')}}
-                {{Form::select('gender', ['Male', 'Female'], null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Gender'])}}
-            </div>
-            <div class="form-group">
-                {{Form::label('citizenship', 'Citizenship')}}
-                {{Form::text('citizenship', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Citizenship'])}}
+                {{Form::label('gender')}}
+                {{Form::select('gender', ['Male', 'Female'], $report->reportingPerson->gender == 'Female' ? 1 : 0, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Gender'])}}
             </div>
             <div class="form-group">
                 {{Form::label('civil_status', 'Civil Status')}}
-                {{Form::text('civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status'])}}
+                {{Form::text('civil_status', $report->reportingPerson->civil_status, ['class' => 'form-control', 'placeholder' => 'Civil Status'])}}
             </div>
             <div class="form-group">
                 {{Form::label('date_of_birth', 'Date of Birth *')}}
-                {{Form::text('date_of_birth', null, ['class' => 'form-control new-reporting-form date_picker    ', 'placeholder' => 'Date of Birth', 'required'])}}
+                {{Form::text('date_of_birth', $report->reportingPerson->date_of_birth->format('m/d/Y'), ['class' => 'form-control new-reporting-form date_picker    ', 'placeholder' => 'Date of Birth', 'required'])}}
             </div>       
             <div class="form-group">
                 {{Form::label('place_of_birth', 'Place of Birth')}}
-                {{Form::text('place_of_birth', null, ['class' => 'form-control', 'placeholder' => 'Place of Birth'])}}
+                {{Form::text('place_of_birth', $report->reportingPerson->place_of_birth, ['class' => 'form-control', 'placeholder' => 'Place of Birth'])}}
             </div>
             <div class="form-group">
                 {{Form::label('mobile_phone', 'Mobile Phone')}}

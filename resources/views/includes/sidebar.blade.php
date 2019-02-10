@@ -14,6 +14,9 @@
         <li {{Request::segment(1) == "crimecommitted" ? "class=active" : ""}}>
             <a href="{{ route('crimecommitted.index') }}">Cases</a>
         </li>
+        <li {{Request::segment(1) == "policeclearance" ? "class=active" : ""}}>
+            <a href="{{ route('policeclearance.index') }}">Police Clearance</a>
+        </li>
     </ul>
 
     {{-- <ul class="list-unstyled CTAs"> might use this in the future
