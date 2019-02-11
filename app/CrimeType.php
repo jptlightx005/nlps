@@ -26,4 +26,40 @@ class CrimeType extends Model
     {
         return $this->hasMany('App\CrimeCommitted', 'crime_type_id');
     }
+
+    public function cleared()
+    {
+        $cases = $this->cases;
+        $cleared = [];
+        foreach($cases as $case){
+            if($case->status == 'Dismissed'){
+                $cleared[] = $case;
+            }
+        }
+        return $cleared;
+    }
+
+    public function solved()
+    {
+        $cases = $this->cases;
+        $cleared = [];
+        foreach($cases as $case){
+            if($case->status == 'Convicted'){
+                $cleared[] = $case;
+            }
+        }
+        return $cleared;
+    }
+
+    public function ontrial()
+    {
+        $cases = $this->cases;
+        $cleared = [];
+        foreach($cases as $case){
+            if($case->status == 'On-Trial'){
+                $cleared[] = $case;
+            }
+        }
+        return $cleared;
+    }
 }

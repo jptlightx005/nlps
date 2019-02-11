@@ -44,6 +44,16 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function printStatistics()
+    {
+        return view('print-statistics');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function convicts(Request $request)
     {
         if($request->search){

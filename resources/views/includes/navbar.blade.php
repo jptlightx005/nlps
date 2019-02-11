@@ -57,9 +57,9 @@
                             <li {{Request::segment(1) == "investigators" ? "class=active" : ""}}>
                                 <a href="{{ route('investigators.index') }}">Investigators</a>
                             </li>
-                             <li {{Request::segment(1) == "equipments" ? "class=active" : ""}}>
+                            {{--  <li {{Request::segment(1) == "equipments" ? "class=active" : ""}}>
                                 <a href="{{ route('equipments.index') }}">Equipments</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

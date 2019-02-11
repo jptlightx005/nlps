@@ -7,25 +7,32 @@
     </div>
 @endif
 <div class="report-wrapper">
+    <div class="btn-group">
+        <a href="{{route('statistics.print')}}" class="btn btn-primary" onclick="printPopupWindow($(this).attr('href')); return false;"><span class="glyphicon glyphicon-print"></span> Print</a>
+    </div>
 	<table class="stat">
         <tr>
             <th>NATURE OF THE CRIME</th>
-            <th>Date Committed</th>
-            <th>Total Crimes Cleared</th>
-            <th>Late Reported</th>
+            <th>Total Cases</th>
             <th>Total Crimes Cleared</th>
             <th>Total Crimes Solved</th>
-            <th>TOTAL (date committed + late report)</th>
+            <th>Total Crimes On Trial</th>
+            {{-- <th>Late Reported</th>
+            <th>Total Crimes Cleared</th>
+            <th>Total Crimes Solved</th>
+            <th>TOTAL (date committed + late report)</th> --}}
         </tr>
         @foreach(\App\CrimeType::all() as $crime)
         <tr>
             <td>{{$crime->crime_type}}</td>
             <td>{{count($crime->cases)}}</td>
+            <td>{{count($crime->cleared())}}</td>
+            <td>{{count($crime->solved())}}</td>
+            <td>{{count($crime->ontrial())}}</td>
+         {{--    <td>0</td>
             <td>0</td>
             <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td>0</td> --}}
         </tr>
         @endforeach
     </table>
@@ -45,7 +52,5 @@
 </style>
 @endsection
 @section('page-specific-scripts')
-<script type="text/javascript">
-	
-</script>
+<script src="js/generic.js" type="text/javascript"></script>
 @endsection

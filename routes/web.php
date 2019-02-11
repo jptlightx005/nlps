@@ -19,6 +19,7 @@ Auth::routes();
 Route::middleware('auth:web')->group(function(){
 	Route::get('/', 'DashboardController@index')->name('dashboard');
 	Route::get('/statistics', 'DashboardController@statistics')->name('statistics');
+	Route::get('/statistics/print', 'DashboardController@printStatistics')->name('statistics.print');
 	Route::resource('/crimecommitted', 'CrimeCommittedController');
 	Route::delete('/crimecommitted/bulk/delete', 'CrimeCommittedController@deleteBulk');
 	
