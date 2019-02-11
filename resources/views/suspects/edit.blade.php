@@ -4,12 +4,12 @@
 <div class="form-wrapper">
     <div class="btn-group">
         <a href="{{route('suspects.show', $suspect->id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</a>
-        {!! Form::open(['action' => ['SuspectsController@setAsConvict', $suspect->id], 'method' => 'POST', 'style' => "display: inline-block;"]) !!}
+        {{-- {!! Form::open(['action' => ['SuspectsController@setAsConvict', $suspect->id], 'method' => 'POST', 'style' => "display: inline-block;"]) !!}
             {{ csrf_field() }}
             {{Form::hidden('_method','PUT')}}
             {{Form::hidden('convicted', (int)!$suspect->convicted)}}
             <button class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-tower"></span> {{$suspect->convicted ? "Unset" : "Set"}} As Convicted</button>
-        {!! Form::close() !!}
+        {!! Form::close() !!} --}}
     </div>
     {!! Form::model($suspect, ['action' => ['SuspectsController@update', $suspect->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="panel panel-default">

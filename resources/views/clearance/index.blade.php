@@ -23,7 +23,7 @@
                     @if(count($clearances) > 0)
                         @foreach($clearances as $clearance)
                             <tr>
-                                <td><a href="{{route('policeclearance.print', $clearance->id)}}">{!! $clearance->fullName() !!}</a></td>
+                                <td>{!! $clearance->fullName() !!}</td>
                                 <td>{{optional($clearance->date_issued)->format('F d, Y')}}</td>
                                 <td>
                                     <a href="{{route('policeclearance.edit', $clearance->id)}}">

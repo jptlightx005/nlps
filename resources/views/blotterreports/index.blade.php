@@ -18,16 +18,23 @@
                     <tr>
                         <th>Complainant</th>
                         <th>Date/Time</th>
-                        <th>Status</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @if(count($reports) > 0)
                         @foreach($reports as $report)
                             <tr>
-                                <td><a href="{{route('blotterreports.edit', $report->id)}}">{!! $report->reportingPerson->fullName() !!}</a></td>
+                                <td>{!! optional($report->reportingPerson)->fullName() !!}</td>
                                 <td>{{optional($report->date_reported)->format('F d, Y')}}</td>
-                                <td>{!!$report->status() !!}</td>
+                                <td>
+                                    <a href="{{route('blotterreports.edit', $report->id)}}">
+                                        <img src="/res/photos/map-assets/pencil-logo.png" height="25px" alternate="print" title="Print" />
+                                    </a>
+                                    <a href="{{route('blotterreports.print', $report->id)}}" onclick="printPopupWindow($(this).attr('href')); return false;">
+                                        <img src="/res/photos/map-assets/printer-icon-1009.png" height="25px" alternate="print" title="Print" />
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     @else
@@ -41,4 +48,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('page-specific-pre-defined-scripts')
+<script src="js/generic.js" type="text/javascript"></script>
 @endsection

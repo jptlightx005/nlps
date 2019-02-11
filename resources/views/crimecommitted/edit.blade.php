@@ -23,14 +23,14 @@
                 {{Form::label('location', 'Location')}}
                 {{Form::select('location', \App\Location::pluck('location_name', 'id'), $crime->location_area_id, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 {{Form::label('weapons_used', 'Weapons Used')}}
                 @foreach(\App\Equipment::all() as $equipment)
                 <div class="checkbox">
                     <label><input type="checkbox" name="weapons_used[]" value="{{$equipment->id}}" {{$crime->equipments->contains($equipment->id) ? "checked" : ""}}>{{$equipment->equipment_name}}</label>
                 </div>
                 @endforeach
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 {{Form::label('time_occured', 'Time Occured')}}
@@ -42,10 +42,10 @@
                 {{Form::text('date_occured', $crime->date_occured->format('F d, Y'), ['class' => 'form-control', 'placeholder' => 'Date Occured', 'required'])}}
             </div>
 
-            <div class="form-group">
+           {{--  <div class="form-group">
                 {{Form::label('description', 'Description')}}
                 {{Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Description'])}}
-            </div>
+            </div> --}}
             
             <div class="form-group">
                 {{Form::label('officer_in_charge', 'Officer in Charge')}}
@@ -56,17 +56,8 @@
                 {{Form::label('investigator', 'Investigator')}}
                 {{Form::select('investigator', \App\Investigator::all()->pluck('full_name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Select Investigator'])}}
             </div>
-
+{{-- 
             <div class="form-group">
-                <div class="crime-lead col-md-12">
-                    {{Form::label('has_suspect', 'Does the crime have a lead?')}}
-                    <p>
-                        <input type="radio" name="has_suspect" value="yes" {{count($crime->suspects) ? "checked" : ""}}> Yes</input>
-                    </p>
-                    <p>
-                        <input type="radio" name="has_suspect" value="no" {{!count($crime->suspects) ? "checked" : ""}}> No</input>
-                    </p>
-                </div>
                 <div class="suspect-exist col-md-6 hidden">
                     &nbsp;
                     {{Form::label('suspect_exist', 'Is the suspect on the records?')}}
@@ -77,19 +68,10 @@
                         <input type="radio" class="exist-radio" name="suspect_exist" value="no"> No</input>
                     </p>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="form-group">
-                <div class="crime-victims col-md-6">
-                    {{Form::label('has_victims', 'Does the crime have victims?')}}
-                    <p>
-                        <input type="radio" name="has_victims" value="yes" {{count($crime->victims) ? "checked" : ""}}> Yes</input>
-                    </p>
-                    <p>
-                        <input type="radio" name="has_victims" value="no" {{!count($crime->victims) ? "checked" : ""}}> No</input>
-                    </p>
-                </div>
-                <div class="crime-witnesses col-md-6">
+            {{-- <div class="form-group">
+                <div class="crime-witnesses col-md-12">
                     &nbsp;
                     {{Form::label('has_witnesses', 'Does the crime have witnesses?')}}
                     <p>
@@ -99,27 +81,42 @@
                         <input type="radio" name="has_witnesses" value="no" {{!count($crime->witnesses) ? "checked" : ""}}> No</input>
                     </p>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="form-group submit-group">
                 {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
             </div>
         </div>
     </div>
-    <div class="panel panel-default existing-suspect-section hidden">
+    <div class="panel panel-default existing-suspect-section">
         <div class="panel-heading">Suspect</div>
 
         <div class="panel-body">
             <div class="form-group">
                 {{Form::label('existing_suspect', 'Suspect Name')}}
-                {{Form::select('existing_suspect', \App\Suspect::all()->pluck('full_name', 'id'), null, ['class' => 'form-control existing-suspect-form', 'placeholder' => 'Select Suspect'])}}
+                {{Form::select('existing_suspect', \App\Suspect::all()->pluck('full_name', 'id'), $crime->suspects, ['class' => 'form-control existing-suspect-form', 'placeholder' => 'Select Suspect', 'disabled'])}}
             </div>
 
-            <div class="form-group submit-group">
+            {{-- <div class="form-group submit-group">
                 {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
-            </div>
+            </div> --}}
         </div>
     </div>
+    <div class="panel panel-default existing-suspect-section">
+        <div class="panel-heading">Witness</div>
+
+        <div class="panel-body">
+            <div class="form-group">
+                {{Form::label('witness', 'Witness')}}
+                {{Form::text('witness', $crime->witness(), ['class' => 'form-control existing-suspect-form', 'placeholder' => 'Select Suspect', 'disabled'])}}
+            </div>
+
+            {{-- <div class="form-group submit-group">
+                {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
+            </div> --}}
+        </div>
+    </div>
+    {{-- 
     <div class="panel panel-default new-suspect-section hidden">
         <div class="panel-heading">Suspect Profile</div>
 
@@ -192,20 +189,10 @@
                 {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
             </div>
         </div>
-    </div>
+    </div> --}}
     {{Form::hidden('_method', 'PUT')}}
     {!! Form::close() !!}
 
-    <div class="panel panel-default" id="crime-section">
-        <div class="panel-heading">Victims</div>
-
-        <div class="panel-body">
-            <div class="col-md-6">
-                {{Form::open(['class' => '', 'action' => ['VictimController@store', $crime->id]])}}
-            </div>
-            <div class="col-md-6">
-            </div>
-        </div>
 </div>
 @endsection
 

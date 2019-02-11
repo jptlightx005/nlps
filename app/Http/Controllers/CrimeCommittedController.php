@@ -158,7 +158,7 @@ class CrimeCommittedController extends Controller
         $crimecommitted = CrimeCommitted::findOrFail($id);
         $crimecommitted->crime_type = CrimeType::findOrFail($request->crime_type)->crime_type;
         $crimecommitted->status = config('nlps.case_status')[$request->case_status];
-        \Log::debug(CrimeType::findOrFail($request->crime_type));
+        // \Log::debug(CrimeType::findOrFail($request->crime_type));
         $crimecommitted->crime_type_id = $request->crime_type;
         $crimecommitted->location_area_id = $request->location;
         $crimecommitted->date_occured = Carbon::parse($date_occured);
@@ -169,48 +169,48 @@ class CrimeCommittedController extends Controller
 
         $crimecommitted->save();
 
-        if($request->input('weapons_used')){
-            $crimecommitted->equipments()->sync($request->weapons_used);
-        }
+        // if($request->input('weapons_used')){
+        //     $crimecommitted->equipments()->sync($request->weapons_used);
+        // }
 
-        if($request->input('has_suspect') == "yes"){
-            $this->validate($request, [
-                'suspect_exist' => 'required'
-            ]);
+        // if($request->input('has_suspect') == "yes"){
+        //     $this->validate($request, [
+        //         'suspect_exist' => 'required'
+        //     ]);
 
-            if($request->input('suspect_exist') == "yes"){
-                $this->validate($request, [
-                    'existing_suspect' => 'required'
-                ]);
+        //     if($request->input('suspect_exist') == "yes"){
+        //         $this->validate($request, [
+        //             'existing_suspect' => 'required'
+        //         ]);
 
-                $crimecommitted->suspects()->sync($request->input('existing_suspect'));
-            }else{
-                $this->validate($request, [
-                    'first_name' => 'required',
-                    'middle_name' => 'required',
-                    'last_name' => 'required',
-                    'alias' => 'required',
-                ]);
+        //         $crimecommitted->suspects()->sync($request->input('existing_suspect'));
+        //     }else{
+        //         $this->validate($request, [
+        //             'first_name' => 'required',
+        //             'middle_name' => 'required',
+        //             'last_name' => 'required',
+        //             'alias' => 'required',
+        //         ]);
 
-                $suspect = Suspect::create([
-                    'user_id' => auth()->user()->id,
-                    'first_name' => $request->input('first_name'),
-                    'middle_name' => $request->input('middle_name'),
-                    'last_name' => $request->input('last_name'),
-                    'qualifier' => "",
-                    'alias' => $request->input('alias'),
-                ]);
+        //         $suspect = Suspect::create([
+        //             'user_id' => auth()->user()->id,
+        //             'first_name' => $request->input('first_name'),
+        //             'middle_name' => $request->input('middle_name'),
+        //             'last_name' => $request->input('last_name'),
+        //             'qualifier' => "",
+        //             'alias' => $request->input('alias'),
+        //         ]);
 
-                $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
-                $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
-                $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
-                $suspect->right_face = Helper::returnEmptyAvatarIfNull($request->input('right_face'));
+        //         $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
+        //         $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
+        //         $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
+        //         $suspect->right_face = Helper::returnEmptyAvatarIfNull($request->input('right_face'));
 
-                $suspect->save();
+        //         $suspect->save();
 
-                $crimecommitted->suspects()->sync($suspect->id);
-            }
-        }
+        //         $crimecommitted->suspects()->sync($suspect->id);
+        //     }
+        // }
 
         return redirect('/crimecommitted')->with('success', 'Crime has been updated.');
     }

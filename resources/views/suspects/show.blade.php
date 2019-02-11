@@ -67,8 +67,7 @@
                                 <th>Crime</th>
                                 <th>Date &amp; Time</th>
                                 <th>Location</th>
-                                <th>Description</th>
-                                <th>Weapons Used</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,8 +77,6 @@
                                     <td>{{$crime->crimeType->crime_type}}</td>
                                     <td>{{$crime->date_occured->format('F d, Y - h:i:s')}}</td>
                                     <td>{{$crime->location->location_name}}</td>
-                                    <td>{{$crime->description}}</td>
-                                    <td>{{$crime->equipmentsList()}}</td>
                                     <td>{{$crime->status}}</td>
                                 </tr>
                             @endforeach

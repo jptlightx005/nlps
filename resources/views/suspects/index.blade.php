@@ -17,8 +17,6 @@
                     <tr>
                         <th></th>
                         <th>Name</th>
-                        <th>Alias</th>
-                        <th>Crimes</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -27,8 +25,6 @@
                         <tr>
                             <td><input type="checkbox" class="record-checked" name="suspects[]" value="{{$suspect->id}}" />
                             <td>{!! $suspect->fullNameEditLink() !!}</td>
-                            <td>{{$suspect->alias}}</td>
-                            <td>{{$suspect->crimesCommittedList()}}</td>
                             <td>{{$suspect->suspectStatus()}}</td>
                         </tr>
                     @endforeach

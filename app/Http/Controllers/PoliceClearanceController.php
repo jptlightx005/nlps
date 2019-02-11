@@ -74,9 +74,10 @@ class PoliceClearanceController extends Controller
      * @param  \App\PoliceClearance  $policeClearance
      * @return \Illuminate\Http\Response
      */
-    public function edit(PoliceClearance $policeClearance)
+    public function edit($id)
     {
-        //
+        $clearance = PoliceClearance::find($id);
+        return view('clearance.edit', compact('clearance'));
     }
 
     /**

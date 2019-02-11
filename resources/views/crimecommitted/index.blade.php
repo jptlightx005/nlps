@@ -20,7 +20,7 @@
                         <th></th>
                         <th>Case</th>
                         <th>Location</th>
-                        <th>Suspect(s)</th>
+                        <th>Suspect</th>
                         <th>Date Occured</th>
                         <th>Status</th>
                     </tr>

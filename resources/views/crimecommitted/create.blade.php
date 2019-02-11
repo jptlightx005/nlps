@@ -35,14 +35,14 @@
                 {{Form::select('location', \App\Location::pluck('location_name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 {{Form::label('weapons_used', 'Weapons Used')}}
                 @foreach(\App\Equipment::all() as $equipment)
                 <div class="checkbox">
                     <label><input type="checkbox" name="weapons_used[]" value="{{$equipment->id}}">{{$equipment->equipment_name}}</label>
                 </div>
                 @endforeach
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 {{Form::label('time_occured', 'Time Occured')}}
@@ -54,10 +54,10 @@
                 {{Form::text('date_occured', null, ['class' => 'form-control', 'placeholder' => 'Date Occured', 'required'])}}
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 {{Form::label('description', 'Description')}}
                 {{Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Description'])}}
-            </div>
+            </div> --}}
             
             <div class="form-group">
                 {{Form::label('officer_in_charge', 'Officer in Charge')}}
@@ -70,16 +70,7 @@
             </div>
 
             <div class="form-group">
-                <div class="crime-lead col-md-12">
-                    {{Form::label('has_suspect', 'Does the case have a lead?')}}
-                    <p>
-                        <input type="radio" name="has_suspect" value="yes"> Yes</input>
-                    </p>
-                    <p>
-                        <input type="radio" name="has_suspect" value="no" checked> No</input>
-                    </p>
-                </div>
-                <div class="suspect-exist col-md-6 hidden">
+                <div class="suspect-exist col-md-12">
                     &nbsp;
                     {{Form::label('suspect_exist', 'Is the suspect on the records?')}}
                     <p>
@@ -207,10 +198,9 @@
                     $('input[name=time_occured]').val(moment(dti).format("hh:mm A"))
                     $('input[name=date_occured]').val(moment(dti).format("MM/DD/YYYY"))
 
+                    $('input[name=suspect_exist][value=no]').prop("checked", true);
+                    $('input[name=suspect_exist][value=no]').change();
                     if(res.reported_suspect != null){
-                        $('input[name=has_suspect][value=yes]').prop('checked', true)
-                        $('input[name=has_suspect][value=yes]').change()
-
                         $('input[name=suspect_exist][value=yes]').prop("checked", true);
                         $('input[name=suspect_exist][value=yes]').change();
 

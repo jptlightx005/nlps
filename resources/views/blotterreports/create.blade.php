@@ -386,7 +386,7 @@
         </div>
     </div>
     <div class="panel panel-default narrative-section">
-        <div class="panel-heading">Victim's Data</div>
+        <div class="panel-heading">Narrative</div>
         <div class="panel-body">
             <div class="form-group">
                 {{Form::label('narrative', 'Narrative')}}

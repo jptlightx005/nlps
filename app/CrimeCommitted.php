@@ -66,6 +66,12 @@ class CrimeCommitted extends Model
         return $this->hasMany('\App\Witness');
     }
     
+    public function blotter(){
+        return $this->belongsTo('\App\BlotterReport', 'blotter_id');
+    }
+    public function witness(){
+        return $this->blotter->reportingPerson->fullName();
+    }
     public function suspectsList($separator = ", "){
         if(count($this->suspects) > 0){
             $suspects = array();

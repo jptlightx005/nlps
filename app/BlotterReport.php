@@ -52,4 +52,13 @@ class BlotterReport extends Model
     public function status(){
         return $this->case != null ? "Case Filed" : "Under Investigation";
     }
+
+    public function paragraphNarrative(){
+        $paragraphs = explode("\n", $this->incident_narattive);
+        $narrative = "";
+        foreach ($paragraphs as $paragraph) {
+            $narrative .= "<p>$paragraph</p>\n";
+        }
+        return $narrative;
+    }
 }
