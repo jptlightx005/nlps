@@ -84,4 +84,8 @@ class Suspect extends Model
             return "N/A";
         }
     }
+
+    public function suspectStatus(){
+        return $this->status;
+    }
 }

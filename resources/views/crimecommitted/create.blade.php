@@ -26,6 +26,11 @@
             </div>
 
             <div class="form-group">
+                {{Form::label('case_status', 'Status')}}
+                {{Form::select('case_status', config('nlps.case_status'), null, ['class' => 'form-control', 'placeholder' => 'Status', 'required'])}}
+            </div>
+
+            <div class="form-group">
                 {{Form::label('location', 'Location')}}
                 {{Form::select('location', \App\Location::pluck('location_name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}
             </div>

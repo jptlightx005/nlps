@@ -19,6 +19,7 @@
                         <th>Name</th>
                         <th>Alias</th>
                         <th>Crimes</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,7 @@
                             <td>{!! $suspect->fullNameEditLink() !!}</td>
                             <td>{{$suspect->alias}}</td>
                             <td>{{$suspect->crimesCommittedList()}}</td>
+                            <td>{{$suspect->suspectStatus()}}</td>
                         </tr>
                     @endforeach
                     @if(!count($suspects))

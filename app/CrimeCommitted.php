@@ -38,6 +38,10 @@ class CrimeCommitted extends Model
     public function crimeType(){
         return $this->belongsTo('\App\CrimeType', 'crime_type_id');
     }
+
+    public function caseStatus(){
+        return $this->status;
+    }
     public function suspects(){
         return $this->belongsToMany('\App\Suspect');
     }

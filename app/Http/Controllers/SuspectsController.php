@@ -72,6 +72,7 @@ class SuspectsController extends Controller
         $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
         $suspect->right_face = Helper::returnEmptyAvatarIfNull($request->input('right_face'));
 
+        $suspect->status = "For Filing";
         $suspect->save();
 
         if($request->input('crime_exist') == "yes"){
@@ -108,8 +109,9 @@ class SuspectsController extends Controller
      */
     public function show($id)
     {
-        $suspect = Suspect::find($id);
-
+        $suspect = Suspect::where('id', $id)
+                            ->with('crimes.crimeType')
+                            ->get()->first();
         return view('suspects.show', compact('suspect'));
     }
 
@@ -136,6 +138,7 @@ class SuspectsController extends Controller
     public function update(Request $request, $id)
     {   
         $suspect = Suspect::find($id);
+        $suspect->status = config('nlps.suspect_status')[$request->suspect_status];
 
         $suspect->first_name = $request->input('first_name');
         $suspect->middle_name = $request->input('middle_name');

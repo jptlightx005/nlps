@@ -75,11 +75,12 @@
                             @if(count($suspect->crimes) > 0)
                             @foreach($suspect->crimes as $crime)
                                 <tr>
-                                    <td>{{$crime->crime_type}}</td>
+                                    <td>{{$crime->crimeType->crime_type}}</td>
                                     <td>{{$crime->date_occured->format('F d, Y - h:i:s')}}</td>
                                     <td>{{$crime->location->location_name}}</td>
                                     <td>{{$crime->description}}</td>
                                     <td>{{$crime->equipmentsList()}}</td>
+                                    <td>{{$crime->status}}</td>
                                 </tr>
                             @endforeach
                             @else

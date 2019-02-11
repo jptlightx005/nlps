@@ -22,6 +22,7 @@
                         <th>Location</th>
                         <th>Suspect(s)</th>
                         <th>Date Occured</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +34,7 @@
                                 <td>{{$crime->location->location_name}}</td>
                                 <td>{!!$crime->suspectsList()!!}</td>
                                 <td>{{optional($crime->date_occured)->format('F d, Y')}}</td>
+                                <td>{{$crime->caseStatus()}}</td>
                             </tr>
                         @endforeach
                     @else

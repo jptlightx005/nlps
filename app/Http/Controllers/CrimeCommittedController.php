@@ -56,6 +56,7 @@ class CrimeCommittedController extends Controller
         $date_occured = $request->date_occured . " " . $request->time_occured;
         $crimecommitted = new CrimeCommitted;
         $crimetype = CrimeType::findOrFail($request->crime_type);
+        $crimecommitted->status = config('nlps.case_status')[$request->case_status];
         $crimecommitted->location_area_id = $request->location;
         $crimecommitted->crime_type = $crimetype->crime_type;
         $crimecommitted->crime_type_id = $crimetype->id;
@@ -156,6 +157,7 @@ class CrimeCommittedController extends Controller
         $date_occured = $request->date_occured . " " . $request->time_occured;
         $crimecommitted = CrimeCommitted::findOrFail($id);
         $crimecommitted->crime_type = CrimeType::findOrFail($request->crime_type)->crime_type;
+        $crimecommitted->status = config('nlps.case_status')[$request->case_status];
         \Log::debug(CrimeType::findOrFail($request->crime_type));
         $crimecommitted->crime_type_id = $request->crime_type;
         $crimecommitted->location_area_id = $request->location;

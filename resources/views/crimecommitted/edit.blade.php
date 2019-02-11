@@ -10,13 +10,15 @@
         <div class="panel-heading">Edit Crime</div>
 
         <div class="panel-body">
-        
-
             <div class="form-group">
                 {{Form::label('crime_type', 'Crime Type')}}
                 {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'id')->all(), $crime->crime_type_id, ['class' => 'form-control', 'placeholder' => 'Crime Type', 'required'])}}
             </div>
 
+            <div class="form-group">
+                {{Form::label('case_status', 'Status')}}
+                {{Form::select('case_status', config('nlps.case_status'), array_search($crime->status, config('nlps.case_status')), ['class' => 'form-control', 'placeholder' => 'Status', 'required'])}}
+            </div>
             <div class="form-group">
                 {{Form::label('location', 'Location')}}
                 {{Form::select('location', \App\Location::pluck('location_name', 'id'), $crime->location_area_id, ['class' => 'form-control', 'placeholder' => 'Location', 'required'])}}

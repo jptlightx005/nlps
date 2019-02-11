@@ -118,6 +118,7 @@ class BlotterReportController extends Controller
             $suspect->work_address = $request->suspect_work_address;
             $suspect->relation_to_victim = $request->suspect_relation_to_victim;
 
+            $suspect->status = "At Large";
             $suspect->save();
             $report->suspect_id = $suspect->id;
         }

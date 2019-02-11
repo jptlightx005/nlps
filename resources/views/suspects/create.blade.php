@@ -12,6 +12,10 @@
 
         <div class="panel-body">
             <div class="form-group">
+                {{Form::label('suspect_status', 'Status')}}
+                {{Form::select('suspect_status', config('nlps.suspect_status'), null, ['class' => 'form-control', 'placeholder' => 'Status', 'required'])}}
+            </div>
+            <div class="form-group">
                 {{Form::label('first_name', 'First Name')}}
                 {{Form::text('first_name', '', ['class' => 'form-control', 'placeholder' => 'First Name', 'required'])}}
             </div>
