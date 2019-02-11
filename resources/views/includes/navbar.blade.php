@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li {{Request::segment(1) == "" ? "class=active" : ""}}><a href="/">Dashboard</a></li>
-                    <li {{Request::segment(1) == "crime-statistics" ? "class=active" : ""}}><a href="/suspects-gallery">Crime Statistics</a></li>
+                    <li {{Request::segment(1) == "statistics" ? "class=active" : ""}}><a href="/statistics">Crime Statistics</a></li>
                     <li class="hidden" {{Request::segment(1) == "convicts-gallery" ? "class=active" : ""}}><a href="/convicts-gallery">Convicted Gallery</a></li>
                     <li class="hidden" {{Request::segment(1) == "suspects-gallery" ? "class=active" : ""}}><a href="/suspects-gallery">Suspects Gallery</a></li>
                 @endauth

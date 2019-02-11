@@ -6,12 +6,20 @@
         <a href="{{route('crimecommitted.index')}}" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</a>
     </div>
     {!! Form::open(['action' => 'CrimeCommittedController@store', 'method' => 'POST']) !!}
-    <div class="panel panel-default" id="crime-section">
+    <div class="panel panel-default" id="blotter-section">
+        <div class="panel-heading">Select Blotter Report</div>
+
+        <div class="panel-body">
+            <div class="form-group">
+                {{Form::label('blotter_report', 'Blotter Report')}}
+                {{Form::select('blotter_report', \App\BlotterReport::underInvestigation()->pluck('title', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Blotter Report', 'required'])}}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default hidden" id="crime-section">
         <div class="panel-heading">Register Case</div>
 
         <div class="panel-body">
-        
-
             <div class="form-group">
                 {{Form::label('crime_type', 'Crime')}}
                 {{Form::select('crime_type', \App\CrimeType::pluck('crime_type', 'id')->all(), null, ['class' => 'form-control', 'placeholder' => 'Crime', 'required'])}}
@@ -177,9 +185,47 @@
 @section('page-specific-scripts')
     <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
     <script>
+
+        function getBlotterReport(id){
+            var data = {'blotter_id': id}
+            console.log("params: ")
+            console.log(data)
+
+            $.ajax({
+                headers:{'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')},
+                type: "GET",
+                url: "/blotterreports/" + id + "/blotter",
+                success: function(res){
+                    console.log(res)
+                    $('select[name=location]').val(res.place_of_incident)
+                    var dti =  new Date(res.date_of_incident)
+                    $('input[name=time_occured]').val(moment(dti).format("hh:mm A"))
+                    $('input[name=date_occured]').val(moment(dti).format("MM/DD/YYYY"))
+
+                    if(res.reported_suspect != null){
+                        $('input[name=has_suspect][value=yes]').prop('checked', true)
+                        $('input[name=has_suspect][value=yes]').change()
+
+                        $('input[name=suspect_exist][value=yes]').prop("checked", true);
+                        $('input[name=suspect_exist][value=yes]').change();
+
+                        $('select[name=existing_suspect]').val(res.reported_suspect.id)
+                    }
+
+                    $('#crime-section').removeClass('hidden')
+                }
+            });
+        }
+
         var config = {prefix: '/res'}
         $('.lfm').filemanager('image', config);
-
+        $('select[name=blotter_report]').on('change', function(e){
+            $('#crime-section').addClass('hidden')
+            if($(this).prop('selectedIndex') > 0){
+                var blotterid = $(this).val()
+                getBlotterReport(blotterid)
+            }
+        })
         $('input[name=date_occured]').datepicker({
                                         maxDate: '0',
                                         });

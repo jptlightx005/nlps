@@ -27,7 +27,7 @@
                             <tr>
                                 <td><a href="{{route('blotterreports.edit', $report->id)}}">{!! $report->reportingPerson->fullName() !!}</a></td>
                                 <td>{{optional($report->date_reported)->format('F d, Y')}}</td>
-                                <td>{!!$report->status !!}</td>
+                                <td>{!!$report->status() !!}</td>
                             </tr>
                         @endforeach
                     @else

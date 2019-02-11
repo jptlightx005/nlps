@@ -21,4 +21,9 @@ class CrimeType extends Model
             return "";
         }
     }
+
+    public function cases()
+    {
+        return $this->hasMany('App\CrimeCommitted', 'crime_type_id');
+    }
 }

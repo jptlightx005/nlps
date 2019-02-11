@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 require('./waitingFor');
+window.moment = require('moment')
 window.Vue = require('vue');
 
 $.urlParam = function(name){
@@ -34,24 +35,6 @@ Vue.component('locations-map-component', require('./components/LocationsMapCompo
 const app = new Vue({
     el: '#app'
 });
-
-
-function popupWindow(url){
-    var height = screen.height - 100;
-    if(height >= 792)
-        height = 792;
-    window.open(url, '', 'width=900,height='+(height));
-    return false;
-}
-
-function printPopupWindow(url){
-    var height = screen.height - 100;
-    if(height >= 792)
-        height = 792;
-    var popupWinddow = window.open(url, '', 'width=900,height='+(height));
-    popupWinddow.print();
-    return false;
-}
 
 if(localStorage.getItem('sidebarActive') == 'false'){
     $('.main.wrapper').removeClass('sidebar-active');

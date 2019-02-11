@@ -18,10 +18,12 @@ Auth::routes();
 
 Route::middleware('auth:web')->group(function(){
 	Route::get('/', 'DashboardController@index')->name('dashboard');
+	Route::get('/statistics', 'DashboardController@statistics')->name('statistics');
 	Route::resource('/crimecommitted', 'CrimeCommittedController');
 	Route::delete('/crimecommitted/bulk/delete', 'CrimeCommittedController@deleteBulk');
 	
-Route::resource('/blotterreports', 'BlotterReportController');
+	Route::resource('/blotterreports', 'BlotterReportController');
+	Route::get('/blotterreports/{id}/blotter', 'BlotterReportController@blotterReportForId');
 
 	Route::resource('/suspects', 'SuspectsController');
 	Route::put('/suspects/{id}/convict', 'SuspectsController@setAsConvict');

@@ -11,6 +11,10 @@
 
         <div class="panel-body">
         
+            <div class="form-group">
+                {{Form::label('type_of_incident', 'Type of Incident*')}}
+                {{Form::text('type_of_incident', '', ['class' => 'form-control', 'placeholder' => 'Type of Incident', 'required'])}}
+            </div>
 
             {{Form::label('date_reported', 'Date & Time Reported *')}}
             <div class="input-group">
@@ -256,6 +260,138 @@
                     {{Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])}}
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="panel panel-default new-victim-section">
+        <div class="panel-heading">Victim's Data</div>
+        <div class="panel-body">
+            <div class="form-group">
+                {{Form::label('has_victim', 'Does the incident have a victim?')}}
+                <br>
+                <input type="radio" name="has_victim" value="yes"> Yes</input>
+                <input type="radio" name="has_victim" value="no" checked> No</input>
+            </div>
+            <div class="form-group complainant-victim-section hidden">
+                {{Form::label('complainant_victim', 'Is the complainant the victim?')}}
+                <br>
+                <input type="radio" name="complainant_victim" value="yes" checked> Yes</input>
+                <input type="radio" name="complainant_victim" value="no"> No</input>
+            </div>
+            <div class="has-different-victim-section hidden">
+                <div class="form-group">
+                    {{Form::label('victim_last_name', 'Victim\'s Last Name *')}}
+                    {{Form::text('victim_last_name', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Victim\'s Last Name'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_first_name', 'Victim\'s First Name *')}}
+                    {{Form::text('victim_first_name', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Victim\'s First Name'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_middle_name', 'Victim\'s Middle Name *')}}
+                    {{Form::text('victim_middle_name', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Victim\'s Middle Name'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_nickname', 'Victim\'s Nickname')}}
+                    {{Form::text('victim_nickname', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Victim\'s  Nickname'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_citizenship', 'Citizenship')}}
+                    {{Form::text('victim_citizenship', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Citizenship'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_gender', 'Gender')}}
+                    {{Form::select('victim_gender', ['Male', 'Female'], null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Gender'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_civil_status', 'Civil Status')}}
+                    {{Form::text('victim_civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_date_of_birth', 'Date of Birth *')}}
+                    {{Form::text('victim_date_of_birth', null, ['class' => 'form-control new-reporting-form date_picker  required_if_visible', 'placeholder' => 'Date of Birth'])}}
+                </div>       
+                <div class="form-group">
+                    {{Form::label('victim_place_of_birth', 'Place of Birth')}}
+                    {{Form::text('victim_place_of_birth', null, ['class' => 'form-control', 'placeholder' => 'Place of Birth'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_mobile_phone', 'Mobile Phone')}}
+                    {{Form::text('victim_mobile_phone', null, ['class' => 'form-control', 'placeholder' => 'Mobile Phone'])}}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{Form::label('victim_current_address', 'Current Address')}}
+                    {{Form::text('victim_current_address', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Current Address'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_current_village', 'Village/Sitio')}}
+                    {{Form::text('victim_current_village', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Village/Sitio'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_current_barangay', 'Barangay')}}
+                    {{Form::text('victim_current_barangay', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Barangay'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_current_town', 'Town/City')}}
+                    {{Form::text('victim_current_town', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Town/City'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_current_province', 'Province')}}
+                    {{Form::text('victim_current_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
+                </div>
+
+                <br>
+                <div class="form-group">
+                    {{Form::label('victim_other_address', 'Other Address')}}
+                    {{Form::text('victim_other_address', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Current Address'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_other_village', 'Village/Sitio')}}
+                    {{Form::text('victim_other_village', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Village/Sitio'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_other_barangay', 'Barangay')}}
+                    {{Form::text('victim_other_barangay', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Barangay'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_other_town', 'Town/City')}}
+                    {{Form::text('victim_other_town', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Town/City'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_other_province', 'Province')}}
+                    {{Form::text('victim_other_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
+                </div>
+                <br>
+                <div class="form-group">
+                {{Form::label('victim_highest_education', 'Highest Educational Attainment')}}
+                    {{Form::text('victim_highest_education', null, ['class' => 'form-control', 'placeholder' => 'Highest Educational Attainment'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_occupation', 'Occupation')}}
+                    {{Form::text('victim_occupation', null, ['class' => 'form-control', 'placeholder' => 'Occupation'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_work_address', 'Work Address')}}
+                    {{Form::text('victim_work_address', null, ['class' => 'form-control', 'placeholder' => 'Work Address'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('victim_relation_to_victim', 'Relation to Victim')}}
+                    {{Form::text('victim_relation_to_victim', null, ['class' => 'form-control', 'placeholder' => 'Relation to Victim'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('email', 'Email (optional)')}}
+                    {{Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default narrative-section">
+        <div class="panel-heading">Victim's Data</div>
+        <div class="panel-body">
+            <div class="form-group">
+                {{Form::label('narrative', 'Narrative')}}
+                {{Form::textarea('narrative', null, ['class' => 'form-control'])}}
+            </div>
             <div class="form-group submit-group">
                 {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
             </div>
@@ -302,23 +438,30 @@
             }
         });
 
-        $('input[name=suspect_exist]').on('change', function(){
-            console.log(this.value);
+        $('input[name=has_victim]').on('change', function(){
             if(this.value == "yes"){
-                //if will select on existing
-                $('.existing-suspect-form').prop('required', true);
-                $('.new-suspect-form').prop('required', false);
-                // $('#crime-section .submit-group').addClass('hidden');
-                $('.existing-suspect-section').removeClass('hidden');
-                $('.new-suspect-section').addClass('hidden');
-                $('.required_if_visible').attr('required', true);
+                //If Has Suspect
+                //The suspect exist section will appear
+                //And their grids will change
+                $('.complainant-victim-section').removeClass('hidden');
             }else{
-                $('.existing-suspect-form').prop('required', false);
-                $('.new-suspect-form').prop('required', true);
-                // $('#crime-section .submit-group').removeClass('hidden');
-                $('.existing-suspect-section').addClass('hidden');
-                $('.new-suspect-section').removeClass('hidden');
-                $('.required_if_visible').attr('required', false);
+                //If otherwise
+                //The suspect exist section will disappear
+                //And their grids will change back
+                $('.complainant-victim-section').addClass('hidden');
+            }
+        });
+        $('input[name=complainant_victim]').on('change', function(){
+            if(this.value == "no"){
+                //If Has Suspect
+                //The suspect exist section will appear
+                //And their grids will change
+                $('.has-different-victim-section').removeClass('hidden');
+            }else{
+                //If otherwise
+                //The suspect exist section will disappear
+                //And their grids will change back
+                $('.has-different-victim-section').addClass('hidden');
             }
         });
     </script>

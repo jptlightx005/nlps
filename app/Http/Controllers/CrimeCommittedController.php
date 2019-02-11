@@ -60,6 +60,7 @@ class CrimeCommittedController extends Controller
         $crimecommitted->crime_type = $crimetype->crime_type;
         $crimecommitted->crime_type_id = $crimetype->id;
 
+        $crimecommitted->blotter_id = $request->input('blotter_report');
         $crimecommitted->date_occured = Carbon::createFromFormat('m/d/Y g:i A', $date_occured);
         $crimecommitted->description = $request->description;
         $crimecommitted->officer_in_charge = Helper::returnBlankIfNull(optional(Officer::find($request->officer_in_charge))->full_name);
