@@ -11,11 +11,12 @@
         <div class="panel-heading">Blotter Reports</div>
 
         <div class="panel-body">
-            {{Form::open(['action' => 'CrimeCommittedController@deleteBulk',
+            {{Form::open(['action' => 'BlotterReportController@deleteBulk',
                             'id' => 'remove-form'])}}
             <table class="table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Complainant</th>
                         <th>Date/Time</th>
                         <th></th>
@@ -25,6 +26,7 @@
                     @if(count($reports) > 0)
                         @foreach($reports as $report)
                             <tr>
+                                <td><input type="checkbox" class="record-checked" name="reports[]" value="{{$report->id}}" />
                                 <td>{!! optional($report->reportingPerson)->fullName() !!}</td>
                                 <td>{{optional($report->date_reported)->format('F d, Y')}}</td>
                                 <td>

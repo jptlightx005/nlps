@@ -64,10 +64,6 @@
                 {{Form::select('gender', ['Male', 'Female'], null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Gender'])}}
             </div>
             <div class="form-group">
-                {{Form::label('citizenship', 'Citizenship')}}
-                {{Form::text('citizenship', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Citizenship'])}}
-            </div>
-            <div class="form-group">
                 {{Form::label('civil_status', 'Civil Status')}}
                 {{Form::text('civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status'])}}
             </div>
@@ -105,7 +101,7 @@
                 {{Form::text('current_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
             </div>
 
-            <br>
+            <!-- <br>
             <div class="form-group">
                 {{Form::label('other_address', 'Other Address')}}
                 {{Form::text('other_address', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Current Address'])}}
@@ -125,7 +121,7 @@
             <div class="form-group">
                 {{Form::label('other_province', 'Province')}}
                 {{Form::text('other_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
-            </div>
+            </div> -->
             <br>
             <div class="form-group">
             {{Form::label('highest_education', 'Highest Educational Attainment')}}

@@ -200,9 +200,9 @@ class BlotterReportController extends Controller
      * @param  \App\BlotterReport  $blotterReport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BlotterReport $blotterReport)
+    public function update(Request $request, $id)
     {
-        $report = $blotterReport;
+        $report = BlotterReport::findOrFail($id);
 
         $date_reported = $request->date_reported . " " . $request->time_reported;
         // $date_of_incident = $request->date_of_incident . " " . $request->time_reported; //comment this later
@@ -212,7 +212,7 @@ class BlotterReportController extends Controller
         $report->date_of_incident = Carbon::createFromFormat('m/d/Y g:i A', $date_of_incident);
         $report->place_of_incident = $request->location;
         $report->type_of_incident = $request->type_of_incident;
-        // $report->incident_narrative = $request->narrative;
+        $report->incident_narattive = $request->narrative;
         
         // $complainant = new Complainant;
         // $complainant->type = "reporting_person";
@@ -343,6 +343,27 @@ class BlotterReportController extends Controller
     public function destroy(BlotterReport $blotterReport)
     {
         //
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteBulk(Request $request)
+    {
+        $this->validate($request, [
+            'reports' => 'required|array'
+        ]);
+        $reports = BlotterReport::whereIn('id', $request->input('reports'));
+        foreach($reports as $report){
+            $report->detach();
+        }
+        $reports->delete();
+        return redirect()->back()->with('success', 'Successfully removed records');
+
     }
 
     public function blotterReportForId($id)

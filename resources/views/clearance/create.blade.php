@@ -30,32 +30,32 @@
                 {{Form::text('date_of_birth', null, ['class' => 'form-control new-reporting-form date_picker    ', 'placeholder' => 'Date of Birth', 'required'])}}
             </div>
             <div class="form-group">
-                {{Form::label('contact_number', 'Contact Number')}}
-                {{Form::text('contact_number', null, ['class' => 'form-control', 'placeholder' => 'Contact Number'])}}
+                {{Form::label('contact_number', 'Contact Number *')}}
+                {{Form::text('contact_number', null, ['class' => 'form-control', 'placeholder' => 'Contact Number', 'required'])}}
             </div>
             <div class="form-group">
-                {{Form::label('address', 'Address')}}
-                {{Form::text('address', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Address'])}}
+                {{Form::label('address', 'Address *')}}
+                {{Form::text('address', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Address', 'required'])}}
             </div>
             <div class="form-group">
-                {{Form::label('place_of_birth', 'Place of Birth')}}
-                {{Form::text('place_of_birth', null, ['class' => 'form-control', 'placeholder' => 'Place of Birth'])}}
+                {{Form::label('place_of_birth', 'Place of Birth *')}}
+                {{Form::text('place_of_birth', null, ['class' => 'form-control', 'placeholder' => 'Place of Birth', 'required'])}}
             </div>
             <div class="form-group">
-                {{Form::label('nationality', 'Nationality')}}
-                {{Form::text('nationality', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Nationality'])}}
+                {{Form::label('nationality', 'Nationality *')}}
+                {{Form::text('nationality', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Nationality', 'required'])}}
             </div>
             <div class="form-group">
-                {{Form::label('gender', 'Gender')}}
-                {{Form::select('gender', ['Male', 'Female'], null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Gender'])}}
+                {{Form::label('gender', 'Gender *')}}
+                {{Form::select('gender', ['Male', 'Female'], null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Gender', 'required'])}}
             </div>
             <div class="form-group">
-                {{Form::label('purpose', 'Purpose')}}
-                {{Form::text('purpose', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Purpose'])}}
+                {{Form::label('purpose', 'Purpose *')}}
+                {{Form::text('purpose', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Purpose', 'required'])}}
             </div>
             <div class="form-group">
-                {{Form::label('civil_status', 'Civil Status')}}
-                {{Form::text('civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status'])}}
+                {{Form::label('civil_status', 'Civil Status *')}}
+                {{Form::text('civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}}
             </div>
             <div class="form-group">
                 <div class="input-group">

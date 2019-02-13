@@ -26,6 +26,7 @@ Route::middleware('auth:web')->group(function(){
 	Route::resource('/blotterreports', 'BlotterReportController');
 	Route::get('/blotterreports/{id}/blotter', 'BlotterReportController@blotterReportForId');
 	Route::get('/blotterreports/{id}/print', 'BlotterReportController@print')->name('blotterreports.print');
+	Route::delete('/blotterreports/bulk/delete', 'BlotterReportController@deleteBulk');
 
 	Route::resource('/suspects', 'SuspectsController');
 	Route::put('/suspects/{id}/convict', 'SuspectsController@setAsConvict');

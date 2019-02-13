@@ -41,15 +41,17 @@ class PoliceClearanceController extends Controller
         $clearance->date_issued = Carbon::now();
         $clearance->control_number = "000";
         $clearance->place_issued = "New Lucena";
-        $clearance->first_name = $request->input('reporting_first_name');
-        $clearance->middle_name = $request->input('reporting_middle_name');
-        $clearance->last_name = $request->input('reporting_last_name');
-        $clearance->date_of_birth = $request->input('date_of_birth');
+        $clearance->first_name = $request->input('first_name');
+        $clearance->middle_name = $request->input('middle_name');
+        $clearance->last_name = $request->input('last_name');
+        $clearance->date_of_birth = Carbon::parse($request->input('date_of_birth'));
+        $clearance->place_of_birth = $request->input('place_of_birth');
         $clearance->contact_number = $request->input('contact_number');
         $clearance->address = $request->input('address');
         $clearance->nationality = $request->input('nationality');
         $clearance->gender = $request->input('gender') == '0' ? 'Male' : 'Female';
         $clearance->civil_status = $request->input('civil_status');
+        $clearance->purpose = $request->input('purpose');
 
         $clearance->image_url = $request->input('whole_body');
         $clearance->save();
@@ -87,9 +89,26 @@ class PoliceClearanceController extends Controller
      * @param  \App\PoliceClearance  $policeClearance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PoliceClearance $policeClearance)
+    public function update(Request $request, $id)
     {
-        //
+        $clearance = PoliceClearance::findOrFail($id);
+        $clearance->date_issued = Carbon::now();
+        $clearance->first_name = $request->input('first_name');
+        $clearance->middle_name = $request->input('middle_name');
+        $clearance->last_name = $request->input('last_name');
+        $clearance->date_of_birth = Carbon::parse($request->input('date_of_birth'));
+        $clearance->place_of_birth = $request->input('place_of_birth');
+        $clearance->contact_number = $request->input('contact_number');
+        $clearance->address = $request->input('address');
+        $clearance->nationality = $request->input('nationality');
+        $clearance->gender = $request->input('gender') == '0' ? 'Male' : 'Female';
+        $clearance->civil_status = $request->input('civil_status');
+        $clearance->purpose = $request->input('purpose');
+
+        $clearance->image_url = $request->input('whole_body');
+        $clearance->save();
+
+        return redirect()->route('policeclearance.index')->with('success', 'Clearance has been saved.');
     }
 
     /**

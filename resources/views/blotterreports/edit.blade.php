@@ -336,7 +336,7 @@
                     {{Form::label('victim_current_province', 'Province')}}
                     {{Form::text('victim_current_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
                 </div>
-
+<!-- 
                 <br>
                 <div class="form-group">
                     {{Form::label('victim_other_address', 'Other Address')}}
@@ -357,7 +357,7 @@
                 <div class="form-group">
                     {{Form::label('victim_other_province', 'Province')}}
                     {{Form::text('victim_other_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
-                </div>
+                </div> -->
                 <br>
                 <div class="form-group">
                 {{Form::label('victim_highest_education', 'Highest Educational Attainment')}}
