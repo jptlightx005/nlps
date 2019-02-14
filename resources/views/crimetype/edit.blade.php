@@ -19,10 +19,10 @@
                 {{Form::label('description', 'Description')}}
                 {{Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Description', 'required'])}}
             </div>
-            <div class="form-group">
+           {{--  <div class="form-group">
                 {{Form::label('classification', 'Classification')}}
                 {{Form::select('classification', config('nlps.crime_classifications', array()), null, ['class' => 'form-control', 'placeholder' => 'Classification', 'required'])}}
-            </div>
+            </div> --}}
 
             <div class="form-group submit-group">
                 {{Form::submit('Submit', ['class' => 'btn btn-default'])}}

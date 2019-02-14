@@ -53,19 +53,19 @@
             </div>
             <div class="form-group">
                 {{Form::label('nickname', 'Nickname')}}
-                {{Form::text('nickname', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Nickname'])}}
+                {{Form::text('nickname', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Nickname', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('citizenship', 'Citizenship')}}
-                {{Form::text('citizenship', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Citizenship'])}}
+                {{Form::text('citizenship', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Citizenship', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('gender', 'Gender')}}
-                {{Form::select('gender', ['Male', 'Female'], null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Gender'])}}
+                {{Form::select('gender', ['Male', 'Female'], null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Gender', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('civil_status', 'Civil Status')}}
-                {{Form::text('civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status'])}}
+                {{Form::text('civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('date_of_birth', 'Date of Birth *')}}
@@ -73,32 +73,32 @@
             </div>       
             <div class="form-group">
                 {{Form::label('place_of_birth', 'Place of Birth')}}
-                {{Form::text('place_of_birth', null, ['class' => 'form-control', 'placeholder' => 'Place of Birth'])}}
+                {{Form::text('place_of_birth', null, ['class' => 'form-control', 'placeholder' => 'Place of Birth', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('mobile_phone', 'Mobile Phone')}}
-                {{Form::text('mobile_phone', null, ['class' => 'form-control', 'placeholder' => 'Mobile Phone'])}}
+                {{Form::text('mobile_phone', null, ['class' => 'form-control', 'placeholder' => 'Mobile Phone', 'required'])}}
             </div>
             <br>
             <div class="form-group">
                 {{Form::label('current_address', 'Current Address')}}
-                {{Form::text('current_address', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Current Address'])}}
+                {{Form::text('current_address', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Current Address', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('current_village', 'Village/Sitio')}}
-                {{Form::text('current_village', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Village/Sitio'])}}
+                {{Form::text('current_village', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Village/Sitio', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('current_barangay', 'Barangay')}}
-                {{Form::text('current_barangay', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Barangay'])}}
+                {{Form::text('current_barangay', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Barangay', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('current_town', 'Town/City')}}
-                {{Form::text('current_town', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Town/City'])}}
+                {{Form::text('current_town', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Town/City', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('current_province', 'Province')}}
-                {{Form::text('current_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
+                {{Form::text('current_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province', 'required'])}}
             </div>
 
             <!-- <br>
@@ -125,20 +125,20 @@
             <br>
             <div class="form-group">
             {{Form::label('highest_education', 'Highest Educational Attainment')}}
-                {{Form::text('highest_education', null, ['class' => 'form-control', 'placeholder' => 'Highest Educational Attainment'])}}
+                {{Form::text('highest_education', null, ['class' => 'form-control', 'placeholder' => 'Highest Educational Attainment', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('occupation', 'Occupation')}}
-                {{Form::text('occupation', null, ['class' => 'form-control', 'placeholder' => 'Occupation'])}}
+                {{Form::text('occupation', null, ['class' => 'form-control', 'placeholder' => 'Occupation', 'required'])}}
             </div>
             <div class="form-group">
                 {{Form::label('id_presented', 'ID Card Presented')}}
-                {{Form::text('id_presented', null, ['class' => 'form-control', 'placeholder' => 'ID Card Presented'])}}
+                {{Form::text('id_presented', null, ['class' => 'form-control', 'placeholder' => 'ID Card Presented', 'required'])}}
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 {{Form::label('email', 'Email (optional)')}}
                 {{Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])}}
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="panel panel-default new-suspect-section">
@@ -165,19 +165,19 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_nickname', 'Nickname')}}
-                    {{Form::text('suspect_nickname', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Nickname'])}}
+                    {{Form::text('suspect_nickname', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Nickname'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_citizenship', 'Citizenship')}}
-                    {{Form::text('suspect_citizenship', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Citizenship'])}}
+                    {{Form::text('suspect_citizenship', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Citizenship'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_gender', 'Gender')}}
-                    {{Form::select('suspect_gender', ['Male', 'Female'], null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Gender'])}}
+                    {{Form::select('suspect_gender', ['Male', 'Female'], null, ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Gender'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_civil_status', 'Civil Status')}}
-                    {{Form::text('suspect_civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status'])}}
+                    {{Form::text('suspect_civil_status', null, ['class' => 'form-control required_if_visible', 'placeholder' => 'Civil Status'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_date_of_birth', 'Date of Birth *')}}
@@ -185,76 +185,76 @@
                 </div>       
                 <div class="form-group">
                     {{Form::label('suspect_place_of_birth', 'Place of Birth')}}
-                    {{Form::text('suspect_place_of_birth', null, ['class' => 'form-control', 'placeholder' => 'Place of Birth'])}}
+                    {{Form::text('suspect_place_of_birth', null, ['class' => 'form-control required_if_visible', 'placeholder' => 'Place of Birth'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_mobile_phone', 'Mobile Phone')}}
-                    {{Form::text('suspect_mobile_phone', null, ['class' => 'form-control', 'placeholder' => 'Mobile Phone'])}}
+                    {{Form::text('suspect_mobile_phone', null, ['class' => 'form-control required_if_visible', 'placeholder' => 'Mobile Phone'])}}
                 </div>
                 <br>
                 <div class="form-group">
                     {{Form::label('suspect_current_address', 'Current Address')}}
-                    {{Form::text('suspect_current_address', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Current Address'])}}
+                    {{Form::text('suspect_current_address', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Current Address'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_current_village', 'Village/Sitio')}}
-                    {{Form::text('suspect_current_village', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Village/Sitio'])}}
+                    {{Form::text('suspect_current_village', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Village/Sitio'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_current_barangay', 'Barangay')}}
-                    {{Form::text('suspect_current_barangay', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Barangay'])}}
+                    {{Form::text('suspect_current_barangay', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Barangay'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_current_town', 'Town/City')}}
-                    {{Form::text('suspect_current_town', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Town/City'])}}
+                    {{Form::text('suspect_current_town', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Town/City'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_current_province', 'Province')}}
-                    {{Form::text('suspect_current_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
+                    {{Form::text('suspect_current_province', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Province'])}}
                 </div>
-
+<!-- 
                 <br>
                 <div class="form-group">
                     {{Form::label('suspect_other_address', 'Other Address')}}
-                    {{Form::text('suspect_other_address', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Current Address'])}}
+                    {{Form::text('suspect_other_address', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Current Address'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_other_village', 'Village/Sitio')}}
-                    {{Form::text('suspect_other_village', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Village/Sitio'])}}
+                    {{Form::text('suspect_other_village', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Village/Sitio'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_other_barangay', 'Barangay')}}
-                    {{Form::text('suspect_other_barangay', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Barangay'])}}
+                    {{Form::text('suspect_other_barangay', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Barangay'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_other_town', 'Town/City')}}
-                    {{Form::text('suspect_other_town', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Town/City'])}}
+                    {{Form::text('suspect_other_town', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Town/City'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_other_province', 'Province')}}
-                    {{Form::text('suspect_other_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
-                </div>
+                    {{Form::text('suspect_other_province', '', ['class' => 'form-control new-reporting-form required_if_visible', 'placeholder' => 'Province'])}}
+                </div> -->
                 <br>
                 <div class="form-group">
                 {{Form::label('suspect_highest_education', 'Highest Educational Attainment')}}
-                    {{Form::text('suspect_highest_education', null, ['class' => 'form-control', 'placeholder' => 'Highest Educational Attainment'])}}
+                    {{Form::text('suspect_highest_education', null, ['class' => 'form-control required_if_visible', 'placeholder' => 'Highest Educational Attainment'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_occupation', 'Occupation')}}
-                    {{Form::text('suspect_occupation', null, ['class' => 'form-control', 'placeholder' => 'Occupation'])}}
+                    {{Form::text('suspect_occupation', null, ['class' => 'form-control required_if_visible', 'placeholder' => 'Occupation'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_work_address', 'Work Address')}}
-                    {{Form::text('suspect_work_address', null, ['class' => 'form-control', 'placeholder' => 'Work Address'])}}
+                    {{Form::text('suspect_work_address', null, ['class' => 'form-control required_if_visible', 'placeholder' => 'Work Address'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_relation_to_victim', 'Relation to Victim')}}
-                    {{Form::text('suspect_relation_to_victim', null, ['class' => 'form-control', 'placeholder' => 'Relation to Victim'])}}
+                    {{Form::text('suspect_relation_to_victim', null, ['class' => 'form-control required_if_visible', 'placeholder' => 'Relation to Victim'])}}
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     {{Form::label('email', 'Email (optional)')}}
                     {{Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])}}
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -335,7 +335,7 @@
                     {{Form::label('victim_current_province', 'Province')}}
                     {{Form::text('victim_current_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
                 </div>
-
+<!-- 
                 <br>
                 <div class="form-group">
                     {{Form::label('victim_other_address', 'Other Address')}}
@@ -356,7 +356,7 @@
                 <div class="form-group">
                     {{Form::label('victim_other_province', 'Province')}}
                     {{Form::text('victim_other_province', '', ['class' => 'form-control new-reporting-form', 'placeholder' => 'Province'])}}
-                </div>
+                </div> -->
                 <br>
                 <div class="form-group">
                 {{Form::label('victim_highest_education', 'Highest Educational Attainment')}}
@@ -374,10 +374,10 @@
                     {{Form::label('victim_relation_to_victim', 'Relation to Victim')}}
                     {{Form::text('victim_relation_to_victim', null, ['class' => 'form-control', 'placeholder' => 'Relation to Victim'])}}
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     {{Form::label('email', 'Email (optional)')}}
                     {{Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])}}
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -386,7 +386,7 @@
         <div class="panel-body">
             <div class="form-group">
                 {{Form::label('narrative', 'Narrative')}}
-                {{Form::textarea('narrative', null, ['class' => 'form-control'])}}
+                {{Form::textarea('narrative', null, ['class' => 'form-control', 'required'])}}
             </div>
             <div class="form-group submit-group">
                 {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
@@ -426,11 +426,13 @@
                 //The suspect exist section will appear
                 //And their grids will change
                 $('.has-suspect').removeClass('hidden');
+                $('.new-suspect-section').find('.required_if_visible').attr('required', true);
             }else{
                 //If otherwise
                 //The suspect exist section will disappear
                 //And their grids will change back
                 $('.has-suspect').addClass('hidden');
+                $('.new-suspect-section').find('.required_if_visible').attr('required', false);
             }
         });
 
@@ -440,6 +442,7 @@
                 //The suspect exist section will appear
                 //And their grids will change
                 $('.complainant-victim-section').removeClass('hidden');
+
             }else{
                 //If otherwise
                 //The suspect exist section will disappear

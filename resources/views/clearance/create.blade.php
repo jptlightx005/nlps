@@ -114,26 +114,6 @@
             }
         });
 
-        $('input[name=suspect_exist]').on('change', function(){
-            console.log(this.value);
-            if(this.value == "yes"){
-                //if will select on existing
-                $('.existing-suspect-form').prop('required', true);
-                $('.new-suspect-form').prop('required', false);
-                // $('#crime-section .submit-group').addClass('hidden');
-                $('.existing-suspect-section').removeClass('hidden');
-                $('.new-suspect-section').addClass('hidden');
-                $('.required_if_visible').attr('required', true);
-            }else{
-                $('.existing-suspect-form').prop('required', false);
-                $('.new-suspect-form').prop('required', true);
-                // $('#crime-section .submit-group').removeClass('hidden');
-                $('.existing-suspect-section').addClass('hidden');
-                $('.new-suspect-section').removeClass('hidden');
-                $('.required_if_visible').attr('required', false);
-            }
-        });
-
         var isSearching = false;
         function nameParams(){
             var nameParams = {};

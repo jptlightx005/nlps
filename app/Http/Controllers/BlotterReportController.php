@@ -71,16 +71,16 @@ class BlotterReportController extends Controller
         $complainant->current_town = $request->current_town ?: '';
         $complainant->current_province = $request->current_province ?: '';
         
-        $complainant->other_address = $request->other_address ?: '';
-        $complainant->other_village = $request->other_village ?: '';
-        $complainant->other_barangay = $request->other_barangay ?: '';
-        $complainant->other_town = $request->other_town ?: '';
-        $complainant->other_province = $request->other_province ?: '';
+        // $complainant->other_address = $request->other_address ?: '';
+        // $complainant->other_village = $request->other_village ?: '';
+        // $complainant->other_barangay = $request->other_barangay ?: '';
+        // $complainant->other_town = $request->other_town ?: '';
+        // $complainant->other_province = $request->other_province ?: '';
         
         $complainant->highest_educational_attainment = $request->highest_education ?: '';
         $complainant->occupation = $request->occupation ?: '';
         $complainant->id_presented = $request->id_presented ?: '';
-        $complainant->email = $request->email ?: '';
+        // $complainant->email = $request->email ?: '';
 
         $complainant->save();
         $report->complainant = $complainant->id;
@@ -106,11 +106,11 @@ class BlotterReportController extends Controller
             $suspect->current_town = $request->suspect_current_town;
             $suspect->current_province = $request->suspect_current_province;
             
-            $suspect->other_address = $request->suspect_other_address;
-            $suspect->other_village = $request->suspect_other_village;
-            $suspect->other_barangay = $request->suspect_other_barangay;
-            $suspect->other_town = $request->suspect_other_town;
-            $suspect->other_province = $request->suspect_other_province;
+            // $suspect->other_address = $request->suspect_other_address;
+            // $suspect->other_village = $request->suspect_other_village;
+            // $suspect->other_barangay = $request->suspect_other_barangay;
+            // $suspect->other_town = $request->suspect_other_town;
+            // $suspect->other_province = $request->suspect_other_province;
             
             $suspect->highest_educational_attainment = $request->suspect_highest_education;
             $suspect->occupation = $request->suspect_occupation;
@@ -149,16 +149,16 @@ class BlotterReportController extends Controller
                 $victim->current_town = $request->victim_current_town ?: '';
                 $victim->current_province = $request->victim_current_province ?: '';
                 
-                $victim->other_address = $request->victim_other_address ?: '';
-                $victim->other_village = $request->victim_other_village ?: '';
-                $victim->other_barangay = $request->victim_other_barangay ?: '';
-                $victim->other_town = $request->victim_other_town ?: '';
-                $victim->other_province = $request->victim_other_province ?: '';
+                // $victim->other_address = $request->victim_other_address ?: '';
+                // $victim->other_village = $request->victim_other_village ?: '';
+                // $victim->other_barangay = $request->victim_other_barangay ?: '';
+                // $victim->other_town = $request->victim_other_town ?: '';
+                // $victim->other_province = $request->victim_other_province ?: '';
                 
                 $victim->highest_educational_attainment = $request->victim_highest_education ?: '';
                 $victim->occupation = $request->victim_occupation ?: '';
                 // $victim->id_presented = $request->victim_id_presented ?: '';
-                $victim->email = $request->email ?: '';
+                // $victim->email = $request->email ?: '';
 
                 $victim->save();
                 $report->victim_id = $victim->id;

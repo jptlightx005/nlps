@@ -48,9 +48,9 @@ class CrimeCommittedController extends Controller
         $this->validate($request, [
             'crime_type' => 'required',
             'location' => 'required',
-            'has_suspect' => 'required',
             'time_occured' => 'required',
             'date_occured' => 'required',
+            'suspect_exist' => 'required',
         ]);
         
         $date_occured = $request->date_occured . " " . $request->time_occured;
@@ -72,43 +72,37 @@ class CrimeCommittedController extends Controller
             $crimecommitted->equipments()->attach($request->weapons_used);
         }
 
-        if($request->input('has_suspect') == "yes"){
+        if($request->input('suspect_exist') == "yes"){
             $this->validate($request, [
-                'suspect_exist' => 'required'
+                'existing_suspect' => 'required'
             ]);
 
-            if($request->input('suspect_exist') == "yes"){
-                $this->validate($request, [
-                    'existing_suspect' => 'required'
-                ]);
+            $crimecommitted->suspects()->attach($request->input('existing_suspect'));
+        }else{
+            $this->validate($request, [
+                'first_name' => 'required',
+                'middle_name' => 'required',
+                'last_name' => 'required',
+                'alias' => 'required',
+            ]);
 
-                $crimecommitted->suspects()->attach($request->input('existing_suspect'));
-            }else{
-                $this->validate($request, [
-                    'first_name' => 'required',
-                    'middle_name' => 'required',
-                    'last_name' => 'required',
-                    'alias' => 'required',
-                ]);
+            $suspect = Suspect::create([
+                'user_id' => auth()->user()->id,
+                'first_name' => $request->input('first_name'),
+                'middle_name' => $request->input('middle_name'),
+                'last_name' => $request->input('last_name'),
+                'qualifier' => "",
+                'alias' => $request->input('alias'),
+            ]);
 
-                $suspect = Suspect::create([
-                    'user_id' => auth()->user()->id,
-                    'first_name' => $request->input('first_name'),
-                    'middle_name' => $request->input('middle_name'),
-                    'last_name' => $request->input('last_name'),
-                    'qualifier' => "",
-                    'alias' => $request->input('alias'),
-                ]);
+            $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
+            $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
+            $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
+            $suspect->right_face = Helper::returnEmptyAvatarIfNull($request->input('right_face'));
 
-                $suspect->whole_body = Helper::returnEmptyAvatarIfNull($request->input('whole_body'));
-                $suspect->front = Helper::returnEmptyAvatarIfNull($request->input('front_face'));
-                $suspect->left_face = Helper::returnEmptyAvatarIfNull($request->input('left_face'));
-                $suspect->right_face = Helper::returnEmptyAvatarIfNull($request->input('right_face'));
+            $suspect->save();
 
-                $suspect->save();
-
-                $crimecommitted->suspects()->attach($suspect->id);
-            }
+            $crimecommitted->suspects()->attach($suspect->id);
         }
 
         return redirect('/crimecommitted')->with('success', 'Crime has been recorded.');
