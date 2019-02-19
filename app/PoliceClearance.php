@@ -25,4 +25,15 @@ class PoliceClearance extends Model
     public function age(){
         return date('Y') - $this->date_of_birth->format('Y');
     }
+
+    public function civilStatus(){
+        if(is_numeric($this->civil_status)){
+            if($this->civil_status  < count(config('nlps.civil_status'))){
+                return config('nlps.civil_status')[$this->civil_status];
+            }
+        }else if($this->civil_status != ""){
+            return $this->civil_status;
+        }
+        return "N/A";
+    }
 }

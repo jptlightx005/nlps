@@ -47,7 +47,7 @@
 
                 <div class="panel-body">
                     <div class="profile-row">
-                        <h2 class="profile-row"><b>Civil Status: </b>{{$suspect->civil_status}}</h2>
+                        <h2 class="profile-row"><b>Civil Status: </b>{{$suspect->civilStatus()}}</h2>
                         <h2 class="profile-row"><b>Occupation: </b>{{$suspect->occupation}}</h2>
                         <h2 class="profile-row"><b>Address: </b>{{$suspect->address}}</h2>
                     </div>

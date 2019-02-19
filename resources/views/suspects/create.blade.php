@@ -50,7 +50,7 @@
         <div class="panel-body">
             <div class="form-group">
                 {{Form::label('civil_status', 'Civil Status')}}
-                {{Form::text('civil_status', '', ['class' => 'form-control', 'placeholder' => 'Civil Status'])}}
+                {{Form::select('civil_status', config('nlps.civil_status'), null, ['class' => 'form-control', 'placeholder' => 'Civil Status'])}}
             </div>
             <div class="form-group">
                 {{Form::label('occupation', 'Occupation')}}

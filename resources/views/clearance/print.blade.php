@@ -111,7 +111,7 @@
         <label>Nationality: <b>{{$clearance->nationality}}</b></label>
         <label>Age: <b>{{$clearance->age()}}</b></label>
         <label>Gender: <b>{{$clearance->gender}}</b></label>
-        <label>Civil Status: <b>{{$clearance->civil_status}}</b></label>
+        <label>Civil Status: <b>{{$clearance->civilStatus()}}</b></label>
     </div>
     <div class="line-container">
         <div class="block-label">
@@ -144,15 +144,15 @@
         <p class="top-clear">VALID FOR THREE (3) MONTHS</p>
 
         <div class="signable">
-            <p class="bottom-clear"><b>Agar S Octaviano</b></p>
-            <p class="bottom-clear top-clear">Police Officer 2</p>
-            <p class="bottom-clear top-clear">Investigator</p>
+            <p class="bottom-clear"><b>{{$clearance->officer1}}</b></p>
+            <p class="bottom-clear top-clear">{{$clearance->officer1rank}}</p>
+            <p class="bottom-clear top-clear">{{$clearance->officer1role}}</p>
         </div>
 
         <div class="signable">
-            <p class="bottom-clear"><b>FELIX DC ALIANZA JR</b></p>
-            <p class="bottom-clear top-clear">Police Senior Inspector</p>
-            <p class="bottom-clear top-clear">Acting Chief of Policec</p>
+            <p class="bottom-clear"><b>{{$clearance->officer2}}</b></p>
+            <p class="bottom-clear top-clear">{{$clearance->officer2rank}}</p>
+            <p class="bottom-clear top-clear">{{$clearance->officer2role}}</p>
         </div>
 
     </div>

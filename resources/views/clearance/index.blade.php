@@ -11,9 +11,12 @@
         <div class="panel-heading">Police Clearance</div>
 
         <div class="panel-body">
+            {{Form::open(['action' => 'PoliceClearanceController@deleteBulk',
+                            'id' => 'remove-form'])}}
             <table class="table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Requesting Person</th>
                         <th>Date Issued</th>
                         <th></th>
@@ -23,6 +26,7 @@
                     @if(count($clearances) > 0)
                         @foreach($clearances as $clearance)
                             <tr>
+                                <td><input type="checkbox" class="record-checked" name="clearances[]" value="{{$clearance->id}}" />
                                 <td>{!! $clearance->fullName() !!}</td>
                                 <td>{{optional($clearance->date_issued)->format('F d, Y')}}</td>
                                 <td>
@@ -40,6 +44,8 @@
                     @endif
                 </tbody>
             </table>
+            {{Form::hidden('_method', 'delete')}}
+            {{Form::close()}}
             {{$clearances->links()}}
         </div>
     </div>

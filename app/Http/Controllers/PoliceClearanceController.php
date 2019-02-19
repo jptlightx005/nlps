@@ -54,6 +54,14 @@ class PoliceClearanceController extends Controller
         $clearance->purpose = $request->input('purpose');
 
         $clearance->image_url = $request->input('whole_body');
+
+        $clearance->officer1 = $request->input('officer1');
+        $clearance->officer1rank = $request->input('officer1rank');
+        $clearance->officer1role = $request->input('officer1role');
+        $clearance->officer2 = $request->input('officer2');
+        $clearance->officer2rank = $request->input('officer2rank');
+        $clearance->officer2role = $request->input('officer2role');
+        
         $clearance->save();
 
         return redirect()->route('policeclearance.index')->with('success', 'Clearance has been saved.');
@@ -106,6 +114,14 @@ class PoliceClearanceController extends Controller
         $clearance->purpose = $request->input('purpose');
 
         $clearance->image_url = $request->input('whole_body');
+
+        $clearance->officer1 = $request->input('officer1');
+        $clearance->officer1rank = $request->input('officer1rank');
+        $clearance->officer1role = $request->input('officer1role');
+        $clearance->officer2 = $request->input('officer2');
+        $clearance->officer2rank = $request->input('officer2rank');
+        $clearance->officer2role = $request->input('officer2role');
+
         $clearance->save();
 
         return redirect()->route('policeclearance.index')->with('success', 'Clearance has been saved.');
@@ -130,6 +146,11 @@ class PoliceClearanceController extends Controller
      */
     public function deleteBulk(Request $request)
     {
+        $this->validate($request, [
+            'clearances' => 'required|array'
+        ]);
+        $clearances = PoliceClearance::whereIn('id', $request->input('clearances'));
+        $clearances->delete();
         return redirect()->back()->with('success', 'Successfully removed records');
 
     }

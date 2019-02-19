@@ -55,7 +55,8 @@
             </div>
             <div class="form-group">
                 {{Form::label('civil_status', 'Civil Status *')}}
-                {{Form::text('civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}}
+                {{Form::select('civil_status', config('nlps.civil_status'), null, ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}}
+                {{-- {{Form::text('civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}} --}}
             </div>
             <div class="form-group">
                 <div class="input-group">
@@ -68,6 +69,40 @@
                  </div>
                  <img id="whole-holder" style="margin-top:15px;max-height:100px;">
             </div>
+        </div>
+    </div>
+    <div class="panel panel-default" id="crime-section">
+        <div class="panel-heading">
+            <div class="heading-left" style="display: inline;">Add Officers</div>
+        </div>
+
+        <div class="panel-body">
+            <div class="form-group">
+                {{Form::label('officer1', 'Officer Name')}}
+                {{Form::text('officer1', null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Officer', 'required'])}}
+            </div>
+            <div class="form-group">
+                {{Form::label('officer1rank', 'Rank')}}
+                {{Form::text('officer1rank', null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Rank', 'required'])}}
+            </div>
+            <div class="form-group">
+                {{Form::label('officer1role', 'Role')}}
+                {{Form::text('officer1role', null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Middle Name', 'required'])}}
+            </div>
+            <br>
+            <div class="form-group">
+                {{Form::label('officer2', 'Officer Name')}}
+                {{Form::text('officer2', null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Officer', 'required'])}}
+            </div>
+            <div class="form-group">
+                {{Form::label('officer2rank', 'Rank')}}
+                {{Form::text('officer2rank', null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Rank', 'required'])}}
+            </div>
+            <div class="form-group">
+                {{Form::label('officer2role', 'Role')}}
+                {{Form::text('officer2role', null, ['class' => 'form-control new-reporting-form', 'placeholder' => 'Middle Name', 'required'])}}
+            </div>
+
             <div class="form-group submit-group">
                 {{Form::submit('Submit', ['class' => 'btn btn-default', 'disabled'])}}
             </div>

@@ -50,6 +50,7 @@ Route::middleware('auth:web')->group(function(){
 
 	Route::resource('/policeclearance', 'PoliceClearanceController');
 	Route::get('/policeclearance/{policeClearance}/print', 'PoliceClearanceController@print')->name('policeclearance.print');
+	Route::delete('/policeclearance/bulk/delete', 'PoliceClearanceController@deleteBulk');
 
 	Route::get('/convicts-gallery', 'DashboardController@convicts');
 	Route::get('/suspects-gallery', 'DashboardController@suspects');

@@ -22,4 +22,12 @@ return [
         "Acquited", 
         "Serving Sentenced"
     ),
+
+    'civil_status' => array(
+        "Single", 
+        "Married", 
+        "Separated", 
+        "Widowed",
+        "Divorced"
+    ),
 ];
