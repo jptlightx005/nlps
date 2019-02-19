@@ -65,7 +65,8 @@
             </div>
             <div class="form-group">
                 {{Form::label('civil_status', 'Civil Status')}}
-                {{Form::text('civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}}
+                {{Form::select('civil_status', config('nlps.civil_status'), null, ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}}
+                {{-- {{Form::text('civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}} --}}
             </div>
             <div class="form-group">
                 {{Form::label('date_of_birth', 'Date of Birth *')}}
@@ -177,7 +178,8 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_civil_status', 'Civil Status')}}
-                    {{Form::text('suspect_civil_status', null, ['class' => 'form-control required_if_visible', 'placeholder' => 'Civil Status'])}}
+                    {{Form::select('suspect_civil_status', config('nlps.civil_status'), null, ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}}
+                    {{-- {{Form::text('suspect_civil_status', null, ['class' => 'form-control required_if_visible', 'placeholder' => 'Civil Status'])}} --}}
                 </div>
                 <div class="form-group">
                     {{Form::label('suspect_date_of_birth', 'Date of Birth *')}}
@@ -300,7 +302,8 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('victim_civil_status', 'Civil Status')}}
-                    {{Form::text('victim_civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status'])}}
+                    {{Form::select('victim_civil_status', config('nlps.civil_status'), null, ['class' => 'form-control', 'placeholder' => 'Civil Status', 'required'])}}
+                    {{-- {{Form::text('victim_civil_status', null, ['class' => 'form-control', 'placeholder' => 'Civil Status'])}} --}}
                 </div>
                 <div class="form-group">
                     {{Form::label('victim_date_of_birth', 'Date of Birth *')}}
